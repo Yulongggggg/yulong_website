@@ -204,21 +204,36 @@ export default function Hero(props) {
 
 		const pickTypeMetrics = () => {
 			const letters = text().replace(/\s+/g, '').length || 8;
-			let fontSize = Math.min(width / (letters * 0.245), height * 0.34);
-			fontSize = clamp(fontSize, 136, 286);
-			let tracking = fontSize * -0.0015;
+
+			let fontSize = isMobile()
+				? Math.min(width / (letters * 0.19), height * 0.2)
+				: Math.min(width / (letters * 0.245), height * 0.34);
+
+			fontSize = isMobile()
+				? clamp(fontSize, 72, 150)
+				: clamp(fontSize, 136, 286);
+
+			let tracking = isMobile()
+				? fontSize * -0.008
+				: fontSize * -0.0015;
 
 			textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
-			while (measureTrackedText(textCtx, text(), tracking) > width * 0.9 && fontSize > 112) {
-				fontSize -= 4;
-				tracking = fontSize * -0.0013;
+
+			while (
+				measureTrackedText(textCtx, text(), tracking) > (isMobile() ? width * 0.82 : width * 0.9) &&
+				fontSize > (isMobile() ? 60 : 112)
+			) {
+				fontSize -= isMobile() ? 2 : 4;
+				tracking = isMobile()
+					? fontSize * -0.006
+					: fontSize * -0.0013;
 				textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
 			}
 
 			return {
 				fontSize,
 				tracking,
-				baseline: height * 0.54
+				baseline: isMobile() ? height * 0.58 : height * 0.54
 			};
 		};
 
