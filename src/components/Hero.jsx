@@ -487,53 +487,53 @@ export default function Hero(props) {
 					text-align: center;
 				}
 
-				.hero-cover__prefix {
-					top: clamp(70px, 10vh, 132px);
-					font-family: "Newsreader", "Iowan Old Style", serif;
-					font-size: clamp(2rem, 2.6vw, 2.8rem);
-					font-style: italic;
-					letter-spacing: 0.02em;
-					color: rgba(35, 49, 58, 0.8);
-				}
-
-				.hero-cover__subtitle {
-					bottom: clamp(116px, 15vh, 176px);
-					width: min(94vw, 1000px);
-					font-family: "Manrope", "Helvetica Neue", sans-serif;
-					font-size: clamp(1.06rem, 1.24vw, 1.22rem);
-					letter-spacing: 0.22em;
-					text-transform: uppercase;
-					color: rgba(35, 49, 58, 0.64);
-				}
-
-				.hero-cover__enter {
-					bottom: 44px;
-					min-height: 52px;
-					padding: 0 24px;
-					border: 1px solid rgba(35, 49, 58, 0.12);
-					border-radius: 999px;
-					background: rgba(255, 255, 255, 0.42);
-					backdrop-filter: blur(12px);
-					font-family: "Manrope", "Helvetica Neue", sans-serif;
-					font-size: 0.92rem;
-					letter-spacing: 0.18em;
-					text-transform: uppercase;
-					color: rgba(35, 49, 58, 0.7);
-				}
-
-				@media (max-width: 720px) {
 					.hero-cover__prefix {
-						top: 12vh;
-						font-size: 1.6rem;
+						top: clamp(74px, 11vh, 138px);
+						font-family: "Newsreader", "Iowan Old Style", serif;
+						font-size: clamp(1.85rem, 2.45vw, 2.55rem);
+						font-style: italic;
+						letter-spacing: 0.02em;
+						color: rgba(35, 49, 58, 0.8);
 					}
 
 					.hero-cover__subtitle {
-						bottom: 96px;
-						width: 88vw;
-						font-size: 0.84rem;
-						letter-spacing: 0.12em;
+						bottom: clamp(112px, 15vh, 168px);
+						width: min(92vw, 960px);
+						font-family: "Manrope", "Helvetica Neue", sans-serif;
+						font-size: clamp(1rem, 1.18vw, 1.14rem);
+						letter-spacing: 0.22em;
+						text-transform: uppercase;
+						color: rgba(35, 49, 58, 0.64);
 					}
-				}
+
+					.hero-cover__enter {
+						bottom: 42px;
+						min-height: 50px;
+						padding: 0 22px;
+						border: 1px solid rgba(35, 49, 58, 0.12);
+						border-radius: 999px;
+						background: rgba(255, 255, 255, 0.42);
+						backdrop-filter: blur(12px);
+						font-family: "Manrope", "Helvetica Neue", sans-serif;
+						font-size: 0.88rem;
+						letter-spacing: 0.18em;
+						text-transform: uppercase;
+						color: rgba(35, 49, 58, 0.7);
+					}
+
+					@media (max-width: 720px) {
+						.hero-cover__prefix {
+							top: 12vh;
+							font-size: 1.5rem;
+						}
+
+						.hero-cover__subtitle {
+							bottom: 96px;
+							width: 88vw;
+							font-size: 0.82rem;
+							letter-spacing: 0.12em;
+						}
+					}
 			`}</style>
 		</div>
 	);
