@@ -1,11 +1,1115 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.jsx';
+import portrait from '../assets/yulong-liu-portrait.jpeg';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+function emphasizeAuthor(authors) {
+	return authors.replaceAll('Yulong Liu', '<strong>Yulong Liu</strong>');
+}
+
+function isPrimaryPublication(authors) {
+	return authors.includes('Yulong Liu');
+}
+
+const navItems = [
+	{ label: 'About', href: '#about' },
+	{ label: 'Research', href: '#research' },
+	{ label: 'Publications', href: '#publications' },
+	{ label: 'Education', href: '#education' },
+	{ label: 'Awards', href: '#awards' },
+	{ label: 'Talks', href: '#talks' },
+	{ label: 'Contact', href: '#contact' }
+];
+
+const focusAreas = ['Computational mechanics', 'Implicit neural representation', 'Poromechanics'];
+
+const researchAreas = [
+	{
+		title: 'Computational mechanics',
+		body: 'Developing deformation, damage, and fracture models for geomaterials within the MOOSE finite element framework.'
+	},
+	{
+		title: 'Implicit neural representation',
+		body: 'Continuous neural representations, physics-informed neural networks, and operator-learning surrogates for geometry-aware, physics-aware prediction, with growing interest in homogenization theory and physics-aware INR methods.'
+	},
+	{
+		title: 'Poromechanics',
+		body: 'Mechanics and transport in porous subsurface media, with a focus on poromechanics and multiscale transport.'
+	}
+];
+
+const publications = [
+	{
+		year: '2026',
+		type: 'Preprint',
+		title: 'CodeMOOSE: Multi-Agent Collaborative Framework for Multiphysics MOOSE Language',
+		authors: 'Yulong Liu, Zhenghan Song',
+		venue: 'Preprint, January 2026',
+		note: 'Open-source release in preparation.',
+		href: null,
+		linkLabel: null
+	},
+	{
+		year: '2026',
+		type: 'Conference paper',
+		title:
+			'Operator Learning Surrogate Modeling of Hydraulically Fractured Geothermal Injection-Production Systems: A Cornell Case Study',
+		authors: 'Yulong Liu, Jonah Botvinick-Greenhouse, Yunan Yang, Chloé Arson',
+		venue: 'ARMA 2026, Tucson',
+		href: 'https://scholar.google.com/scholar?q=Operator+Learning+Surrogate+Modeling+of+Hydraulically+Fractured+Geothermal+Injection-Production+Systems:+A+Cornell+Case+Study',
+		linkLabel: 'Find in Scholar'
+	},
+	{
+		year: '2026',
+		type: 'Preprint',
+		title: 'A Physics-Informed Neural Network for Modeling Pressurized Cavities of Arbitrary Smooth Shape Embedded in Heterogeneous Rock',
+		authors: 'Yulong Liu, Chloé Arson',
+		venue: 'Research Square preprint',
+		note: 'Currently under review.',
+		href: 'https://doi.org/10.21203/rs.3.rs-8492281/v1',
+		linkLabel: 'Read preprint'
+	},
+	{
+		year: '2026',
+		type: 'Journal article',
+		title: 'Numerical assessment of plasticity development and energy expenditure of ant-like microtunnelling',
+		authors: 'M. Belachew, Yulong Liu, J. D. Frost, Chloé Arson',
+		venue: 'Tunnelling and Underground Space Technology, 172, 107501',
+		href: 'https://doi.org/10.1016/j.tust.2026.107501',
+		linkLabel: 'Open journal page'
+	},
+	{
+		year: '2025',
+		type: 'Conference paper',
+		title: 'Physics-informed neural network surrogate modeling of pressurized cavity in homogeneous and bilayered media',
+		authors: 'Yulong Liu, Chloé Arson',
+		venue: 'ARMA US Rock Mechanics/Geomechanics Symposium, D022S018R006',
+		href: 'https://scholar.google.com/scholar?q=Physics-informed+neural+network+surrogate+modeling+of+pressurized+cavity+in+homogeneous+and+bilayered+media',
+		linkLabel: 'Find in Scholar'
+	}
+];
+
+const education = [
+	{
+		institution: 'Cornell University',
+		degree: 'Ph.D. student in Earth Sciences',
+		meta: '2024 - Present · Ithaca, New York',
+		detail: 'Department of Earth and Atmospheric Sciences · GPA 3.88 / 4.3'
+	},
+	{
+		institution: 'Northeastern University',
+		degree: 'B.S. in Mining Engineering',
+		meta: '2020 - 2024 · Shenyang, China',
+		detail: 'College of Engineering · GPA 3.94 / 4.5'
+	}
+];
+
+const awards = [
+	'2025 · Estwing Hammer Award, most outstanding EAS graduate student of 2024',
+	'2024 · Outstanding Thesis, most outstanding undergraduate thesis',
+	'2024 · National Scholarship, most outstanding student in the university',
+	'2023 · First Class Scholarship',
+	'2022 · Autumn Scholarship and Golden Seed Scholarship'
+];
+
+const service = [
+	'Reviewer, Rock Mechanics and Rock Engineering',
+	'Reviewer, International Conference on Artificial Neural Networks 2026'
+];
+
+const talks = [
+	{
+		type: 'Invited seminar',
+		title:
+			'A Physics-Informed Neural Network for Modeling Pressurized Cavities of Arbitrary Smooth Shape Embedded in Heterogeneous Rock',
+		venue: 'Southwest Petroleum University seminar series, Chengdu, China',
+		date: 'December 31, 2025'
+	}
+];
+
+const profileFacts = [
+	{ label: 'Program', value: 'Ph.D. in Earth Sciences' },
+	{ label: 'Advisor', value: 'Chloé Arson' },
+	{ label: 'Focus', value: 'Computational mechanics · INR · Poromechanics' },
+	{ label: 'Base', value: 'Ithaca, New York' },
+	{ label: 'Email', value: 'yl3825@cornell.edu' }
+];
+
+const externalLinks = [
+	{
+		label: 'Google Scholar',
+		href: 'https://scholar.google.com/citations?user=0CV0lsQAAAAJ&hl=en'
+	},
+	{
+		label: 'LinkedIn',
+		href: 'https://www.linkedin.com/in/yulong-liu-19451a322/'
+	},
+	{
+		label: 'GitHub',
+		href: 'https://github.com/Yulongggggg'
+	},
+	{
+		label: 'Cornell email',
+		href: 'mailto:yl3825@cornell.edu'
+	}
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+			<meta
+				name="description"
+				content="Yulong Liu is a Ph.D. student in Earth Sciences at Cornell University, working across computational mechanics, implicit neural representation, poromechanics, and subsurface energy systems."
+			/>
+			<title>Yulong Liu | Earth Sciences</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Merriweather:wght@700;900&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<Hero
+			prefix="Hi, I'm"
+			text="YULONG LIU"
+			subtitle="Ph.D. student in Earth Sciences at Cornell University"
+			client:load
+		/>
+
+		<nav class="site-nav" aria-label="Section navigation">
+			<div class="site-nav__inner">
+				{navItems.map((item) => (
+					<a href={item.href} class="site-nav__link">
+						{item.label}
+					</a>
+				))}
+			</div>
+		</nav>
+
+		<main class="page-shell">
+				<section class="intro-section focus-section" id="about">
+					<div class="intro-body">
+						<div class="intro-side" data-reveal="left">
+							<div class="portrait-media">
+								<img src={portrait.src} alt="Portrait of Yulong Liu" loading="eager" />
+							</div>
+						</div>
+
+						<div class="intro-copy" data-reveal="right" data-reveal-delay="80">
+							<div class="intro-main">
+								<p class="eyebrow">Yulong Liu</p>
+								<h1>Ph.D. student in Earth Sciences at Cornell University.</h1>
+								<p class="lead">
+									I work across computational mechanics, implicit neural representation,
+									poromechanics, and subsurface energy systems, with a focus on surrogate modeling
+									for coupled multiphysics problems in Earth science. I am also increasingly interested in
+									homogenization theory and physics-aware implicit neural representations.
+								</p>
+							</div>
+
+							<div class="intro-actions">
+								<div class="inline-tags">
+									{focusAreas.map((item) => (
+										<span>{item}</span>
+									))}
+								</div>
+
+								<div class="inline-links">
+									{externalLinks.map((link) => (
+										<a
+											href={link.href}
+											target={link.href.startsWith('http') ? '_blank' : undefined}
+											rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+										>
+											{link.label}
+										</a>
+									))}
+								</div>
+							</div>
+
+							<dl class="meta-list meta-list--intro">
+								{profileFacts.map((fact) => (
+									<div class="meta-row">
+										<dt>{fact.label}</dt>
+										<dd>{fact.value}</dd>
+									</div>
+								))}
+							</dl>
+						</div>
+					</div>
+				</section>
+
+			<section class="section-block focus-section" id="research">
+				<div class="section-heading">
+					<p class="section-kicker">Research</p>
+					<h2>Current directions in my work.</h2>
+				</div>
+
+				<div class="line-list">
+					{researchAreas.map((item, index) => (
+						<article class="line-item" data-reveal="up" data-reveal-delay={String(index * 90)}>
+							<p class="line-index">0{index + 1}</p>
+							<div class="line-copy">
+								<h3>{item.title}</h3>
+								<p>{item.body}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+
+				<section class="section-block focus-section" id="publications">
+					<div class="section-heading">
+						<p class="section-kicker">Publications</p>
+						<h2>Current publication list.</h2>
+					</div>
+
+				<ol class="publication-list">
+						{publications.map((item, index) => (
+							<li class="publication-item" data-reveal="up" data-reveal-delay={String(index * 90)}>
+								{isPrimaryPublication(item.authors) ? <span class="publication-star">*</span> : null}
+								<div class="publication-meta">
+									<span>{item.year}</span>
+									<span>{item.type}</span>
+							</div>
+								<div class="publication-copy">
+									<h3>{item.title}</h3>
+									<p class="publication-authors" set:html={emphasizeAuthor(item.authors)} />
+									<p class="publication-venue">{item.venue}</p>
+									{item.note ? <p class="publication-note">{item.note}</p> : null}
+									{item.href && item.linkLabel ? (
+										<a href={item.href} target="_blank" rel="noreferrer" class="text-link">
+											{item.linkLabel}
+										</a>
+									) : null}
+								</div>
+							</li>
+						))}
+				</ol>
+			</section>
+
+			<section class="section-block focus-section" id="education">
+				<div class="section-heading">
+					<p class="section-kicker">Education</p>
+					<h2>Academic path.</h2>
+				</div>
+
+				<div class="row-list">
+					{education.map((item, index) => (
+						<article class="row-item" data-reveal="up" data-reveal-delay={String(index * 90)}>
+							<div class="row-meta">
+								<p>{item.meta}</p>
+							</div>
+							<div class="row-copy">
+								<h3>{item.institution}</h3>
+								<p class="row-title">{item.degree}</p>
+								<p>{item.detail}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="section-block focus-section" id="awards">
+				<div class="section-heading">
+					<p class="section-kicker">Awards & service</p>
+					<h2>Recognition and academic contribution.</h2>
+				</div>
+
+				<div class="dual-stream">
+					<div class="stream" data-reveal="left">
+						<h3>Awards</h3>
+						<ul class="plain-list">
+							{awards.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+
+					<div class="stream" data-reveal="right" data-reveal-delay="80">
+						<h3>Academic service</h3>
+						<ul class="plain-list">
+							{service.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-block focus-section" id="talks">
+				<div class="section-heading">
+					<p class="section-kicker">Talks</p>
+					<h2>Invited seminar.</h2>
+				</div>
+
+				<div class="row-list">
+					{talks.map((talk, index) => (
+						<article class="row-item" data-reveal="up" data-reveal-delay={String(index * 90)}>
+							<div class="row-meta">
+								<p>{talk.type}</p>
+								<p>{talk.date}</p>
+							</div>
+							<div class="row-copy">
+								<h3>{talk.title}</h3>
+								<p>{talk.venue}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<footer class="section-block footer-block focus-section" id="contact">
+				<div class="section-heading">
+					<p class="section-kicker">Contact</p>
+					<h2>Open to thoughtful research conversations<br />or collaboration.</h2>
+				</div>
+
+				<p class="footer-text">
+					Reach me at <a href="mailto:yl3825@cornell.edu">yl3825@cornell.edu</a> or
+					<a href="mailto:yulong.liuuu@gmail.com">yulong.liuuu@gmail.com</a>.
+				</p>
+
+				<div class="inline-links">
+					{externalLinks.map((link) => (
+						<a
+							href={link.href}
+							target={link.href.startsWith('http') ? '_blank' : undefined}
+							rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+						>
+							{link.label}
+						</a>
+					))}
+				</div>
+			</footer>
+		</main>
+
+		<script is:inline>
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const revealElements = [...document.querySelectorAll('[data-reveal]')];
+			const navLinks = [...document.querySelectorAll('.site-nav__link')];
+			const sections = navLinks
+				.map((link) => document.querySelector(link.getAttribute('href')))
+				.filter(Boolean);
+			const focusSections = [...document.querySelectorAll('.focus-section')];
+			const portraitMedia = document.querySelector('.portrait-media');
+
+			const setActiveSection = () => {
+				const threshold = window.scrollY + window.innerHeight * 0.3;
+				let currentId = sections[0]?.id;
+
+				for (const section of sections) {
+					if (section.offsetTop <= threshold) {
+						currentId = section.id;
+					}
+				}
+
+				for (const link of navLinks) {
+					const isActive = link.getAttribute('href') === `#${currentId}`;
+					link.classList.toggle('is-active', isActive);
+				}
+			};
+
+			const updatePortraitShift = () => {
+				if (!portraitMedia) return;
+				const rect = portraitMedia.getBoundingClientRect();
+				const shift = Math.max(-18, Math.min(18, (window.innerHeight * 0.58 - rect.top) * 0.05));
+				portraitMedia.style.setProperty('--media-shift', `${shift.toFixed(2)}px`);
+			};
+
+			const updateSectionFocus = () => {
+				if (reduceMotion) return;
+				const focalPoint = window.innerHeight * 0.42;
+				const range = window.innerHeight * 0.9;
+				let focused = null;
+				let smallestDistance = Infinity;
+				const nearTop = window.scrollY < 48;
+				const nearBottom =
+					window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 48;
+
+				for (const section of focusSections) {
+					const rect = section.getBoundingClientRect();
+					const center = rect.top + rect.height * 0.5;
+					const distance = Math.abs(center - focalPoint);
+					if (distance < smallestDistance) {
+						smallestDistance = distance;
+						focused = section;
+					}
+				}
+
+				if (nearTop) {
+					focused = focusSections[0];
+				}
+
+				if (nearBottom) {
+					focused = focusSections[focusSections.length - 1];
+				}
+
+				for (const section of focusSections) {
+					const rect = section.getBoundingClientRect();
+					const center = rect.top + rect.height * 0.5;
+					const distance = Math.abs(center - focalPoint);
+					const normalized = Math.min(distance / range, 1);
+					const isFocused = section === focused;
+					const blur = normalized * 1.8;
+					const opacity = 1 - normalized * 0.09;
+					const scale = 1 - normalized * 0.006;
+					const shift = (center < focalPoint ? -1 : 1) * normalized * 4;
+
+					if (isFocused) {
+						section.style.removeProperty('--section-blur');
+						section.style.removeProperty('--section-opacity');
+						section.style.removeProperty('--section-scale');
+						section.style.removeProperty('--section-shift');
+					} else {
+						section.style.setProperty('--section-blur', `${blur.toFixed(2)}px`);
+						section.style.setProperty('--section-opacity', opacity.toFixed(3));
+						section.style.setProperty('--section-scale', scale.toFixed(3));
+						section.style.setProperty('--section-shift', `${shift.toFixed(2)}px`);
+					}
+
+					section.classList.toggle('is-focused', isFocused);
+					section.classList.toggle('is-dimmed', !isFocused);
+				}
+			};
+
+			let ticking = false;
+			const handleScroll = () => {
+				if (ticking) return;
+				ticking = true;
+				requestAnimationFrame(() => {
+					setActiveSection();
+					updatePortraitShift();
+					updateSectionFocus();
+					ticking = false;
+				});
+			};
+
+			if (!reduceMotion && 'IntersectionObserver' in window) {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						}
+					},
+					{ threshold: 0.14, rootMargin: '0px 0px -10% 0px' }
+				);
+
+				for (const element of revealElements) {
+					const delay = element.dataset.revealDelay || '0';
+					element.style.setProperty('--reveal-delay', `${delay}ms`);
+					observer.observe(element);
+				}
+
+				window.addEventListener('scroll', handleScroll, { passive: true });
+			} else {
+				for (const element of revealElements) {
+					element.classList.add('is-visible');
+				}
+			}
+
+			setActiveSection();
+			updatePortraitShift();
+			updateSectionFocus();
+			window.addEventListener('resize', handleScroll);
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--paper: #f5f0e4;
+		--ink: #273440;
+		--muted: #56646d;
+		--line: rgba(39, 52, 64, 0.16);
+		--line-strong: rgba(39, 52, 64, 0.28);
+		--accent: rgba(137, 171, 201, 0.48);
+	}
+
+	html {
+		background: var(--paper);
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		min-height: 100vh;
+		color: var(--ink);
+		font-family: 'Newsreader', 'Iowan Old Style', serif;
+		background:
+			radial-gradient(circle at 10% 10%, rgba(201, 205, 176, 0.26), transparent 24%),
+			radial-gradient(circle at 86% 14%, rgba(169, 192, 216, 0.22), transparent 24%),
+			radial-gradient(circle at 72% 70%, rgba(202, 189, 219, 0.18), transparent 22%),
+			linear-gradient(180deg, #f8f4ea 0%, #f3ecdf 100%);
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		background:
+			linear-gradient(90deg, rgba(255, 255, 255, 0.09), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.08)),
+			linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+		opacity: 0.82;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.site-nav {
+		position: fixed;
+		top: 22px;
+		right: max(24px, calc((100vw - 1160px) / 2));
+		z-index: 24;
+	}
+
+	.site-nav__inner {
+		display: flex;
+		gap: 18px;
+		align-items: center;
+		padding: 12px 18px;
+		border-radius: 999px;
+		background: rgba(248, 244, 235, 0.76);
+		border: 1px solid rgba(39, 52, 64, 0.1);
+		backdrop-filter: blur(16px);
+	}
+
+	.site-nav__link,
+	.eyebrow,
+	.section-kicker,
+	.line-index,
+	.meta-row dt,
+	.row-meta p,
+	.publication-meta span {
+		margin: 0;
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.74rem;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: rgba(39, 52, 64, 0.56);
+	}
+
+	.site-nav__link {
+		position: relative;
+		padding-bottom: 5px;
+		transition: color 180ms ease;
+	}
+
+	.site-nav__link::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		background: rgba(39, 52, 64, 0.84);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 220ms ease;
+	}
+
+	.site-nav__link:hover,
+	.site-nav__link.is-active {
+		color: var(--ink);
+	}
+
+	.site-nav__link:hover::after,
+	.site-nav__link.is-active::after {
+		transform: scaleX(1);
+	}
+
+	.page-shell {
+		position: relative;
+		width: min(1220px, calc(100vw - 48px));
+		margin: 0 auto;
+		padding: 112px 0 96px;
+	}
+
+	.intro-section {
+		display: grid;
+		padding-top: 24px;
+	}
+
+	.intro-body {
+		--intro-photo-width: 350px;
+		display: grid;
+		grid-template-columns: var(--intro-photo-width) minmax(0, 1fr);
+		gap: 64px;
+		align-items: stretch;
+	}
+
+	.intro-copy {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 18px;
+		min-height: var(--intro-photo-width);
+		padding-top: 2px;
+	}
+
+	.intro-main,
+	.intro-actions {
+		display: grid;
+		gap: 18px;
+	}
+
+	.intro-copy h1,
+	.section-heading h2,
+	.line-copy h3,
+	.publication-copy h3,
+	.row-copy h3,
+	.stream h3 {
+		margin: 0;
+		font-family: 'Merriweather', 'Georgia', serif;
+		font-weight: 700;
+		color: var(--ink);
+	}
+
+	.intro-copy h1 {
+		max-width: none;
+		font-size: clamp(2rem, 2.2vw, 2.5rem);
+		line-height: 1.04;
+		letter-spacing: -0.03em;
+		white-space: nowrap;
+	}
+
+	.lead,
+	.line-copy p,
+	.publication-copy p,
+	.row-copy p,
+	.stream li,
+	.footer-text,
+	.section-note {
+		margin: 0;
+		font-size: 1.14rem;
+		line-height: 1.72;
+		color: var(--muted);
+	}
+
+	.inline-tags,
+	.inline-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px 20px;
+	}
+
+	.inline-tags span,
+	.inline-links a,
+	.text-link,
+	.footer-text a {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		color: var(--ink);
+	}
+
+	.inline-tags span::after,
+	.inline-links a::after,
+	.text-link::after,
+	.footer-text a::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -3px;
+		width: 100%;
+		height: 1px;
+		background: rgba(39, 52, 64, 0.46);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 220ms ease;
+	}
+
+	.inline-tags span::after {
+		transform: scaleX(1);
+		background: rgba(39, 52, 64, 0.18);
+	}
+
+	.inline-links a:hover::after,
+	.text-link:hover::after,
+	.footer-text a:hover::after {
+		transform: scaleX(1);
+	}
+
+	.intro-side {
+		display: block;
+	}
+
+	.portrait-media {
+		position: relative;
+		width: 100%;
+		margin-left: 0;
+		overflow: hidden;
+		border-radius: 50%;
+		transform: translate3d(0, var(--media-shift, 0px), 0);
+		transition: transform 380ms ease;
+	}
+
+	.portrait-media img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+		object-position: center 22%;
+		border-radius: 50%;
+	}
+
+	.meta-list {
+		display: grid;
+		gap: 10px;
+		margin: 0;
+	}
+
+	.meta-list--intro {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: 24px;
+		row-gap: 14px;
+		margin-top: auto;
+	}
+
+	.meta-row {
+		display: grid;
+		grid-template-columns: 92px minmax(0, 1fr);
+		gap: 14px;
+		padding-top: 12px;
+		border-top: 1px solid var(--line);
+	}
+
+	.meta-row dd {
+		margin: 0;
+		font-size: 1.04rem;
+		line-height: 1.55;
+		color: var(--ink);
+	}
+
+	.meta-list--intro .meta-row {
+		grid-template-columns: 1fr;
+		gap: 6px;
+		padding-top: 12px;
+	}
+
+	.meta-list--intro .meta-row dt {
+		font-size: 0.68rem;
+		letter-spacing: 0.2em;
+	}
+
+	.meta-list--intro .meta-row dd {
+		font-size: 0.98rem;
+		line-height: 1.45;
+	}
+
+	.section-block {
+		position: relative;
+		margin-top: 72px;
+		padding-top: 34px;
+		border-top: 1px solid var(--line);
+	}
+
+	.focus-section {
+		transition:
+			filter 220ms linear,
+			opacity 220ms linear,
+			transform 220ms linear;
+		will-change: filter, opacity, transform;
+	}
+
+	.focus-section.is-focused {
+		opacity: 1;
+		filter: blur(0);
+		transform: none;
+	}
+
+	.focus-section.is-dimmed {
+		opacity: var(--section-opacity, 1);
+		filter: blur(var(--section-blur, 0px));
+		transform: translate3d(0, var(--section-shift, 0px), 0) scale(var(--section-scale, 1));
+		transform-origin: center top;
+	}
+
+	.section-block::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: min(220px, 26vw);
+		height: 1px;
+		background: linear-gradient(90deg, rgba(149, 177, 203, 0.9), rgba(198, 186, 214, 0.44));
+		opacity: 0.8;
+	}
+
+	.section-heading {
+		display: grid;
+		gap: 10px;
+		margin-bottom: 18px;
+	}
+
+	.section-note {
+		max-width: 34rem;
+	}
+
+	.section-heading h2 {
+		max-width: 12ch;
+		font-size: clamp(2.9rem, 5.2vw, 4.8rem);
+		line-height: 0.92;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
+	}
+
+	.line-list,
+	.publication-list,
+	.row-list {
+		display: grid;
+	}
+
+	.line-item,
+	.publication-item,
+	.row-item {
+		display: grid;
+		grid-template-columns: 110px minmax(0, 1fr);
+		gap: 20px;
+		padding: 24px 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.line-item:first-child,
+	.publication-item:first-child,
+	.row-item:first-child {
+		border-top: 0;
+	}
+
+	.line-copy,
+	.publication-copy,
+	.row-copy {
+		display: grid;
+		gap: 8px;
+	}
+
+	.line-copy h3,
+	.publication-copy h3,
+	.row-copy h3,
+	.stream h3 {
+		font-size: clamp(2rem, 3.1vw, 2.7rem);
+		line-height: 0.98;
+		letter-spacing: -0.02em;
+	}
+
+	.publication-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		counter-reset: publication;
+	}
+
+	.publication-item {
+		position: relative;
+		counter-increment: publication;
+	}
+
+	.publication-star {
+		position: absolute;
+		top: 20px;
+		right: 2px;
+		font-family: 'Merriweather', 'Georgia', serif;
+		font-size: 1.35rem;
+		line-height: 1;
+		color: rgba(39, 52, 64, 0.72);
+	}
+
+	.publication-meta,
+	.row-meta {
+		display: grid;
+		align-content: start;
+		gap: 8px;
+	}
+
+	.publication-authors,
+	.row-title,
+	.publication-venue {
+		color: var(--ink);
+	}
+
+	.publication-note {
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.84rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(39, 52, 64, 0.56);
+	}
+
+	.dual-stream {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 40px;
+	}
+
+	.stream {
+		display: grid;
+		gap: 18px;
+	}
+
+	.plain-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 14px;
+	}
+
+	.plain-list li {
+		padding-top: 14px;
+		border-top: 1px solid var(--line);
+	}
+
+	.footer-block {
+		padding-bottom: 16px;
+	}
+
+	.footer-block .section-heading h2 {
+		max-width: none;
+		font-size: clamp(2.4rem, 4vw, 3.8rem);
+		white-space: nowrap;
+	}
+
+	[data-reveal] {
+		opacity: 0;
+		filter: blur(10px);
+		transition:
+			transform 760ms cubic-bezier(0.2, 0.8, 0.2, 1),
+			opacity 760ms ease,
+			filter 760ms ease;
+		transition-delay: var(--reveal-delay, 0ms);
+		will-change: transform, opacity, filter;
+	}
+
+	[data-reveal='up'] {
+		transform: translate3d(0, 38px, 0);
+	}
+
+	[data-reveal='left'] {
+		transform: translate3d(-34px, 26px, 0);
+	}
+
+	[data-reveal='right'] {
+		transform: translate3d(34px, 26px, 0);
+	}
+
+	[data-reveal].is-visible {
+		opacity: 1;
+		filter: blur(0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		.focus-section {
+			opacity: 1;
+			filter: none;
+			transform: none;
+			transition: none;
+		}
+
+		[data-reveal] {
+			opacity: 1;
+			filter: none;
+			transform: none;
+			transition: none;
+		}
+
+		.portrait-media {
+			transform: none;
+		}
+	}
+
+	@media (max-width: 1040px) {
+		.site-nav {
+			right: 16px;
+		}
+
+		.intro-body,
+		.dual-stream {
+			grid-template-columns: 1fr;
+		}
+
+		.portrait-media {
+			width: min(100%, 340px);
+			margin-left: 0;
+		}
+
+		.intro-copy {
+			min-height: auto;
+		}
+	}
+
+	@media (max-width: 760px) {
+		.site-nav {
+			top: 10px;
+			right: 0;
+			left: 0;
+			display: block;
+			padding: 0 12px;
+		}
+
+		.site-nav__inner {
+			justify-content: flex-start;
+			overflow-x: auto;
+			white-space: nowrap;
+			gap: 16px;
+			padding: 10px 14px;
+		}
+
+		.page-shell {
+			width: calc(100vw - 24px);
+			padding-top: 92px;
+			padding-bottom: 72px;
+		}
+
+		.intro-copy h1 {
+			font-size: clamp(2.25rem, 9vw, 3.4rem);
+			white-space: normal;
+		}
+
+		.meta-list--intro {
+			grid-template-columns: 1fr;
+		}
+
+		.footer-block .section-heading h2 {
+			font-size: clamp(2.15rem, 10vw, 3rem);
+			white-space: normal;
+		}
+
+		.section-heading h2 {
+			max-width: 100%;
+			font-size: clamp(2.4rem, 11vw, 3.5rem);
+		}
+
+		.line-item,
+		.publication-item,
+		.row-item,
+		.meta-row {
+			grid-template-columns: 1fr;
+		}
+
+		.line-copy h3,
+		.publication-copy h3,
+		.row-copy h3,
+		.stream h3 {
+			font-size: clamp(1.75rem, 9vw, 2.5rem);
+		}
+	}
+</style>
