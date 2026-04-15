@@ -204,36 +204,21 @@ export default function Hero(props) {
 
 		const pickTypeMetrics = () => {
 			const letters = text().replace(/\s+/g, '').length || 8;
-
-			let fontSize = isMobile()
-				? Math.min(width / (letters * 0.19), height * 0.2)
-				: Math.min(width / (letters * 0.245), height * 0.34);
-
-			fontSize = isMobile()
-				? clamp(fontSize, 72, 150)
-				: clamp(fontSize, 136, 286);
-
-			let tracking = isMobile()
-				? fontSize * -0.008
-				: fontSize * -0.0015;
+			let fontSize = Math.min(width / (letters * 0.245), height * 0.34);
+			fontSize = clamp(fontSize, 136, 286);
+			let tracking = fontSize * -0.0015;
 
 			textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
-
-			while (
-				measureTrackedText(textCtx, text(), tracking) > (isMobile() ? width * 0.82 : width * 0.9) &&
-				fontSize > (isMobile() ? 60 : 112)
-			) {
-				fontSize -= isMobile() ? 2 : 4;
-				tracking = isMobile()
-					? fontSize * -0.006
-					: fontSize * -0.0013;
+			while (measureTrackedText(textCtx, text(), tracking) > width * 0.9 && fontSize > 112) {
+				fontSize -= 4;
+				tracking = fontSize * -0.0013;
 				textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
 			}
 
 			return {
 				fontSize,
 				tracking,
-				baseline: isMobile() ? height * 0.58 : height * 0.54
+				baseline: height * 0.54
 			};
 		};
 
@@ -270,7 +255,7 @@ export default function Hero(props) {
 			drawTrackedText(textCtx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
 
 			const image = textCtx.getImageData(0, 0, width, height).data;
-			const step = width < 720 ? 6 : 4;
+			const step = width < 720 ? 4 : 4;
 			const nextParticles = [];
 
 			for (let y = 0; y < height; y += step) {
@@ -467,7 +452,7 @@ export default function Hero(props) {
 			<canvas ref={canvasRef} class="hero-cover__canvas" />
 			<div class="hero-cover__prefix">{prefix()}</div>
 			<div class="hero-cover__subtitle">{subtitle()}</div>
-			<div class="hero-cover__enter">click anywhere to enter</div>
+			<div class="hero-cover__enter">Click to enter</div>
 			<style>{`
 				.hero-cover {
 					position: fixed;
@@ -523,6 +508,12 @@ export default function Hero(props) {
 
 				.hero-cover__enter {
 					bottom: 44px;
+					min-height: 52px;
+					padding: 0 24px;
+					border: 1px solid rgba(35, 49, 58, 0.12);
+					border-radius: 999px;
+					background: rgba(255, 255, 255, 0.42);
+					backdrop-filter: blur(12px);
 					font-family: "Manrope", "Helvetica Neue", sans-serif;
 					font-size: 0.92rem;
 					letter-spacing: 0.18em;
