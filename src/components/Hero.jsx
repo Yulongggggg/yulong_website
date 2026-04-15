@@ -125,7 +125,7 @@ export default function Hero(props) {
 			return;
 		}
 
-			class Particle {
+		class Particle {
 			constructor(x, y, color, radius, alpha, depth, roam) {
 				this.homeX = x;
 				this.homeY = y;
@@ -168,24 +168,24 @@ export default function Hero(props) {
 				this.y += this.vy;
 			}
 
-				draw() {
-					const bloom = this.radius * (2.6 + this.depth * 0.5);
-					const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, bloom);
-					gradient.addColorStop(0, toRgba(this.color, this.alpha));
-					gradient.addColorStop(0.58, toRgba(this.color, this.alpha * 0.22));
-					gradient.addColorStop(1, toRgba(this.color, 0));
+			draw() {
+				const bloom = this.radius * (2.6 + this.depth * 0.5);
+				const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, bloom);
+				gradient.addColorStop(0, toRgba(this.color, this.alpha));
+				gradient.addColorStop(0.58, toRgba(this.color, this.alpha * 0.22));
+				gradient.addColorStop(1, toRgba(this.color, 0));
 
-					ctx.fillStyle = gradient;
-					ctx.beginPath();
-					ctx.arc(this.x, this.y, bloom, 0, Math.PI * 2);
-					ctx.fill();
+				ctx.fillStyle = gradient;
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, bloom, 0, Math.PI * 2);
+				ctx.fill();
 
-					ctx.fillStyle = toRgba(this.color, Math.min(0.46, this.alpha * 1.2));
-					ctx.beginPath();
-					ctx.arc(this.x, this.y, this.radius * 0.96, 0, Math.PI * 2);
-					ctx.fill();
-				}
+				ctx.fillStyle = toRgba(this.color, Math.min(0.46, this.alpha * 1.2));
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, this.radius * 0.96, 0, Math.PI * 2);
+				ctx.fill();
 			}
+		}
 
 		const resizeCanvas = () => {
 			width = window.innerWidth;
@@ -202,31 +202,46 @@ export default function Hero(props) {
 			textCanvas.height = height;
 		};
 
-			const pickTypeMetrics = () => {
-				const letters = text().replace(/\s+/g, '').length || 8;
-				let fontSize = Math.min(width / (letters * 0.245), height * 0.34);
-				fontSize = clamp(fontSize, 136, 286);
-					let tracking = fontSize * -0.0015;
+		const pickTypeMetrics = () => {
+			const letters = text().replace(/\s+/g, '').length || 8;
 
+			let fontSize = isMobile()
+				? Math.min(width / (letters * 0.19), height * 0.2)
+				: Math.min(width / (letters * 0.245), height * 0.34);
+
+			fontSize = isMobile()
+				? clamp(fontSize, 72, 150)
+				: clamp(fontSize, 136, 286);
+
+			let tracking = isMobile()
+				? fontSize * -0.008
+				: fontSize * -0.0015;
+
+			textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
+
+			while (
+				measureTrackedText(textCtx, text(), tracking) > (isMobile() ? width * 0.82 : width * 0.9) &&
+				fontSize > (isMobile() ? 60 : 112)
+			) {
+				fontSize -= isMobile() ? 2 : 4;
+				tracking = isMobile()
+					? fontSize * -0.006
+					: fontSize * -0.0013;
 				textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
-				while (measureTrackedText(textCtx, text(), tracking) > width * 0.9 && fontSize > 112) {
-					fontSize -= 4;
-						tracking = fontSize * -0.0013;
-					textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
-				}
+			}
 
 			return {
 				fontSize,
 				tracking,
-				baseline: height * 0.54
+				baseline: isMobile() ? height * 0.58 : height * 0.54
 			};
 		};
 
-			const sampleColor = (x, y) => {
-				const nx = x / width;
-				const ny = y / height;
-				const blend = clamp((colorNoise(nx * 2 + 4, ny * 1.8 + 1.5) + 1) / 2, 0, 0.999);
-				const depth = clamp((depthNoise(nx * 3.2 + 10, ny * 2.8 + 4) + 1) / 2, 0, 1);
+		const sampleColor = (x, y) => {
+			const nx = x / width;
+			const ny = y / height;
+			const blend = clamp((colorNoise(nx * 2 + 4, ny * 1.8 + 1.5) + 1) / 2, 0, 0.999);
+			const depth = clamp((depthNoise(nx * 3.2 + 10, ny * 2.8 + 4) + 1) / 2, 0, 1);
 			const slot = blend * (palette.length - 1);
 			const a = Math.floor(slot);
 			const b = Math.min(a + 1, palette.length - 1);
@@ -243,20 +258,20 @@ export default function Hero(props) {
 			};
 		};
 
-			const buildParticles = () => {
+		const buildParticles = () => {
 			resizeCanvas();
 			textCtx.clearRect(0, 0, width, height);
 			textCtx.fillStyle = '#111';
 			textCtx.textAlign = 'left';
 			textCtx.textBaseline = 'middle';
 
-				typeMetrics = pickTypeMetrics();
-				textCtx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
-				drawTrackedText(textCtx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
+			typeMetrics = pickTypeMetrics();
+			textCtx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
+			drawTrackedText(textCtx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
 
-				const image = textCtx.getImageData(0, 0, width, height).data;
-					const step = width < 720 ? 4 : 4;
-				const nextParticles = [];
+			const image = textCtx.getImageData(0, 0, width, height).data;
+			const step = width < 720 ? 6 : 4;
+			const nextParticles = [];
 
 			for (let y = 0; y < height; y += step) {
 				for (let x = 0; x < width; x += step) {
@@ -265,10 +280,10 @@ export default function Hero(props) {
 						continue;
 					}
 
-						const { color, depth } = sampleColor(x, y);
-						const splash = clamp((splashNoise(x * 0.022, y * 0.024) + 1) / 2, 0, 1);
-							const baseRadius = 3.4 + Math.random() * 2.1 + depth * 0.9 + splash * 0.52;
-							const baseAlpha = 0.16 + Math.random() * 0.11 + depth * 0.05;
+					const { color, depth } = sampleColor(x, y);
+					const splash = clamp((splashNoise(x * 0.022, y * 0.024) + 1) / 2, 0, 1);
+					const baseRadius = 3.4 + Math.random() * 2.1 + depth * 0.9 + splash * 0.52;
+					const baseAlpha = 0.16 + Math.random() * 0.11 + depth * 0.05;
 
 					nextParticles.push(
 						new Particle(
@@ -276,39 +291,39 @@ export default function Hero(props) {
 							y + (Math.random() - 0.5) * 0.7,
 							color,
 							baseRadius,
-								baseAlpha,
+							baseAlpha,
+							depth,
+							0.035
+						)
+					);
+
+					if (Math.random() < 0.64) {
+						nextParticles.push(
+							new Particle(
+								x + (Math.random() - 0.5) * 10,
+								y + (Math.random() - 0.5) * 10,
+								color,
+								baseRadius * (0.78 + Math.random() * 0.48),
+								baseAlpha * 0.92,
 								depth,
-								0.035
+								0.045
 							)
 						);
+					}
 
-						if (Math.random() < 0.64) {
-							nextParticles.push(
-								new Particle(
-									x + (Math.random() - 0.5) * 10,
-									y + (Math.random() - 0.5) * 10,
-									color,
-									baseRadius * (0.78 + Math.random() * 0.48),
-									baseAlpha * 0.92,
-									depth,
-									0.045
-								)
-							);
-						}
-
-						if (Math.random() < 0.16) {
-							nextParticles.push(
-								new Particle(
-									x + (Math.random() - 0.5) * 16,
-									y + (Math.random() - 0.5) * 16,
-									color,
-									baseRadius * (1.18 + Math.random() * 0.65),
-									baseAlpha * 0.72,
-									depth,
-									0.06
-								)
-							);
-						}
+					if (Math.random() < 0.16) {
+						nextParticles.push(
+							new Particle(
+								x + (Math.random() - 0.5) * 16,
+								y + (Math.random() - 0.5) * 16,
+								color,
+								baseRadius * (1.18 + Math.random() * 0.65),
+								baseAlpha * 0.72,
+								depth,
+								0.06
+							)
+						);
+					}
 				}
 			}
 
@@ -392,12 +407,12 @@ export default function Hero(props) {
 		const start = async () => {
 			if (document.fonts?.load) {
 				try {
-						await Promise.all([
-							document.fonts.ready,
-							document.fonts.load('900 240px "Merriweather"'),
-							document.fonts.load('500 30px "Newsreader"'),
-							document.fonts.load('600 18px "Manrope"')
-						]);
+					await Promise.all([
+						document.fonts.ready,
+						document.fonts.load('900 240px "Merriweather"'),
+						document.fonts.load('500 30px "Newsreader"'),
+						document.fonts.load('600 18px "Manrope"')
+					]);
 				} catch {
 					// Fall back gracefully when web fonts are unavailable.
 				}
