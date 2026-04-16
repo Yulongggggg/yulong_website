@@ -86,9 +86,9 @@ export default function Hero(props) {
 		}, 760);
 	};
 
-	onMount(() => {
-		const canvas = canvasRef;
-		const ctx = canvas?.getContext('2d', { alpha: false });
+		onMount(() => {
+			const canvas = canvasRef;
+			const ctx = canvas?.getContext('2d', { alpha: false });
 
 		if (!canvas || !ctx) {
 			return;
@@ -101,12 +101,13 @@ export default function Hero(props) {
 		let width = window.innerWidth;
 		let height = window.innerHeight;
 		let dpr = Math.min(window.devicePixelRatio || 1, 2);
-		let elapsed = 0;
-		let lastTime = performance.now();
-		let particles = [];
-		let typeMetrics = null;
+			let elapsed = 0;
+			let lastTime = performance.now();
+			let particles = [];
+			let typeMetrics = null;
+			const MOBILE_BREAKPOINT = 720;
 
-		const palette = PALETTE.map(hexToRgb);
+			const palette = PALETTE.map(hexToRgb);
 		const colorNoise = makeNoise2D(19);
 		const driftNoise = makeNoise2D(71);
 		const depthNoise = makeNoise2D(131);
@@ -120,10 +121,12 @@ export default function Hero(props) {
 			active: false
 		};
 
-		if (!textCtx) {
-			document.body.style.overflow = restoreOverflow;
-			return;
-		}
+			if (!textCtx) {
+				document.body.style.overflow = restoreOverflow;
+				return;
+			}
+
+			const isMobile = () => width < MOBILE_BREAKPOINT;
 
 		class Particle {
 			constructor(x, y, color, radius, alpha, depth, roam) {
@@ -202,40 +205,40 @@ export default function Hero(props) {
 			textCanvas.height = height;
 		};
 
-		const pickTypeMetrics = () => {
-			const letters = text().replace(/\s+/g, '').length || 8;
+			const pickTypeMetrics = () => {
+				const letters = text().replace(/\s+/g, '').length || 8;
 
-			let fontSize = isMobile()
-				? Math.min(width / (letters * 0.19), height * 0.2)
-				: Math.min(width / (letters * 0.245), height * 0.34);
+				let fontSize = isMobile()
+					? Math.min(width / (letters * 0.17), height * 0.16)
+					: Math.min(width / (letters * 0.245), height * 0.34);
 
-			fontSize = isMobile()
-				? clamp(fontSize, 72, 150)
-				: clamp(fontSize, 136, 286);
+				fontSize = isMobile()
+					? clamp(fontSize, 56, 104)
+					: clamp(fontSize, 136, 286);
 
-			let tracking = isMobile()
-				? fontSize * -0.008
-				: fontSize * -0.0015;
+				let tracking = isMobile()
+					? fontSize * -0.003
+					: fontSize * -0.0015;
 
-			textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
-
-			while (
-				measureTrackedText(textCtx, text(), tracking) > (isMobile() ? width * 0.82 : width * 0.9) &&
-				fontSize > (isMobile() ? 60 : 112)
-			) {
-				fontSize -= isMobile() ? 2 : 4;
-				tracking = isMobile()
-					? fontSize * -0.006
-					: fontSize * -0.0013;
 				textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
-			}
 
-			return {
-				fontSize,
-				tracking,
-				baseline: isMobile() ? height * 0.58 : height * 0.54
+				while (
+					measureTrackedText(textCtx, text(), tracking) > (isMobile() ? width * 0.9 : width * 0.9) &&
+					fontSize > (isMobile() ? 60 : 112)
+				) {
+					fontSize -= isMobile() ? 2 : 4;
+					tracking = isMobile()
+						? fontSize * -0.0025
+						: fontSize * -0.0013;
+					textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
+				}
+
+				return {
+					fontSize,
+					tracking,
+					baseline: isMobile() ? height * 0.5 : height * 0.54
+				};
 			};
-		};
 
 		const sampleColor = (x, y) => {
 			const nx = x / width;
@@ -270,7 +273,7 @@ export default function Hero(props) {
 			drawTrackedText(textCtx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
 
 			const image = textCtx.getImageData(0, 0, width, height).data;
-			const step = width < 720 ? 4 : 4;
+				const step = isMobile() ? 3 : 4;
 			const nextParticles = [];
 
 			for (let y = 0; y < height; y += step) {
@@ -282,8 +285,12 @@ export default function Hero(props) {
 
 					const { color, depth } = sampleColor(x, y);
 					const splash = clamp((splashNoise(x * 0.022, y * 0.024) + 1) / 2, 0, 1);
-					const baseRadius = 3.4 + Math.random() * 2.1 + depth * 0.9 + splash * 0.52;
-					const baseAlpha = 0.16 + Math.random() * 0.11 + depth * 0.05;
+						const baseRadius = isMobile()
+							? 2.7 + Math.random() * 1.5 + depth * 0.6 + splash * 0.32
+							: 3.4 + Math.random() * 2.1 + depth * 0.9 + splash * 0.52;
+						const baseAlpha = isMobile()
+							? 0.18 + Math.random() * 0.12 + depth * 0.04
+							: 0.16 + Math.random() * 0.11 + depth * 0.05;
 
 					nextParticles.push(
 						new Particle(
