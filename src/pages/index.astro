@@ -6,6 +6,18 @@ const normalizedBase = import.meta.env.BASE_URL.endsWith('/')
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
 const withBase = (path) => `${normalizedBase}${path.replace(/^\/+/, '')}`;
+const analyticsConfig = {
+	goatcounterCode: '',
+	accessToken: ''
+};
+const analyticsDashboardUrl = analyticsConfig.goatcounterCode
+	? `https://${analyticsConfig.goatcounterCode}.goatcounter.com?hideui=1${
+			analyticsConfig.accessToken ? `&access-token=${analyticsConfig.accessToken}` : ''
+		}`
+	: '';
+const analyticsCountEndpoint = analyticsConfig.goatcounterCode
+	? `https://${analyticsConfig.goatcounterCode}.goatcounter.com/count`
+	: '';
 
 function emphasizeAuthor(authors) {
 	return authors.replaceAll(
@@ -166,17 +178,20 @@ const externalLinks = [
 				name="description"
 				content="Yulong Liu is a Ph.D. student in Earth Sciences at Cornell University, working across computational mechanics, implicit neural representation, poromechanics, and subsurface energy systems."
 			/>
-			<title>Yulong Liu | Earth Sciences</title>
-			<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
-			<link rel="icon" href={withBase('/favicon.ico')} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+				<title>Yulong Liu | Personal Website</title>
+				<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+				<link rel="icon" href={withBase('/favicon.ico')} />
+			<link rel="preconnect" href="https://fonts.googleapis.com" />
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Merriweather:wght@700;900&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;500;600&display=swap"
-			rel="stylesheet"
-		/>
-	</head>
-		<body>
+				href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Merriweather:wght@700;900&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;500;600&display=swap"
+				rel="stylesheet"
+			/>
+			{analyticsCountEndpoint ? (
+				<script async src="https://gc.zgo.at/count.js" data-goatcounter={analyticsCountEndpoint}></script>
+			) : null}
+		</head>
+			<body>
 			<Hero
 				prefix="Hi, I'm"
 				text="YULONG LIU"
@@ -185,14 +200,17 @@ const externalLinks = [
 			/>
 
 				<nav class="site-nav" aria-label="Section navigation">
-			<div class="site-nav__inner">
-				{navItems.map((item) => (
-					<a href={item.href} class="site-nav__link">
-						{item.label}
-					</a>
-				))}
-			</div>
-		</nav>
+				<div class="site-nav__inner">
+					{navItems.map((item) => (
+						<a href={item.href} class="site-nav__link">
+							{item.label}
+						</a>
+					))}
+					<button type="button" class="site-nav__button" data-analytics-open>
+						Analytics
+					</button>
+				</div>
+			</nav>
 
 		<main class="page-shell">
 				<section class="intro-section focus-section" id="about">
@@ -412,18 +430,77 @@ const externalLinks = [
 						</a>
 					))}
 				</div>
-			</footer>
-			</main>
+				</footer>
+				</main>
 
-			<script is:inline>
-				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				<div class="analytics-modal" data-analytics-modal hidden>
+					<div class="analytics-modal__backdrop" data-analytics-close></div>
+					<div class="analytics-modal__panel" role="dialog" aria-modal="true" aria-label="Visitor analytics">
+						<div class="analytics-modal__header">
+							<div>
+								<p class="analytics-modal__eyebrow">Analytics</p>
+								<h3>Visitor overview and countries.</h3>
+							</div>
+							<button type="button" class="analytics-modal__close" data-analytics-close>
+								Close
+							</button>
+						</div>
+
+						{analyticsDashboardUrl ? (
+							<iframe
+								class="analytics-modal__frame"
+								src={analyticsDashboardUrl}
+								title="Website analytics dashboard"
+								loading="lazy"
+							></iframe>
+						) : (
+							<div class="analytics-modal__empty">
+								<p>
+									This panel is ready, but analytics is not connected yet. Add your GoatCounter site
+									code in the `analyticsConfig` block near the top of this page file, and the panel
+									will show visits and country data here.
+								</p>
+								<p>
+									Use the official setup guide:
+									<a href="https://www.goatcounter.com/help/start" target="_blank" rel="noreferrer">
+										GoatCounter setup
+									</a>
+									and
+									<a href="https://www.goatcounter.com/help/frame" target="_blank" rel="noreferrer">
+										frame embedding
+									</a>.
+								</p>
+							</div>
+						)}
+					</div>
+				</div>
+
+				<script is:inline>
+					const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const revealElements = [...document.querySelectorAll('[data-reveal]')];
 			const navLinks = [...document.querySelectorAll('.site-nav__link')];
-				const sections = navLinks
-					.map((link) => document.querySelector(link.getAttribute('href')))
-					.filter(Boolean);
-				const focusSections = [...document.querySelectorAll('.focus-section')];
-				const portraitMedia = document.querySelector('.portrait-media');
+			const analyticsOpen = document.querySelector('[data-analytics-open]');
+			const analyticsModal = document.querySelector('[data-analytics-modal]');
+			const analyticsClose = [...(analyticsModal?.querySelectorAll('[data-analytics-close]') || [])];
+					const sections = navLinks
+						.map((link) => document.querySelector(link.getAttribute('href')))
+						.filter(Boolean);
+					const focusSections = [...document.querySelectorAll('.focus-section')];
+					const portraitMedia = document.querySelector('.portrait-media');
+
+					const openAnalytics = () => {
+						if (!analyticsModal) return;
+						analyticsModal.hidden = false;
+						document.body.style.overflow = 'hidden';
+						analyticsModal.querySelector('.analytics-modal__close')?.focus();
+					};
+
+					const closeAnalytics = () => {
+						if (!analyticsModal || analyticsModal.hidden) return;
+						analyticsModal.hidden = true;
+						document.body.style.removeProperty('overflow');
+						analyticsOpen?.focus();
+					};
 
 			const setActiveSection = () => {
 				const threshold = window.scrollY + window.innerHeight * 0.3;
@@ -541,11 +618,20 @@ const externalLinks = [
 				}
 			}
 
-			setActiveSection();
-			updatePortraitShift();
-			updateSectionFocus();
-			window.addEventListener('resize', handleScroll);
-		</script>
+				setActiveSection();
+				updatePortraitShift();
+				updateSectionFocus();
+				window.addEventListener('resize', handleScroll);
+				analyticsOpen?.addEventListener('click', openAnalytics);
+				for (const control of analyticsClose) {
+					control.addEventListener('click', closeAnalytics);
+				}
+				window.addEventListener('keydown', (event) => {
+					if (event.key === 'Escape') {
+						closeAnalytics();
+					}
+				});
+			</script>
 	</body>
 </html>
 
@@ -617,10 +703,11 @@ const externalLinks = [
 		backdrop-filter: blur(16px);
 	}
 
-	.site-nav__link,
-	.eyebrow,
-	.section-kicker,
-	.line-index,
+		.site-nav__link,
+		.site-nav__button,
+		.eyebrow,
+		.section-kicker,
+		.line-index,
 	.meta-row dt,
 	.row-meta p,
 	.publication-meta span {
@@ -632,16 +719,26 @@ const externalLinks = [
 		color: rgba(39, 52, 64, 0.56);
 	}
 
-	.site-nav__link {
-		position: relative;
-		padding-bottom: 5px;
-		transition: color 180ms ease;
-	}
+		.site-nav__link {
+			position: relative;
+			padding-bottom: 5px;
+			transition: color 180ms ease;
+		}
 
-	.site-nav__link::after {
-		content: '';
-		position: absolute;
-		left: 0;
+		.site-nav__button {
+			position: relative;
+			padding: 0 0 5px;
+			border: 0;
+			background: transparent;
+			cursor: pointer;
+			transition: color 180ms ease;
+		}
+
+		.site-nav__link::after,
+		.site-nav__button::after {
+			content: '';
+			position: absolute;
+			left: 0;
 		bottom: 0;
 		width: 100%;
 		height: 1px;
@@ -651,15 +748,17 @@ const externalLinks = [
 		transition: transform 220ms ease;
 	}
 
-	.site-nav__link:hover,
-	.site-nav__link.is-active {
-		color: var(--ink);
-	}
+		.site-nav__link:hover,
+		.site-nav__button:hover,
+		.site-nav__link.is-active {
+			color: var(--ink);
+		}
 
-	.site-nav__link:hover::after,
-	.site-nav__link.is-active::after {
-		transform: scaleX(1);
-	}
+		.site-nav__link:hover::after,
+		.site-nav__button:hover::after,
+		.site-nav__link.is-active::after {
+			transform: scaleX(1);
+		}
 
 	.page-shell {
 		position: relative;
@@ -1038,8 +1137,8 @@ const externalLinks = [
 		aspect-ratio: 10629 / 2996;
 	}
 
-	.results-card img {
-		display: block;
+		.results-card img {
+			display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
@@ -1049,11 +1148,130 @@ const externalLinks = [
 		transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
-	@media (hover: hover) and (pointer: fine) {
+		@media (hover: hover) and (pointer: fine) {
 		.results-gallery:hover .results-card {
 			transform: scale(0.985);
 			filter: saturate(0.92);
 			opacity: 0.92;
+		}
+
+		.analytics-modal[hidden] {
+			display: none;
+		}
+
+		.analytics-modal {
+			position: fixed;
+			inset: 0;
+			z-index: 1200;
+			display: grid;
+			place-items: center;
+			padding: 24px;
+		}
+
+		.analytics-modal__backdrop {
+			position: absolute;
+			inset: 0;
+			background: rgba(20, 26, 32, 0.52);
+			backdrop-filter: blur(10px);
+		}
+
+		.analytics-modal__panel {
+			position: relative;
+			z-index: 1;
+			width: min(1000px, calc(100vw - 48px));
+			height: min(82vh, 760px);
+			display: grid;
+			grid-template-rows: auto minmax(0, 1fr);
+			gap: 18px;
+			padding: 20px;
+			border-radius: 28px;
+			border: 1px solid rgba(39, 52, 64, 0.1);
+			background: rgba(248, 244, 235, 0.96);
+			box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+		}
+
+		.analytics-modal__header {
+			display: flex;
+			justify-content: space-between;
+			align-items: start;
+			gap: 20px;
+		}
+
+		.analytics-modal__eyebrow {
+			margin: 0 0 6px;
+			font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+			font-size: 0.72rem;
+			letter-spacing: 0.22em;
+			text-transform: uppercase;
+			color: rgba(39, 52, 64, 0.54);
+		}
+
+		.analytics-modal__header h3 {
+			margin: 0;
+			font-family: 'Merriweather', 'Georgia', serif;
+			font-size: clamp(1.5rem, 2vw, 2rem);
+			line-height: 1.06;
+			color: var(--ink);
+		}
+
+		.analytics-modal__close {
+			padding: 10px 14px;
+			border: 1px solid rgba(39, 52, 64, 0.12);
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.72);
+			font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+			font-size: 0.72rem;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+			color: var(--ink);
+			cursor: pointer;
+		}
+
+		.analytics-modal__frame,
+		.analytics-modal__empty {
+			width: 100%;
+			height: 100%;
+			min-height: 0;
+			border: 1px solid rgba(39, 52, 64, 0.08);
+			border-radius: 22px;
+			background: rgba(255, 255, 255, 0.64);
+		}
+
+		.analytics-modal__frame {
+			border: 0;
+		}
+
+		.analytics-modal__empty {
+			display: grid;
+			align-content: center;
+			gap: 14px;
+			padding: 28px;
+		}
+
+		.analytics-modal__empty p {
+			margin: 0;
+			font-size: 1.02rem;
+			line-height: 1.72;
+			color: var(--muted);
+		}
+
+		.analytics-modal__empty a {
+			position: relative;
+			display: inline-flex;
+			margin-left: 0.35rem;
+			color: var(--ink);
+		}
+
+		.analytics-modal__empty a::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -2px;
+			width: 100%;
+			height: 1px;
+			background: rgba(39, 52, 64, 0.42);
+			transform: scaleX(1);
+			transform-origin: left;
 		}
 
 		.results-gallery:hover .results-card:hover {
@@ -1194,11 +1412,17 @@ const externalLinks = [
 		display: none;
 	}
 
-	.site-nav__link {
-		flex: 0 0 auto;
-		font-size: 0.68rem;
-		letter-spacing: 0.16em;
-	}
+		.site-nav__link {
+			flex: 0 0 auto;
+			font-size: 0.68rem;
+			letter-spacing: 0.16em;
+		}
+
+		.site-nav__button {
+			flex: 0 0 auto;
+			font-size: 0.68rem;
+			letter-spacing: 0.16em;
+		}
 
 	.page-shell {
 		width: calc(100vw - 20px);
@@ -1351,6 +1575,41 @@ const externalLinks = [
 
 		.results-card--left {
 			grid-row: auto;
+		}
+
+		.analytics-modal {
+			padding: 12px;
+		}
+
+		.analytics-modal__panel {
+			width: 100%;
+			height: min(84vh, 700px);
+			padding: 14px;
+			border-radius: 18px;
+			gap: 14px;
+		}
+
+		.analytics-modal__header {
+			gap: 12px;
+		}
+
+		.analytics-modal__header h3 {
+			font-size: 1.22rem;
+		}
+
+		.analytics-modal__close {
+			padding: 8px 10px;
+			font-size: 0.64rem;
+		}
+
+		.analytics-modal__empty {
+			padding: 18px;
+			border-radius: 16px;
+		}
+
+		.analytics-modal__empty p {
+			font-size: 0.94rem;
+			line-height: 1.65;
 		}
 
 		.plain-list {
