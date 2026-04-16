@@ -57,6 +57,24 @@ function drawTrackedStroke(ctx, value, centerX, centerY, tracking) {
 	}
 }
 
+function measureLongestTrackedLine(ctx, lines, tracking) {
+	return lines.reduce((maxWidth, line) => {
+		return Math.max(maxWidth, measureTrackedText(ctx, line, tracking));
+	}, 0);
+}
+
+function drawTrackedLines(ctx, lines, centerX, centerY, tracking, lineHeight, mode = 'fill') {
+	const offset = ((lines.length - 1) * lineHeight) / 2;
+	lines.forEach((line, index) => {
+		const y = centerY - offset + index * lineHeight;
+		if (mode === 'stroke') {
+			drawTrackedStroke(ctx, line, centerX, y, tracking);
+			return;
+		}
+		drawTrackedText(ctx, line, centerX, y, tracking);
+	});
+}
+
 export default function Hero(props) {
 	let canvasRef;
 
@@ -171,19 +189,19 @@ export default function Hero(props) {
 				this.y += this.vy;
 			}
 
-			draw() {
-				const bloom = this.radius * (2.6 + this.depth * 0.5);
-				const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, bloom);
-				gradient.addColorStop(0, toRgba(this.color, this.alpha));
-				gradient.addColorStop(0.58, toRgba(this.color, this.alpha * 0.22));
-				gradient.addColorStop(1, toRgba(this.color, 0));
+				draw() {
+					const bloom = this.radius * (isMobile() ? 1.7 + this.depth * 0.2 : 2.6 + this.depth * 0.5);
+					const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, bloom);
+					gradient.addColorStop(0, toRgba(this.color, this.alpha));
+					gradient.addColorStop(0.58, toRgba(this.color, this.alpha * (isMobile() ? 0.14 : 0.22)));
+					gradient.addColorStop(1, toRgba(this.color, 0));
 
 				ctx.fillStyle = gradient;
 				ctx.beginPath();
 				ctx.arc(this.x, this.y, bloom, 0, Math.PI * 2);
 				ctx.fill();
 
-				ctx.fillStyle = toRgba(this.color, Math.min(0.46, this.alpha * 1.2));
+					ctx.fillStyle = toRgba(this.color, Math.min(isMobile() ? 0.72 : 0.46, this.alpha * (isMobile() ? 1.5 : 1.2)));
 				ctx.beginPath();
 				ctx.arc(this.x, this.y, this.radius * 0.96, 0, Math.PI * 2);
 				ctx.fill();
@@ -206,37 +224,40 @@ export default function Hero(props) {
 		};
 
 			const pickTypeMetrics = () => {
-				const letters = text().replace(/\s+/g, '').length || 8;
+				const lines = isMobile() ? text().split(/\s+/).filter(Boolean) : [text()];
+				const longestLineLength = Math.max(...lines.map((line) => line.length), 1);
 
 				let fontSize = isMobile()
-					? Math.min(width / (letters * 0.17), height * 0.16)
-					: Math.min(width / (letters * 0.245), height * 0.34);
+					? Math.min(width / (longestLineLength * 0.64), height * 0.16)
+					: Math.min(width / (longestLineLength * 0.245), height * 0.34);
 
 				fontSize = isMobile()
-					? clamp(fontSize, 56, 104)
+					? clamp(fontSize, 88, 132)
 					: clamp(fontSize, 136, 286);
 
 				let tracking = isMobile()
-					? fontSize * -0.003
+					? fontSize * -0.008
 					: fontSize * -0.0015;
 
 				textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
 
 				while (
-					measureTrackedText(textCtx, text(), tracking) > (isMobile() ? width * 0.9 : width * 0.9) &&
-					fontSize > (isMobile() ? 60 : 112)
+					measureLongestTrackedLine(textCtx, lines, tracking) > (isMobile() ? width * 0.82 : width * 0.9) &&
+					fontSize > (isMobile() ? 76 : 112)
 				) {
 					fontSize -= isMobile() ? 2 : 4;
 					tracking = isMobile()
-						? fontSize * -0.0025
+						? fontSize * -0.007
 						: fontSize * -0.0013;
 					textCtx.font = `900 ${fontSize}px ${HERO_FONT}`;
 				}
 
 				return {
+					lines,
 					fontSize,
 					tracking,
-					baseline: isMobile() ? height * 0.5 : height * 0.54
+					lineHeight: isMobile() ? fontSize * 0.94 : fontSize,
+					baseline: isMobile() ? height * 0.51 : height * 0.54
 				};
 			};
 
@@ -269,12 +290,19 @@ export default function Hero(props) {
 			textCtx.textBaseline = 'middle';
 
 			typeMetrics = pickTypeMetrics();
-			textCtx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
-			drawTrackedText(textCtx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
+				textCtx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
+				drawTrackedLines(
+					textCtx,
+					typeMetrics.lines,
+					width / 2,
+					typeMetrics.baseline,
+					typeMetrics.tracking,
+					typeMetrics.lineHeight
+				);
 
-			const image = textCtx.getImageData(0, 0, width, height).data;
+				const image = textCtx.getImageData(0, 0, width, height).data;
 				const step = isMobile() ? 3 : 4;
-			const nextParticles = [];
+				const nextParticles = [];
 
 			for (let y = 0; y < height; y += step) {
 				for (let x = 0; x < width; x += step) {
@@ -283,13 +311,13 @@ export default function Hero(props) {
 						continue;
 					}
 
-					const { color, depth } = sampleColor(x, y);
-					const splash = clamp((splashNoise(x * 0.022, y * 0.024) + 1) / 2, 0, 1);
+						const { color, depth } = sampleColor(x, y);
+						const splash = clamp((splashNoise(x * 0.022, y * 0.024) + 1) / 2, 0, 1);
 						const baseRadius = isMobile()
-							? 2.7 + Math.random() * 1.5 + depth * 0.6 + splash * 0.32
+							? 3.2 + Math.random() * 1.4 + depth * 0.54 + splash * 0.22
 							: 3.4 + Math.random() * 2.1 + depth * 0.9 + splash * 0.52;
 						const baseAlpha = isMobile()
-							? 0.18 + Math.random() * 0.12 + depth * 0.04
+							? 0.24 + Math.random() * 0.12 + depth * 0.04
 							: 0.16 + Math.random() * 0.11 + depth * 0.05;
 
 					nextParticles.push(
@@ -364,23 +392,38 @@ export default function Hero(props) {
 				return;
 			}
 
-			const fill = ctx.createLinearGradient(width * 0.1, height * 0.42, width * 0.9, height * 0.62);
-			fill.addColorStop(0, 'rgba(155, 182, 208, 0.24)');
-			fill.addColorStop(0.28, 'rgba(180, 205, 161, 0.21)');
-			fill.addColorStop(0.62, 'rgba(193, 176, 217, 0.21)');
-			fill.addColorStop(1, 'rgba(159, 194, 186, 0.21)');
+				const fill = ctx.createLinearGradient(width * 0.1, height * 0.42, width * 0.9, height * 0.62);
+				fill.addColorStop(0, isMobile() ? 'rgba(155, 182, 208, 0.34)' : 'rgba(155, 182, 208, 0.24)');
+				fill.addColorStop(0.28, isMobile() ? 'rgba(180, 205, 161, 0.3)' : 'rgba(180, 205, 161, 0.21)');
+				fill.addColorStop(0.62, isMobile() ? 'rgba(193, 176, 217, 0.3)' : 'rgba(193, 176, 217, 0.21)');
+				fill.addColorStop(1, isMobile() ? 'rgba(159, 194, 186, 0.3)' : 'rgba(159, 194, 186, 0.21)');
 
-			ctx.save();
-			ctx.textAlign = 'left';
-			ctx.textBaseline = 'middle';
-			ctx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
-			ctx.strokeStyle = 'rgba(118, 142, 161, 0.13)';
-			ctx.lineWidth = Math.max(1.2, typeMetrics.fontSize * 0.0048);
-			drawTrackedStroke(ctx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
-			ctx.fillStyle = fill;
-			drawTrackedText(ctx, text(), width / 2, typeMetrics.baseline, typeMetrics.tracking);
-			ctx.restore();
-		};
+				ctx.save();
+				ctx.textAlign = 'left';
+				ctx.textBaseline = 'middle';
+				ctx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
+				ctx.strokeStyle = isMobile() ? 'rgba(118, 142, 161, 0.22)' : 'rgba(118, 142, 161, 0.13)';
+				ctx.lineWidth = Math.max(isMobile() ? 1.8 : 1.2, typeMetrics.fontSize * (isMobile() ? 0.0068 : 0.0048));
+				drawTrackedLines(
+					ctx,
+					typeMetrics.lines,
+					width / 2,
+					typeMetrics.baseline,
+					typeMetrics.tracking,
+					typeMetrics.lineHeight,
+					'stroke'
+				);
+				ctx.fillStyle = fill;
+				drawTrackedLines(
+					ctx,
+					typeMetrics.lines,
+					width / 2,
+					typeMetrics.baseline,
+					typeMetrics.tracking,
+					typeMetrics.lineHeight
+				);
+				ctx.restore();
+			};
 
 		const render = (now) => {
 			elapsed += now - lastTime;
@@ -547,20 +590,26 @@ export default function Hero(props) {
 					color: rgba(35, 49, 58, 0.7);
 				}
 
-				@media (max-width: 720px) {
-					.hero-cover__prefix {
-						top: 12vh;
-						font-size: 1.6rem;
-					}
+					@media (max-width: 720px) {
+						.hero-cover__prefix {
+							top: 11vh;
+							font-size: 1.95rem;
+						}
 
-					.hero-cover__subtitle {
-						bottom: 96px;
-						width: 88vw;
-						font-size: 0.84rem;
-						letter-spacing: 0.12em;
+						.hero-cover__subtitle {
+							bottom: 104px;
+							width: 88vw;
+							font-size: 0.96rem;
+							letter-spacing: 0.1em;
+						}
+
+						.hero-cover__enter {
+							bottom: 48px;
+							font-size: 0.95rem;
+							letter-spacing: 0.14em;
+						}
 					}
-				}
-			`}</style>
+				`}</style>
 		</div>
 	);
 }

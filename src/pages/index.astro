@@ -104,8 +104,8 @@ const education = [
 ];
 
 const awards = [
-	'2025 · Estwing Hammer Award, most outstanding EAS graduate student of 2024',
-	'2024 · Outstanding Thesis, most outstanding undergraduate thesis',
+	'2025 · Estwing Hammer Award, outstanding EAS graduate student of 2024',
+	'2024 · Outstanding Thesis, outstanding undergraduate thesis',
 	'2024 · National Scholarship, most outstanding student in the university',
 	'2023 · First Class Scholarship',
 	'2022 · Autumn Scholarship and Golden Seed Scholarship'
@@ -172,15 +172,21 @@ const externalLinks = [
 			rel="stylesheet"
 		/>
 	</head>
-	<body>
-		<Hero
-			prefix="Hi, I'm"
-			text="YULONG LIU"
-			subtitle="Ph.D. student in Earth Sciences at Cornell University"
-			client:load
-		/>
+		<body>
+			<Hero
+				prefix="Hi, I'm"
+				text="YULONG LIU"
+				subtitle="Ph.D. student in Earth Sciences at Cornell University"
+				client:load
+			/>
 
-		<nav class="site-nav" aria-label="Section navigation">
+			<div class="ambient-video" aria-hidden="true">
+				<video autoplay muted loop playsinline preload="auto">
+					<source src="/color4bg_video_1776306592317.webm" type="video/webm" />
+				</video>
+			</div>
+
+			<nav class="site-nav" aria-label="Section navigation">
 			<div class="site-nav__inner">
 				{navItems.map((item) => (
 					<a href={item.href} class="site-nav__link">
@@ -540,6 +546,8 @@ const externalLinks = [
 	body {
 		margin: 0;
 		min-height: 100vh;
+		position: relative;
+		overflow-x: hidden;
 		color: var(--ink);
 		font-family: 'Newsreader', 'Iowan Old Style', serif;
 		background:
@@ -558,6 +566,32 @@ const externalLinks = [
 			linear-gradient(90deg, rgba(255, 255, 255, 0.09), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.08)),
 			linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
 		opacity: 0.82;
+		z-index: 1;
+	}
+
+	.ambient-video {
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		overflow: hidden;
+		opacity: 0.24;
+	}
+
+	.ambient-video::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: rgba(245, 240, 228, 0.62);
+	}
+
+	.ambient-video video {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.72) brightness(0.94) blur(18px);
+		transform: scale(1.08);
 	}
 
 	* {
@@ -633,6 +667,7 @@ const externalLinks = [
 
 	.page-shell {
 		position: relative;
+		z-index: 2;
 		width: min(1220px, calc(100vw - 48px));
 		margin: 0 auto;
 		padding: 112px 0 96px;
@@ -1012,13 +1047,17 @@ const externalLinks = [
 		transform: translate3d(0, 0, 0);
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		html {
-			scroll-behavior: auto;
-		}
+		@media (prefers-reduced-motion: reduce) {
+			html {
+				scroll-behavior: auto;
+			}
 
-		.focus-section {
-			opacity: 1;
+			.ambient-video {
+				display: none;
+			}
+
+			.focus-section {
+				opacity: 1;
 			filter: none;
 			transform: none;
 			transition: none;
@@ -1056,10 +1095,19 @@ const externalLinks = [
 		}
 	}
 
-@media (max-width: 760px) {
-	.site-nav {
-		top: 8px;
-		right: 0;
+	@media (max-width: 760px) {
+		.ambient-video {
+			opacity: 0.18;
+		}
+
+		.ambient-video video {
+			filter: saturate(0.7) brightness(0.92) blur(16px);
+			transform: scale(1.14);
+		}
+
+		.site-nav {
+			top: 8px;
+			right: 0;
 		left: 0;
 		display: block;
 		padding: 0 10px;
@@ -1200,13 +1248,17 @@ const externalLinks = [
 		gap: 4px;
 	}
 
-	.line-copy h3,
-	.publication-copy h3,
-	.row-copy h3,
-	.stream h3 {
-		font-size: clamp(1.35rem, 7vw, 1.9rem);
-		line-height: 1.08;
-	}
+		.line-copy h3,
+		.row-copy h3,
+		.stream h3 {
+			font-size: clamp(1.35rem, 7vw, 1.9rem);
+			line-height: 1.08;
+		}
+
+		.publication-copy h3 {
+			font-size: clamp(1.05rem, 5.8vw, 1.34rem);
+			line-height: 1.2;
+		}
 
 	.dual-stream {
 		grid-template-columns: 1fr;
@@ -1233,23 +1285,5 @@ const externalLinks = [
 		font-size: 1.1rem;
 	}
 
-	.focus-section,
-	.focus-section.is-focused,
-	.focus-section.is-dimmed {
-		opacity: 1 !important;
-		filter: none !important;
-		transform: none !important;
-		transition: none;
 	}
-
-	[data-reveal],
-	[data-reveal='up'],
-	[data-reveal='left'],
-	[data-reveal='right'] {
-		opacity: 1;
-		filter: none;
-		transform: none;
-		transition: none;
-	}
-}
 </style>
