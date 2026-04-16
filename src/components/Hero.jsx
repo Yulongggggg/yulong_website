@@ -84,24 +84,125 @@ export default function Hero(props) {
 	let frameId = 0;
 	let enterTimeoutId = 0;
 	let restoreOverflow = '';
+	let heroWidth = 0;
+	let heroHeight = 0;
+	let heroTextCtx = null;
+	let heroTypeMetrics = null;
+	let activeFlightEl = null;
+	let activeNameTarget = null;
+	let targetRevealTimeoutId = 0;
+	let flightCleanupTimeoutId = 0;
+	const ENTER_DURATION = 880;
 
 	const text = () => (props.text?.trim() || 'YULONG LIU').toUpperCase();
 	const prefix = () => props.prefix?.trim() || "Hi, I'm";
 	const subtitle = () =>
 		props.subtitle?.trim() || 'Ph.D. student in Earth Sciences at Cornell University';
 
+	const clearNameTransition = () => {
+		window.clearTimeout(targetRevealTimeoutId);
+		window.clearTimeout(flightCleanupTimeoutId);
+
+		if (activeFlightEl) {
+			activeFlightEl.remove();
+			activeFlightEl = null;
+		}
+
+		if (activeNameTarget) {
+			activeNameTarget.classList.remove('hero-name-target--hidden');
+			activeNameTarget = null;
+		}
+	};
+
+	const launchNameTransition = () => {
+		if (!heroTextCtx || !heroTypeMetrics || typeof document === 'undefined') {
+			return;
+		}
+
+		const target = document.querySelector(props.nameTargetSelector || '[data-hero-name-target]');
+		if (!(target instanceof HTMLElement)) {
+			return;
+		}
+
+		const targetRect = target.getBoundingClientRect();
+		if (targetRect.width < 1 || targetRect.height < 1) {
+			return;
+		}
+
+		heroTextCtx.font = `900 ${heroTypeMetrics.fontSize}px ${HERO_FONT}`;
+		const sourceWidth = measureLongestTrackedLine(
+			heroTextCtx,
+			heroTypeMetrics.lines,
+			heroTypeMetrics.tracking
+		);
+		const sourceHeight =
+			heroTypeMetrics.fontSize + (heroTypeMetrics.lines.length - 1) * heroTypeMetrics.lineHeight;
+		const sourceLeft = heroWidth / 2 - sourceWidth / 2;
+		const sourceTop = heroTypeMetrics.baseline - sourceHeight / 2;
+		const targetStyle = window.getComputedStyle(target);
+		const targetLineHeight =
+			targetStyle.lineHeight === 'normal'
+				? `${Math.round(parseFloat(targetStyle.fontSize) * 1.2)}px`
+				: targetStyle.lineHeight;
+
+		clearNameTransition();
+		activeNameTarget = target;
+		target.classList.add('hero-name-target--hidden');
+
+		const flightEl = document.createElement('div');
+		flightEl.className = 'hero-name-flight';
+		flightEl.setAttribute('aria-hidden', 'true');
+		flightEl.innerHTML = heroTypeMetrics.lines
+			.map((line) => `<span class="hero-name-flight__line">${line}</span>`)
+			.join('');
+		Object.assign(flightEl.style, {
+			left: `${sourceLeft}px`,
+			top: `${sourceTop}px`,
+			width: `${sourceWidth}px`,
+			fontSize: `${heroTypeMetrics.fontSize}px`,
+			lineHeight: `${heroTypeMetrics.lineHeight}px`,
+			letterSpacing: `${heroTypeMetrics.tracking}px`,
+			opacity: '0.96'
+		});
+
+		document.body.append(flightEl);
+		activeFlightEl = flightEl;
+		void flightEl.offsetWidth;
+
+		window.requestAnimationFrame(() => {
+			targetRevealTimeoutId = window.setTimeout(() => {
+				activeNameTarget?.classList.remove('hero-name-target--hidden');
+			}, Math.round(ENTER_DURATION * 0.58));
+
+			flightEl.style.left = `${targetRect.left}px`;
+			flightEl.style.top = `${targetRect.top}px`;
+			flightEl.style.width = `${Math.max(targetRect.width, 1)}px`;
+			flightEl.style.fontSize = targetStyle.fontSize;
+			flightEl.style.lineHeight = targetLineHeight;
+			flightEl.style.letterSpacing = targetStyle.letterSpacing;
+			flightEl.style.opacity = '0';
+			flightEl.style.transform = 'translate3d(0, -3px, 0) scale(0.985)';
+		});
+
+		flightCleanupTimeoutId = window.setTimeout(() => {
+			clearNameTransition();
+		}, ENTER_DURATION + 140);
+	};
+
 	const handleEnter = () => {
 		if (isFading() || isExited()) {
 			return;
 		}
 
+		launchNameTransition();
 		setIsFading(true);
 		document.body.style.overflow = restoreOverflow;
 
 		enterTimeoutId = window.setTimeout(() => {
 			setIsExited(true);
 			cancelAnimationFrame(frameId);
-		}, 760);
+			clearNameTransition();
+		}, ENTER_DURATION);
 	};
 
 		onMount(() => {
@@ -131,7 +232,7 @@ export default function Hero(props) {
 		const depthNoise = makeNoise2D(131);
 		const splashNoise = makeNoise2D(211);
 		const textCanvas = document.createElement('canvas');
-		const textCtx = textCanvas.getContext('2d', { willReadFrequently: true });
+			const textCtx = textCanvas.getContext('2d', { willReadFrequently: true });
 		const pointer = {
 			x: width * 0.5,
 			y: height * 0.52,
@@ -143,6 +244,8 @@ export default function Hero(props) {
 				document.body.style.overflow = restoreOverflow;
 				return;
 			}
+
+			heroTextCtx = textCtx;
 
 			const isMobile = () => width < MOBILE_BREAKPOINT;
 
@@ -212,6 +315,8 @@ export default function Hero(props) {
 			width = window.innerWidth;
 			height = window.innerHeight;
 			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			heroWidth = width;
+			heroHeight = height;
 
 			canvas.width = Math.floor(width * dpr);
 			canvas.height = Math.floor(height * dpr);
@@ -290,6 +395,7 @@ export default function Hero(props) {
 			textCtx.textBaseline = 'middle';
 
 			typeMetrics = pickTypeMetrics();
+			heroTypeMetrics = typeMetrics;
 				textCtx.font = `900 ${typeMetrics.fontSize}px ${HERO_FONT}`;
 				drawTrackedLines(
 					textCtx,
@@ -460,6 +566,7 @@ export default function Hero(props) {
 				} catch (error) {
 					particles = [];
 					typeMetrics = null;
+					heroTypeMetrics = null;
 					console.error('Hero particle build failed.', error);
 					drawBackdrop();
 				}
@@ -498,11 +605,16 @@ export default function Hero(props) {
 			disposed = true;
 			cancelAnimationFrame(frameId);
 			window.clearTimeout(enterTimeoutId);
+			clearNameTransition();
 			window.removeEventListener('pointermove', handlePointerMove);
 			canvas.removeEventListener('pointerleave', handlePointerLeave);
 			window.removeEventListener('blur', handlePointerLeave);
 			window.removeEventListener('resize', handleResize);
 			document.body.style.overflow = restoreOverflow;
+			heroTextCtx = null;
+			heroTypeMetrics = null;
+			heroWidth = 0;
+			heroHeight = 0;
 		});
 	});
 
@@ -535,7 +647,48 @@ export default function Hero(props) {
 					z-index: 999;
 					background: ${PAPER};
 					cursor: pointer;
-					transition: opacity 760ms ease;
+					transition: opacity ${ENTER_DURATION}ms ease;
+				}
+
+				.hero-name-flight {
+					position: fixed;
+					z-index: 1001;
+					pointer-events: none;
+					display: grid;
+					justify-items: center;
+					gap: 0;
+					margin: 0;
+					text-align: center;
+					font-family: ${HERO_FONT};
+					font-weight: 900;
+					white-space: nowrap;
+					mix-blend-mode: multiply;
+					filter: drop-shadow(0 10px 24px rgba(158, 185, 215, 0.15));
+					transform: translate3d(0, 0, 0) scale(1);
+					transition:
+						left ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						top ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						width ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						font-size ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						line-height ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						letter-spacing ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						transform ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						opacity ${Math.round(ENTER_DURATION * 0.72)}ms ease;
+				}
+
+				.hero-name-flight__line {
+					display: block;
+					background-image: linear-gradient(
+						90deg,
+						rgba(158, 185, 215, 0.96) 0%,
+						rgba(183, 205, 160, 0.94) 32%,
+						rgba(199, 181, 217, 0.92) 64%,
+						rgba(213, 203, 157, 0.9) 100%
+					);
+					background-clip: text;
+					-webkit-background-clip: text;
+					color: transparent;
+					-webkit-text-fill-color: transparent;
 				}
 
 				.hero-cover__canvas,

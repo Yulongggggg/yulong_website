@@ -240,7 +240,7 @@ const externalLinks = [
 
 						<div class="intro-copy" data-reveal="right" data-reveal-delay="80">
 							<div class="intro-main">
-								<p class="eyebrow">Yulong Liu</p>
+								<p class="eyebrow" data-hero-name-target>Yulong Liu</p>
 								<h1>Ph.D. student in Earth Sciences at Cornell University.</h1>
 								<p class="lead">
 									I work across computational mechanics, implicit neural representation,
@@ -1647,6 +1647,18 @@ const externalLinks = [
 	.eyebrow {
 		font-size: 0.68rem;
 		letter-spacing: 0.18em;
+	}
+
+	[data-hero-name-target] {
+		transition:
+			opacity 360ms ease,
+			transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+		transform-origin: left center;
+	}
+
+	[data-hero-name-target].hero-name-target--hidden {
+		opacity: 0;
+		transform: translate3d(0, 10px, 0);
 	}
 
 	.intro-copy h1 {
