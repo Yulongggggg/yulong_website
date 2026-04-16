@@ -88,7 +88,7 @@ export default function Hero(props) {
 
 		onMount(() => {
 			const canvas = canvasRef;
-			const ctx = canvas?.getContext('2d', { alpha: false });
+			const ctx = canvas?.getContext('2d');
 
 		if (!canvas || !ctx) {
 			return;
@@ -407,37 +407,47 @@ export default function Hero(props) {
 			pointer.active = false;
 		};
 
-		const handleResize = () => {
-			buildParticles();
-		};
+			const handleResize = () => {
+				rebuildParticles();
+			};
 
-		const start = async () => {
-			if (document.fonts?.load) {
+			const rebuildParticles = () => {
 				try {
-					await Promise.all([
-						document.fonts.ready,
-						document.fonts.load('900 240px "Merriweather"'),
-						document.fonts.load('500 30px "Newsreader"'),
-						document.fonts.load('600 18px "Manrope"')
-					]);
-				} catch {
-					// Fall back gracefully when web fonts are unavailable.
+					buildParticles();
+				} catch (error) {
+					particles = [];
+					typeMetrics = null;
+					console.error('Hero particle build failed.', error);
+					drawBackdrop();
 				}
-			}
+			};
 
-			if (disposed) {
-				return;
-			}
+			const start = () => {
+				if (disposed) {
+					return;
+				}
 
-			buildParticles();
-			lastTime = performance.now();
-			frameId = requestAnimationFrame(render);
+				rebuildParticles();
+				lastTime = performance.now();
+				frameId = requestAnimationFrame(render);
 
-			window.addEventListener('pointermove', handlePointerMove, { passive: true });
-			canvas.addEventListener('pointerleave', handlePointerLeave);
-			window.addEventListener('blur', handlePointerLeave);
-			window.addEventListener('resize', handleResize);
-		};
+				window.addEventListener('pointermove', handlePointerMove, { passive: true });
+				canvas.addEventListener('pointerleave', handlePointerLeave);
+				window.addEventListener('blur', handlePointerLeave);
+				window.addEventListener('resize', handleResize);
+
+				if (document.fonts?.ready) {
+					document.fonts.ready
+						.then(() => {
+							if (!disposed) {
+								rebuildParticles();
+							}
+						})
+						.catch(() => {
+							// Keep the already-rendered fallback if web fonts never finish loading.
+						});
+				}
+			};
 
 		start();
 
