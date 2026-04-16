@@ -7,17 +7,17 @@ const normalizedBase = import.meta.env.BASE_URL.endsWith('/')
 	: `${import.meta.env.BASE_URL}/`;
 const withBase = (path) => `${normalizedBase}${path.replace(/^\/+/, '')}`;
 const analyticsConfig = {
-	goatcounterCode: '',
+	// Paste the full GoatCounter site URL here after you create it,
+	// for example: https://your-site.goatcounter.com
+	siteUrl: 'https://yulong.goatcounter.com',
+	// Optional: only needed if your GoatCounter dashboard is private.
 	accessToken: ''
 };
-const analyticsDashboardUrl = analyticsConfig.goatcounterCode
-	? `https://${analyticsConfig.goatcounterCode}.goatcounter.com?hideui=1${
-			analyticsConfig.accessToken ? `&access-token=${analyticsConfig.accessToken}` : ''
-		}`
+const analyticsBaseUrl = analyticsConfig.siteUrl.replace(/\/+$/, '');
+const analyticsDashboardUrl = analyticsBaseUrl
+	? `${analyticsBaseUrl}?hideui=1${analyticsConfig.accessToken ? `&access-token=${analyticsConfig.accessToken}` : ''}`
 	: '';
-const analyticsCountEndpoint = analyticsConfig.goatcounterCode
-	? `https://${analyticsConfig.goatcounterCode}.goatcounter.com/count`
-	: '';
+const analyticsCountEndpoint = analyticsBaseUrl ? `${analyticsBaseUrl}/count` : '';
 
 function emphasizeAuthor(authors) {
 	return authors.replaceAll(
@@ -456,9 +456,10 @@ const externalLinks = [
 						) : (
 							<div class="analytics-modal__empty">
 								<p>
-									This panel is ready, but analytics is not connected yet. Add your GoatCounter site
-									code in the `analyticsConfig` block near the top of this page file, and the panel
-									will show visits and country data here.
+									This panel is ready, but analytics is not connected yet. Add your full
+									GoatCounter site URL, such as `https://your-site.goatcounter.com`, in the
+									`analyticsConfig` block near the top of this page file, and the panel will show
+									visits and country data here.
 								</p>
 								<p>
 									Use the official setup guide:
