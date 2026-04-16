@@ -8,11 +8,10 @@ const normalizedBase = import.meta.env.BASE_URL.endsWith('/')
 const withBase = (path) => `${normalizedBase}${path.replace(/^\/+/, '')}`;
 
 function emphasizeAuthor(authors) {
-	return authors.replaceAll('Yulong Liu', '<strong>Yulong Liu</strong>');
-}
-
-function isPrimaryPublication(authors) {
-	return authors.includes('Yulong Liu');
+	return authors.replaceAll(
+		'Yulong Liu',
+		'<strong>Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>'
+	);
 }
 
 const navItems = [
@@ -273,13 +272,12 @@ const externalLinks = [
 						<h2>Current publication list.</h2>
 					</div>
 
-					<ol class="publication-list">
-							{publications.map((item, index) => (
-								<li class="publication-item" data-reveal="up" data-reveal-delay={String(index * 90)}>
-								{isPrimaryPublication(item.authors) ? <span class="publication-star">*</span> : null}
-								<div class="publication-meta">
-									<span>{item.year}</span>
-									<span>{item.type}</span>
+						<ol class="publication-list">
+								{publications.map((item, index) => (
+									<li class="publication-item" data-reveal="up" data-reveal-delay={String(index * 90)}>
+									<div class="publication-meta">
+										<span>{item.year}</span>
+										<span>{item.type}</span>
 							</div>
 								<div class="publication-copy">
 									<h3>{item.title}</h3>
@@ -298,49 +296,25 @@ const externalLinks = [
 
 					<div class="results-gallery" data-reveal="up" data-reveal-delay="120">
 						<figure class="results-card results-card--left">
-							<button
-								type="button"
-								class="results-card__trigger"
-								data-lightbox-src={withBase('/research-results/fig11-1layer-30.png')}
-								data-lightbox-alt="Comparative field plots for displacement, stress, and error around a circular cavity."
-								aria-label="Open enlarged research figure"
-							>
-								<img
-									src={withBase('/research-results/fig11-1layer-30.png')}
-									alt="Comparative field plots for displacement, stress, and error around a circular cavity."
-									loading="lazy"
-								/>
-							</button>
+							<img
+								src={withBase('/research-results/fig11-1layer-30.png')}
+								alt="Comparative field plots for displacement, stress, and error around a circular cavity."
+								loading="lazy"
+							/>
 						</figure>
 						<figure class="results-card results-card--top">
-							<button
-								type="button"
-								class="results-card__trigger"
-								data-lightbox-src={withBase('/research-results/gr11-lrg.jpg')}
-								data-lightbox-alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
-								aria-label="Open enlarged research figure"
-							>
-								<img
-									src={withBase('/research-results/gr11-lrg.jpg')}
-									alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
-									loading="lazy"
-								/>
-							</button>
+							<img
+								src={withBase('/research-results/gr11-lrg.jpg')}
+								alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
+								loading="lazy"
+							/>
 						</figure>
 						<figure class="results-card results-card--bottom">
-							<button
-								type="button"
-								class="results-card__trigger"
-								data-lightbox-src={withBase('/research-results/generalization-1.png')}
-								data-lightbox-alt="Generalization comparison across fracture configurations."
-								aria-label="Open enlarged research figure"
-							>
-								<img
-									src={withBase('/research-results/generalization-1.png')}
-									alt="Generalization comparison across fracture configurations."
-									loading="lazy"
-								/>
-							</button>
+							<img
+								src={withBase('/research-results/generalization-1.png')}
+								alt="Generalization comparison across fracture configurations."
+								loading="lazy"
+							/>
 						</figure>
 					</div>
 				</section>
@@ -441,16 +415,6 @@ const externalLinks = [
 			</footer>
 			</main>
 
-			<div class="lightbox" data-lightbox hidden>
-				<div class="lightbox__backdrop" data-lightbox-close></div>
-				<div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Expanded research figure">
-					<button type="button" class="lightbox__close" data-lightbox-close aria-label="Close expanded figure">
-						Close
-					</button>
-					<img class="lightbox__image" alt="" />
-				</div>
-			</div>
-
 			<script is:inline>
 				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const revealElements = [...document.querySelectorAll('[data-reveal]')];
@@ -460,30 +424,6 @@ const externalLinks = [
 					.filter(Boolean);
 				const focusSections = [...document.querySelectorAll('.focus-section')];
 				const portraitMedia = document.querySelector('.portrait-media');
-				const lightbox = document.querySelector('[data-lightbox]');
-				const lightboxImage = lightbox?.querySelector('.lightbox__image');
-				const lightboxClose = [...(lightbox?.querySelectorAll('[data-lightbox-close]') || [])];
-				const lightboxTriggers = [...document.querySelectorAll('.results-card__trigger')];
-				let lastLightboxTrigger = null;
-
-				const closeLightbox = () => {
-					if (!lightbox || lightbox.hidden) return;
-					lightbox.hidden = true;
-					document.body.style.removeProperty('overflow');
-					if (lastLightboxTrigger instanceof HTMLElement) {
-						lastLightboxTrigger.focus();
-					}
-				};
-
-				const openLightbox = (trigger) => {
-					if (!lightbox || !lightboxImage) return;
-					lastLightboxTrigger = trigger;
-					lightboxImage.src = trigger.dataset.lightboxSrc || '';
-					lightboxImage.alt = trigger.dataset.lightboxAlt || '';
-					lightbox.hidden = false;
-					document.body.style.overflow = 'hidden';
-					lightbox.querySelector('.lightbox__close')?.focus();
-				};
 
 			const setActiveSection = () => {
 				const threshold = window.scrollY + window.innerHeight * 0.3;
@@ -576,21 +516,7 @@ const externalLinks = [
 					});
 				};
 
-				for (const trigger of lightboxTriggers) {
-					trigger.addEventListener('click', () => openLightbox(trigger));
-				}
-
-				for (const control of lightboxClose) {
-					control.addEventListener('click', closeLightbox);
-				}
-
-				window.addEventListener('keydown', (event) => {
-					if (event.key === 'Escape') {
-						closeLightbox();
-					}
-				});
-
-			if (!reduceMotion && 'IntersectionObserver' in window) {
+				if (!reduceMotion && 'IntersectionObserver' in window) {
 				const observer = new IntersectionObserver(
 					(entries) => {
 						for (const entry of entries) {
@@ -1034,16 +960,6 @@ const externalLinks = [
 		counter-increment: publication;
 	}
 
-	.publication-star {
-		position: absolute;
-		top: 20px;
-		right: 2px;
-		font-family: 'Merriweather', 'Georgia', serif;
-		font-size: 1.35rem;
-		line-height: 1;
-		color: rgba(39, 52, 64, 0.72);
-	}
-
 	.publication-meta,
 	.row-meta {
 		display: grid;
@@ -1055,6 +971,17 @@ const externalLinks = [
 	.row-title,
 	.publication-venue {
 		color: var(--ink);
+	}
+
+	.author-star {
+		display: inline-block;
+		margin-left: 0.18em;
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.82em;
+		font-weight: 700;
+		line-height: 1;
+		vertical-align: text-top;
+		color: rgba(39, 52, 64, 0.72);
 	}
 
 	.publication-note {
@@ -1073,18 +1000,26 @@ const externalLinks = [
 
 	.results-gallery {
 		display: grid;
-		grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr);
+		width: min(108%, calc(100vw - 88px));
+		margin-left: max(-30px, -2.6vw);
+		grid-template-columns: minmax(0, 1.38fr) minmax(0, 1.04fr);
 		grid-template-rows: repeat(2, auto);
-		gap: 18px;
-		margin-top: 34px;
+		gap: 14px;
+		margin-top: 30px;
 	}
 
 	.results-card {
 		margin: 0;
-		padding: 12px;
+		padding: 8px;
 		border-radius: 20px;
 		border: 1px solid rgba(39, 52, 64, 0.08);
 		background: rgba(255, 255, 255, 0.44);
+		transition:
+			transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+			box-shadow 260ms ease,
+			filter 260ms ease,
+			opacity 260ms ease;
+		transform-origin: center center;
 	}
 
 	.results-card--left {
@@ -1110,83 +1045,28 @@ const externalLinks = [
 		object-fit: contain;
 		border-radius: 12px;
 		background: rgba(255, 255, 255, 0.96);
+		box-shadow: 0 10px 30px rgba(39, 52, 64, 0.03);
+		transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
-	.results-card__trigger {
-		display: block;
-		width: 100%;
-		height: 100%;
-		padding: 0;
-		border: 0;
-		background: transparent;
-		cursor: zoom-in;
-	}
+	@media (hover: hover) and (pointer: fine) {
+		.results-gallery:hover .results-card {
+			transform: scale(0.985);
+			filter: saturate(0.92);
+			opacity: 0.92;
+		}
 
-	.results-card__trigger img {
-		transition: transform 240ms ease, box-shadow 240ms ease;
-	}
+		.results-gallery:hover .results-card:hover {
+			transform: scale(1.08);
+			filter: saturate(1);
+			opacity: 1;
+			z-index: 3;
+			box-shadow: 0 26px 60px rgba(39, 52, 64, 0.16);
+		}
 
-	.results-card__trigger:hover img {
-		transform: scale(1.01);
-		box-shadow: 0 16px 36px rgba(39, 52, 64, 0.08);
-	}
-
-	.lightbox[hidden] {
-		display: none;
-	}
-
-	.lightbox {
-		position: fixed;
-		inset: 0;
-		z-index: 1200;
-		display: grid;
-		place-items: center;
-		padding: 28px;
-	}
-
-	.lightbox__backdrop {
-		position: absolute;
-		inset: 0;
-		background: rgba(19, 25, 31, 0.72);
-		backdrop-filter: blur(12px);
-	}
-
-	.lightbox__dialog {
-		position: relative;
-		z-index: 1;
-		width: min(92vw, 1360px);
-		max-height: min(88vh, 980px);
-		padding: 18px;
-		border-radius: 24px;
-		background: rgba(245, 240, 228, 0.96);
-		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
-	}
-
-	.lightbox__image {
-		display: block;
-		width: 100%;
-		height: auto;
-		max-height: calc(88vh - 72px);
-		object-fit: contain;
-		border-radius: 16px;
-		background: white;
-	}
-
-	.lightbox__close {
-		position: absolute;
-		top: 14px;
-		right: 14px;
-		z-index: 2;
-		padding: 8px 12px;
-		border: 1px solid rgba(39, 52, 64, 0.14);
-		border-radius: 999px;
-		background: rgba(255, 255, 255, 0.84);
-		color: var(--ink);
-		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
-		font-size: 0.76rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		cursor: pointer;
+		.results-gallery:hover .results-card:hover img {
+			transform: scale(1.012);
+		}
 	}
 
 	.stream {
@@ -1457,6 +1337,8 @@ const externalLinks = [
 		}
 
 		.results-gallery {
+			width: 100%;
+			margin-left: 0;
 			grid-template-columns: 1fr;
 			gap: 14px;
 			margin-top: 24px;
@@ -1467,31 +1349,9 @@ const externalLinks = [
 			border-radius: 14px;
 		}
 
-			.results-card--left {
-				grid-row: auto;
-			}
-
-			.lightbox {
-				padding: 14px;
-			}
-
-			.lightbox__dialog {
-				width: 100%;
-				padding: 12px;
-				border-radius: 18px;
-			}
-
-			.lightbox__image {
-				max-height: calc(84vh - 56px);
-				border-radius: 12px;
-			}
-
-			.lightbox__close {
-				top: 10px;
-				right: 10px;
-				padding: 7px 10px;
-				font-size: 0.68rem;
-			}
+		.results-card--left {
+			grid-row: auto;
+		}
 
 		.plain-list {
 			gap: 10px;
@@ -1507,11 +1367,5 @@ const externalLinks = [
 		white-space: normal;
 	}
 
-	.publication-star {
-		top: 16px;
-		right: 0;
-		font-size: 1.1rem;
-	}
-
-	}
-</style>
+		}
+	</style>
