@@ -41,7 +41,7 @@ const pageBackdropUrl = withBase('/backgrounds/adobe-stock-653911900.jpeg');
 function emphasizeAuthor(authors) {
 	return authors.replaceAll(
 		'Yulong Liu',
-		'<strong>Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>'
+		'<strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>'
 	);
 }
 
@@ -1258,15 +1258,20 @@ const externalLinks = [
 		color: var(--ink);
 	}
 
+	.author-highlight {
+		font-weight: 900;
+		color: rgba(24, 33, 43, 0.96);
+	}
+
 	.author-star {
 		display: inline-block;
 		margin-left: 0.18em;
 		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
 		font-size: 0.82em;
-		font-weight: 700;
+		font-weight: 800;
 		line-height: 1;
 		vertical-align: text-top;
-		color: rgba(39, 52, 64, 0.72);
+		color: rgba(24, 33, 43, 0.88);
 	}
 
 	.publication-note {
