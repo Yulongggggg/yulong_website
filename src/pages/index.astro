@@ -1,23 +1,41 @@
 ---
 import Hero from '../components/Hero.jsx';
 import portrait from '../assets/yulong-liu-portrait.jpeg';
+import analyticsSnapshot from '../data/analytics-snapshot.json';
 
 const normalizedBase = import.meta.env.BASE_URL.endsWith('/')
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
 const withBase = (path) => `${normalizedBase}${path.replace(/^\/+/, '')}`;
-const analyticsConfig = {
-	// Paste the full GoatCounter site URL here after you create it,
-	// for example: https://your-site.goatcounter.com
-	siteUrl: 'https://yulong.goatcounter.com',
-	// Optional: only needed if your GoatCounter dashboard is private.
-	accessToken: ''
+const analyticsSiteUrl = 'https://yulong.goatcounter.com';
+const analyticsCountEndpoint = `${analyticsSiteUrl}/count`;
+
+const formatNumber = (value) =>
+	typeof value === 'number' ? new Intl.NumberFormat('en-US').format(value) : '—';
+
+const formatSnapshotDate = (value) => {
+	if (!value) return 'Waiting for first snapshot';
+	return new Intl.DateTimeFormat('en-US', {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		hour: 'numeric',
+		minute: '2-digit'
+	}).format(new Date(value));
 };
-const analyticsBaseUrl = analyticsConfig.siteUrl.replace(/\/+$/, '');
-const analyticsDashboardUrl = analyticsBaseUrl
-	? `${analyticsBaseUrl}?hideui=1${analyticsConfig.accessToken ? `&access-token=${analyticsConfig.accessToken}` : ''}`
-	: '';
-const analyticsCountEndpoint = analyticsBaseUrl ? `${analyticsBaseUrl}/count` : '';
+
+const getCountryFlag = (code) => {
+	const normalized = (code || '').trim().toUpperCase();
+	if (!/^[A-Z]{2}$/.test(normalized)) return '';
+	return [...normalized]
+		.map((letter) => String.fromCodePoint(letter.charCodeAt(0) + 127397))
+		.join('');
+};
+
+const analyticsCountries = (analyticsSnapshot.countries || []).map((country) => ({
+	...country,
+	flag: getCountryFlag(country.code)
+}));
 
 function emphasizeAuthor(authors) {
 	return authors.replaceAll(
@@ -180,7 +198,6 @@ const externalLinks = [
 			/>
 				<title>Yulong Liu | Personal Website</title>
 				<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
-				<link rel="icon" href={withBase('/favicon.ico')} />
 			<link rel="preconnect" href="https://fonts.googleapis.com" />
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -439,36 +456,79 @@ const externalLinks = [
 						<div class="analytics-modal__header">
 							<div>
 								<p class="analytics-modal__eyebrow">Analytics</p>
-								<h3>Visitor overview and countries.</h3>
+								<h3>Visit overview and countries.</h3>
 							</div>
 							<button type="button" class="analytics-modal__close" data-analytics-close>
 								Close
 							</button>
 						</div>
 
-						{analyticsDashboardUrl ? (
-							<iframe
-								class="analytics-modal__frame"
-								src={analyticsDashboardUrl}
-								title="Website analytics dashboard"
-								loading="lazy"
-							></iframe>
+						{analyticsSnapshot.connected ? (
+							<div class="analytics-panel">
+								<div class="analytics-summary">
+									<div class="analytics-card analytics-card--primary">
+										<p class="analytics-card__label">Visits</p>
+										<p class="analytics-card__value">
+											{formatNumber(analyticsSnapshot.totalVisitors)}
+										</p>
+										<p class="analytics-card__note">All-time GoatCounter snapshot</p>
+									</div>
+
+									<div class="analytics-card">
+										<p class="analytics-card__label">Countries</p>
+										<p class="analytics-card__value">{formatNumber(analyticsCountries.length)}</p>
+										<p class="analytics-card__note">Places where visits have come from</p>
+									</div>
+
+									<div class="analytics-card analytics-card--meta">
+										<p class="analytics-card__label">Updated</p>
+										<p class="analytics-card__value analytics-card__value--small">
+											{formatSnapshotDate(analyticsSnapshot.generatedAt)}
+										</p>
+										<p class="analytics-card__note">Refreshed automatically during deployment</p>
+									</div>
+								</div>
+
+								<div class="analytics-country-block">
+									<div class="analytics-country-block__header">
+										<p class="analytics-country-block__eyebrow">Countries</p>
+										<p class="analytics-country-block__caption">
+											By visit count, with playful circular markers.
+										</p>
+									</div>
+
+									<ul class="analytics-country-list">
+										{analyticsCountries.map((country) => (
+											<li class="analytics-country-item">
+												<span class="analytics-country-item__icon" aria-hidden="true">
+													{country.flag || country.code?.slice(0, 1) || '•'}
+												</span>
+												<span class="analytics-country-item__name">{country.name}</span>
+												<span class="analytics-country-item__count">
+													{formatNumber(country.count)}
+												</span>
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
 						) : (
 							<div class="analytics-modal__empty">
 								<p>
-									This panel is ready, but analytics is not connected yet. Add your full
-									GoatCounter site URL, such as `https://your-site.goatcounter.com`, in the
-									`analyticsConfig` block near the top of this page file, and the panel will show
-									visits and country data here.
+									This panel is ready, but the analytics snapshot has not been generated yet. Keep
+									the GoatCounter counting script active, and add your GoatCounter API token as a
+									GitHub Actions secret named `GOATCOUNTER_API_TOKEN` so deployment can fetch
+									visitor totals and country data safely.
 								</p>
 								<p>
-									Use the official setup guide:
+									The site already counts visits through GoatCounter. The only missing step is the
+									private build-time secret for reading statistics. Use the official setup guide:
 									<a href="https://www.goatcounter.com/help/start" target="_blank" rel="noreferrer">
 										GoatCounter setup
 									</a>
 									and
-									<a href="https://www.goatcounter.com/help/frame" target="_blank" rel="noreferrer">
-										frame embedding
+									<a href="https://www.goatcounter.com/api.html" target="_blank" rel="noreferrer">
+										API documentation
 									</a>.
 								</p>
 							</div>
@@ -1149,130 +1209,11 @@ const externalLinks = [
 		transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
-		@media (hover: hover) and (pointer: fine) {
+	@media (hover: hover) and (pointer: fine) {
 		.results-gallery:hover .results-card {
 			transform: scale(0.985);
 			filter: saturate(0.92);
 			opacity: 0.92;
-		}
-
-		.analytics-modal[hidden] {
-			display: none;
-		}
-
-		.analytics-modal {
-			position: fixed;
-			inset: 0;
-			z-index: 1200;
-			display: grid;
-			place-items: center;
-			padding: 24px;
-		}
-
-		.analytics-modal__backdrop {
-			position: absolute;
-			inset: 0;
-			background: rgba(20, 26, 32, 0.52);
-			backdrop-filter: blur(10px);
-		}
-
-		.analytics-modal__panel {
-			position: relative;
-			z-index: 1;
-			width: min(1000px, calc(100vw - 48px));
-			height: min(82vh, 760px);
-			display: grid;
-			grid-template-rows: auto minmax(0, 1fr);
-			gap: 18px;
-			padding: 20px;
-			border-radius: 28px;
-			border: 1px solid rgba(39, 52, 64, 0.1);
-			background: rgba(248, 244, 235, 0.96);
-			box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
-		}
-
-		.analytics-modal__header {
-			display: flex;
-			justify-content: space-between;
-			align-items: start;
-			gap: 20px;
-		}
-
-		.analytics-modal__eyebrow {
-			margin: 0 0 6px;
-			font-family: 'Manrope', 'Helvetica Neue', sans-serif;
-			font-size: 0.72rem;
-			letter-spacing: 0.22em;
-			text-transform: uppercase;
-			color: rgba(39, 52, 64, 0.54);
-		}
-
-		.analytics-modal__header h3 {
-			margin: 0;
-			font-family: 'Merriweather', 'Georgia', serif;
-			font-size: clamp(1.5rem, 2vw, 2rem);
-			line-height: 1.06;
-			color: var(--ink);
-		}
-
-		.analytics-modal__close {
-			padding: 10px 14px;
-			border: 1px solid rgba(39, 52, 64, 0.12);
-			border-radius: 999px;
-			background: rgba(255, 255, 255, 0.72);
-			font-family: 'Manrope', 'Helvetica Neue', sans-serif;
-			font-size: 0.72rem;
-			letter-spacing: 0.16em;
-			text-transform: uppercase;
-			color: var(--ink);
-			cursor: pointer;
-		}
-
-		.analytics-modal__frame,
-		.analytics-modal__empty {
-			width: 100%;
-			height: 100%;
-			min-height: 0;
-			border: 1px solid rgba(39, 52, 64, 0.08);
-			border-radius: 22px;
-			background: rgba(255, 255, 255, 0.64);
-		}
-
-		.analytics-modal__frame {
-			border: 0;
-		}
-
-		.analytics-modal__empty {
-			display: grid;
-			align-content: center;
-			gap: 14px;
-			padding: 28px;
-		}
-
-		.analytics-modal__empty p {
-			margin: 0;
-			font-size: 1.02rem;
-			line-height: 1.72;
-			color: var(--muted);
-		}
-
-		.analytics-modal__empty a {
-			position: relative;
-			display: inline-flex;
-			margin-left: 0.35rem;
-			color: var(--ink);
-		}
-
-		.analytics-modal__empty a::after {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: -2px;
-			width: 100%;
-			height: 1px;
-			background: rgba(39, 52, 64, 0.42);
-			transform: scaleX(1);
-			transform-origin: left;
 		}
 
 		.results-gallery:hover .results-card:hover {
@@ -1286,6 +1227,249 @@ const externalLinks = [
 		.results-gallery:hover .results-card:hover img {
 			transform: scale(1.012);
 		}
+	}
+
+	.analytics-modal[hidden] {
+		display: none;
+	}
+
+	.analytics-modal {
+		position: fixed;
+		inset: 0;
+		z-index: 1200;
+		display: grid;
+		place-items: center;
+		padding: 24px;
+	}
+
+	.analytics-modal__backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(20, 26, 32, 0.52);
+		backdrop-filter: blur(10px);
+	}
+
+	.analytics-modal__panel {
+		position: relative;
+		z-index: 1;
+		width: min(1040px, calc(100vw - 48px));
+		height: min(82vh, 760px);
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr);
+		gap: 18px;
+		padding: 20px;
+		border-radius: 28px;
+		border: 1px solid rgba(39, 52, 64, 0.1);
+		background: rgba(248, 244, 235, 0.96);
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+	}
+
+	.analytics-modal__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+		gap: 20px;
+	}
+
+	.analytics-modal__eyebrow {
+		margin: 0 0 6px;
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.72rem;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: rgba(39, 52, 64, 0.54);
+	}
+
+	.analytics-modal__header h3 {
+		margin: 0;
+		font-family: 'Merriweather', 'Georgia', serif;
+		font-size: clamp(1.5rem, 2vw, 2rem);
+		line-height: 1.06;
+		color: var(--ink);
+	}
+
+	.analytics-modal__close {
+		padding: 10px 14px;
+		border: 1px solid rgba(39, 52, 64, 0.12);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.72);
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.72rem;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--ink);
+		cursor: pointer;
+	}
+
+	.analytics-panel,
+	.analytics-modal__empty {
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		border: 1px solid rgba(39, 52, 64, 0.08);
+		border-radius: 22px;
+		background: rgba(255, 255, 255, 0.64);
+	}
+
+	.analytics-panel {
+		display: grid;
+		grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+		gap: 18px;
+		padding: 18px;
+	}
+
+	.analytics-summary {
+		display: grid;
+		gap: 14px;
+	}
+
+	.analytics-card {
+		padding: 18px;
+		border: 1px solid rgba(39, 52, 64, 0.08);
+		border-radius: 20px;
+		background:
+			radial-gradient(circle at top right, rgba(178, 198, 221, 0.28), transparent 48%),
+			rgba(255, 255, 255, 0.8);
+	}
+
+	.analytics-card--primary {
+		background:
+			radial-gradient(circle at top right, rgba(178, 198, 221, 0.42), transparent 52%),
+			radial-gradient(circle at bottom left, rgba(195, 215, 188, 0.34), transparent 40%),
+			rgba(255, 255, 255, 0.82);
+	}
+
+	.analytics-card__label,
+	.analytics-country-block__eyebrow {
+		margin: 0;
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.72rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(39, 52, 64, 0.52);
+	}
+
+	.analytics-card__value {
+		margin: 10px 0 8px;
+		font-family: 'Merriweather', 'Georgia', serif;
+		font-size: clamp(2rem, 4vw, 3.2rem);
+		line-height: 0.98;
+		color: var(--ink);
+	}
+
+	.analytics-card__value--small {
+		font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+		line-height: 1.16;
+	}
+
+	.analytics-card__note,
+	.analytics-country-block__caption {
+		margin: 0;
+		font-size: 0.96rem;
+		line-height: 1.62;
+		color: var(--muted);
+	}
+
+	.analytics-country-block {
+		min-height: 0;
+		padding: 18px;
+		border: 1px solid rgba(39, 52, 64, 0.08);
+		border-radius: 20px;
+		background: rgba(255, 255, 255, 0.8);
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr);
+		gap: 14px;
+	}
+
+	.analytics-country-block__header {
+		display: grid;
+		gap: 6px;
+	}
+
+	.analytics-country-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 10px 12px;
+		align-content: start;
+		overflow: auto;
+		padding-right: 4px;
+	}
+
+	.analytics-country-item {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 14px;
+		border-radius: 16px;
+		background: rgba(245, 240, 228, 0.7);
+	}
+
+	.analytics-country-item__icon {
+		display: grid;
+		place-items: center;
+		width: 34px;
+		height: 34px;
+		border-radius: 999px;
+		background:
+			radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 54%),
+			linear-gradient(135deg, rgba(178, 198, 221, 0.7), rgba(195, 215, 188, 0.7));
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+		font-size: 1rem;
+	}
+
+	.analytics-country-item__name,
+	.analytics-country-item__count {
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.94rem;
+		color: var(--ink);
+	}
+
+	.analytics-country-item__name {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.analytics-country-item__count {
+		color: rgba(39, 52, 64, 0.68);
+	}
+
+	.analytics-modal__empty {
+		display: grid;
+		align-content: center;
+		gap: 14px;
+		padding: 28px;
+	}
+
+	.analytics-modal__empty p {
+		margin: 0;
+		font-size: 1.02rem;
+		line-height: 1.72;
+		color: var(--muted);
+	}
+
+	.analytics-modal__empty a {
+		position: relative;
+		display: inline-flex;
+		margin-left: 0.35rem;
+		color: var(--ink);
+	}
+
+	.analytics-modal__empty a::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -2px;
+		width: 100%;
+		height: 1px;
+		background: rgba(39, 52, 64, 0.42);
+		transform: scaleX(1);
+		transform-origin: left;
 	}
 
 	.stream {
@@ -1601,6 +1785,40 @@ const externalLinks = [
 		.analytics-modal__close {
 			padding: 8px 10px;
 			font-size: 0.64rem;
+		}
+
+		.analytics-panel {
+			grid-template-columns: 1fr;
+			padding: 14px;
+			gap: 14px;
+		}
+
+		.analytics-summary {
+			grid-template-columns: 1fr;
+		}
+
+		.analytics-card {
+			padding: 16px;
+			border-radius: 16px;
+		}
+
+		.analytics-card__value {
+			font-size: clamp(1.7rem, 8vw, 2.3rem);
+		}
+
+		.analytics-country-block {
+			padding: 14px;
+			border-radius: 16px;
+		}
+
+		.analytics-country-list {
+			grid-template-columns: 1fr;
+			gap: 10px;
+		}
+
+		.analytics-country-item {
+			padding: 11px 12px;
+			border-radius: 14px;
 		}
 
 		.analytics-modal__empty {
