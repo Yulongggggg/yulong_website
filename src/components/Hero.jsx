@@ -86,7 +86,6 @@ export default function Hero(props) {
 	let restoreOverflow = '';
 	let heroWidth = 0;
 	let heroHeight = 0;
-	let heroTextCtx = null;
 	let heroTypeMetrics = null;
 	let activeFlightEl = null;
 	let activeNameTarget = null;
@@ -115,7 +114,7 @@ export default function Hero(props) {
 	};
 
 	const launchNameTransition = () => {
-		if (!heroTextCtx || !heroTypeMetrics || typeof document === 'undefined') {
+		if (!heroTypeMetrics || typeof document === 'undefined') {
 			return;
 		}
 
@@ -129,21 +128,22 @@ export default function Hero(props) {
 			return;
 		}
 
-		heroTextCtx.font = `900 ${heroTypeMetrics.fontSize}px ${HERO_FONT}`;
-		const sourceWidth = measureLongestTrackedLine(
-			heroTextCtx,
-			heroTypeMetrics.lines,
-			heroTypeMetrics.tracking
-		);
-		const sourceHeight =
-			heroTypeMetrics.fontSize + (heroTypeMetrics.lines.length - 1) * heroTypeMetrics.lineHeight;
-		const sourceLeft = heroWidth / 2 - sourceWidth / 2;
-		const sourceTop = heroTypeMetrics.baseline - sourceHeight / 2;
 		const targetStyle = window.getComputedStyle(target);
+		const targetText =
+			target.textContent?.trim() || props.nameTransitionText?.trim() || 'Yulong Liu';
+		const targetFontSize = parseFloat(targetStyle.fontSize) || 12;
+		const targetLetterSpacing = parseFloat(targetStyle.letterSpacing) || 2.4;
 		const targetLineHeight =
 			targetStyle.lineHeight === 'normal'
 				? `${Math.round(parseFloat(targetStyle.fontSize) * 1.2)}px`
 				: targetStyle.lineHeight;
+		const sourceFontSize = Math.max(
+			targetFontSize * (window.innerWidth < 720 ? 4.2 : 6.1),
+			window.innerWidth < 720 ? 42 : 58
+		);
+		const sourceWidth = Math.max(targetRect.width * (window.innerWidth < 720 ? 4 : 5.1), 220);
+		const sourceLeft = heroWidth / 2 - sourceWidth / 2;
+		const sourceTop = heroTypeMetrics.baseline - sourceFontSize * 0.64;
 
 		clearNameTransition();
 		activeNameTarget = target;
@@ -152,17 +152,19 @@ export default function Hero(props) {
 		const flightEl = document.createElement('div');
 		flightEl.className = 'hero-name-flight';
 		flightEl.setAttribute('aria-hidden', 'true');
-		flightEl.innerHTML = heroTypeMetrics.lines
-			.map((line) => `<span class="hero-name-flight__line">${line}</span>`)
-			.join('');
+		flightEl.textContent = targetText;
 		Object.assign(flightEl.style, {
 			left: `${sourceLeft}px`,
 			top: `${sourceTop}px`,
 			width: `${sourceWidth}px`,
-			fontSize: `${heroTypeMetrics.fontSize}px`,
-			lineHeight: `${heroTypeMetrics.lineHeight}px`,
-			letterSpacing: `${heroTypeMetrics.tracking}px`,
-			opacity: '0.96'
+			fontFamily: targetStyle.fontFamily,
+			fontWeight: targetStyle.fontWeight,
+			fontSize: `${sourceFontSize}px`,
+			lineHeight: `${Math.round(sourceFontSize * 1.02)}px`,
+			letterSpacing: `${targetLetterSpacing * 1.8}px`,
+			textTransform: targetStyle.textTransform,
+			color: 'rgba(39, 52, 64, 0.68)',
+			opacity: '0.84'
 		});
 
 		document.body.append(flightEl);
@@ -172,7 +174,7 @@ export default function Hero(props) {
 		window.requestAnimationFrame(() => {
 			targetRevealTimeoutId = window.setTimeout(() => {
 				activeNameTarget?.classList.remove('hero-name-target--hidden');
-			}, Math.round(ENTER_DURATION * 0.58));
+			}, Math.round(ENTER_DURATION * 0.48));
 
 			flightEl.style.left = `${targetRect.left}px`;
 			flightEl.style.top = `${targetRect.top}px`;
@@ -181,7 +183,8 @@ export default function Hero(props) {
 			flightEl.style.lineHeight = targetLineHeight;
 			flightEl.style.letterSpacing = targetStyle.letterSpacing;
 			flightEl.style.opacity = '0';
-			flightEl.style.transform = 'translate3d(0, -3px, 0) scale(0.985)';
+			flightEl.style.transform = 'translate3d(0, -4px, 0) scale(0.96)';
+			flightEl.style.filter = 'blur(2px)';
 		});
 
 		flightCleanupTimeoutId = window.setTimeout(() => {
@@ -244,8 +247,6 @@ export default function Hero(props) {
 				document.body.style.overflow = restoreOverflow;
 				return;
 			}
-
-			heroTextCtx = textCtx;
 
 			const isMobile = () => width < MOBILE_BREAKPOINT;
 
@@ -611,7 +612,6 @@ export default function Hero(props) {
 			window.removeEventListener('blur', handlePointerLeave);
 			window.removeEventListener('resize', handleResize);
 			document.body.style.overflow = restoreOverflow;
-			heroTextCtx = null;
 			heroTypeMetrics = null;
 			heroWidth = 0;
 			heroHeight = 0;
@@ -654,16 +654,12 @@ export default function Hero(props) {
 					position: fixed;
 					z-index: 1001;
 					pointer-events: none;
-					display: grid;
-					justify-items: center;
-					gap: 0;
+					display: block;
 					margin: 0;
 					text-align: center;
-					font-family: ${HERO_FONT};
-					font-weight: 900;
 					white-space: nowrap;
-					mix-blend-mode: multiply;
-					filter: drop-shadow(0 10px 24px rgba(158, 185, 215, 0.15));
+					text-shadow: 0 8px 24px rgba(39, 52, 64, 0.08);
+					filter: blur(0);
 					transform: translate3d(0, 0, 0) scale(1);
 					transition:
 						left ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -673,22 +669,8 @@ export default function Hero(props) {
 						line-height ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
 						letter-spacing ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
 						transform ${ENTER_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1),
+						filter ${Math.round(ENTER_DURATION * 0.72)}ms ease,
 						opacity ${Math.round(ENTER_DURATION * 0.72)}ms ease;
-				}
-
-				.hero-name-flight__line {
-					display: block;
-					background-image: linear-gradient(
-						90deg,
-						rgba(158, 185, 215, 0.96) 0%,
-						rgba(183, 205, 160, 0.94) 32%,
-						rgba(199, 181, 217, 0.92) 64%,
-						rgba(213, 203, 157, 0.9) 100%
-					);
-					background-clip: text;
-					-webkit-background-clip: text;
-					color: transparent;
-					-webkit-text-fill-color: transparent;
 				}
 
 				.hero-cover__canvas,

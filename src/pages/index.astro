@@ -330,21 +330,45 @@ const externalLinks = [
 					</ol>
 
 					<div class="results-gallery" data-reveal="up" data-reveal-delay="120">
-						<figure class="results-card results-card--left">
+						<figure
+							class="results-card results-card--left"
+							role="button"
+							tabindex="0"
+							data-results-open
+							data-results-src={withBase('/research-results/fig11-1layer-30.png')}
+							data-results-alt="Comparative field plots for displacement, stress, and error around a circular cavity."
+							aria-label="Open enlarged research figure"
+						>
 							<img
 								src={withBase('/research-results/fig11-1layer-30.png')}
 								alt="Comparative field plots for displacement, stress, and error around a circular cavity."
 								loading="lazy"
 							/>
 						</figure>
-						<figure class="results-card results-card--top">
+						<figure
+							class="results-card results-card--top"
+							role="button"
+							tabindex="0"
+							data-results-open
+							data-results-src={withBase('/research-results/gr11-lrg.jpg')}
+							data-results-alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
+							aria-label="Open enlarged research figure"
+						>
 							<img
 								src={withBase('/research-results/gr11-lrg.jpg')}
 								alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
 								loading="lazy"
 							/>
 						</figure>
-						<figure class="results-card results-card--bottom">
+						<figure
+							class="results-card results-card--bottom"
+							role="button"
+							tabindex="0"
+							data-results-open
+							data-results-src={withBase('/research-results/generalization-1.png')}
+							data-results-alt="Generalization comparison across fracture configurations."
+							aria-label="Open enlarged research figure"
+						>
 							<img
 								src={withBase('/research-results/generalization-1.png')}
 								alt="Generalization comparison across fracture configurations."
@@ -533,6 +557,21 @@ const externalLinks = [
 					</div>
 				</div>
 
+				<div class="results-lightbox" data-results-lightbox hidden>
+					<button
+						type="button"
+						class="results-lightbox__backdrop"
+						data-results-close
+						aria-label="Close enlarged image"
+					></button>
+					<div class="results-lightbox__panel" role="dialog" aria-modal="true" aria-label="Research figure preview">
+						<button type="button" class="results-lightbox__close" data-results-close>
+							Close
+						</button>
+						<img class="results-lightbox__image" data-results-image src="" alt="" />
+					</div>
+				</div>
+
 				<script is:inline>
 					const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const revealElements = [...document.querySelectorAll('[data-reveal]')];
@@ -540,6 +579,10 @@ const externalLinks = [
 			const analyticsOpen = document.querySelector('[data-analytics-open]');
 			const analyticsModal = document.querySelector('[data-analytics-modal]');
 			const analyticsClose = [...(analyticsModal?.querySelectorAll('[data-analytics-close]') || [])];
+			const resultsTriggers = [...document.querySelectorAll('[data-results-open]')];
+			const resultsLightbox = document.querySelector('[data-results-lightbox]');
+			const resultsImage = resultsLightbox?.querySelector('[data-results-image]');
+			const resultsClose = [...(resultsLightbox?.querySelectorAll('[data-results-close]') || [])];
 					const sections = navLinks
 						.map((link) => document.querySelector(link.getAttribute('href')))
 						.filter(Boolean);
@@ -558,6 +601,28 @@ const externalLinks = [
 						analyticsModal.hidden = true;
 						document.body.style.removeProperty('overflow');
 						analyticsOpen?.focus();
+					};
+
+					const openResultsLightbox = (trigger) => {
+						if (!resultsLightbox || !(resultsImage instanceof HTMLImageElement)) return;
+						const { resultsSrc, resultsAlt } = trigger.dataset;
+						if (!resultsSrc) return;
+
+						resultsImage.src = resultsSrc;
+						resultsImage.alt = resultsAlt || '';
+						resultsLightbox.hidden = false;
+						document.body.style.overflow = 'hidden';
+						resultsLightbox.querySelector('.results-lightbox__close')?.focus();
+					};
+
+					const closeResultsLightbox = () => {
+						if (!resultsLightbox || resultsLightbox.hidden) return;
+						resultsLightbox.hidden = true;
+						document.body.style.removeProperty('overflow');
+						if (resultsImage instanceof HTMLImageElement) {
+							resultsImage.removeAttribute('src');
+							resultsImage.removeAttribute('alt');
+						}
 					};
 
 			const setActiveSection = () => {
@@ -684,9 +749,22 @@ const externalLinks = [
 				for (const control of analyticsClose) {
 					control.addEventListener('click', closeAnalytics);
 				}
+				for (const trigger of resultsTriggers) {
+					trigger.addEventListener('click', () => openResultsLightbox(trigger));
+					trigger.addEventListener('keydown', (event) => {
+						if (event.key === 'Enter' || event.key === ' ') {
+							event.preventDefault();
+							openResultsLightbox(trigger);
+						}
+					});
+				}
+				for (const control of resultsClose) {
+					control.addEventListener('click', closeResultsLightbox);
+				}
 				window.addEventListener('keydown', (event) => {
 					if (event.key === 'Escape') {
 						closeAnalytics();
+						closeResultsLightbox();
 					}
 				});
 			</script>
@@ -1171,12 +1249,18 @@ const externalLinks = [
 		border-radius: 20px;
 		border: 1px solid rgba(39, 52, 64, 0.08);
 		background: rgba(255, 255, 255, 0.44);
+		cursor: zoom-in;
 		transition:
 			transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
 			box-shadow 260ms ease,
 			filter 260ms ease,
 			opacity 260ms ease;
 		transform-origin: center center;
+	}
+
+	.results-card:focus-visible {
+		outline: 2px solid rgba(39, 52, 64, 0.42);
+		outline-offset: 4px;
 	}
 
 	.results-card--left {
@@ -1466,6 +1550,65 @@ const externalLinks = [
 		background: rgba(39, 52, 64, 0.42);
 		transform: scaleX(1);
 		transform-origin: left;
+	}
+
+	.results-lightbox[hidden] {
+		display: none;
+	}
+
+	.results-lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 1210;
+		display: grid;
+		place-items: center;
+		padding: 24px;
+	}
+
+	.results-lightbox__backdrop {
+		position: absolute;
+		inset: 0;
+		border: 0;
+		background: rgba(19, 25, 30, 0.68);
+		backdrop-filter: blur(14px);
+		cursor: zoom-out;
+	}
+
+	.results-lightbox__panel {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		gap: 14px;
+		width: min(1180px, calc(100vw - 48px));
+		max-height: calc(100vh - 48px);
+		padding: 18px;
+		border-radius: 26px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		background: rgba(246, 242, 233, 0.9);
+		box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+	}
+
+	.results-lightbox__close {
+		justify-self: end;
+		padding: 9px 13px;
+		border: 1px solid rgba(39, 52, 64, 0.12);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.8);
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.72rem;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--ink);
+		cursor: pointer;
+	}
+
+	.results-lightbox__image {
+		display: block;
+		width: 100%;
+		max-height: calc(100vh - 146px);
+		object-fit: contain;
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.92);
 	}
 
 	.stream {
@@ -1832,6 +1975,27 @@ const externalLinks = [
 		.analytics-modal__empty {
 			padding: 18px;
 			border-radius: 16px;
+		}
+
+		.results-lightbox {
+			padding: 12px;
+		}
+
+		.results-lightbox__panel {
+			width: 100%;
+			max-height: calc(100vh - 24px);
+			padding: 12px;
+			border-radius: 18px;
+		}
+
+		.results-lightbox__close {
+			padding: 8px 10px;
+			font-size: 0.64rem;
+		}
+
+		.results-lightbox__image {
+			max-height: calc(100vh - 104px);
+			border-radius: 14px;
 		}
 
 		.analytics-modal__empty p {
