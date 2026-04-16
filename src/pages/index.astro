@@ -2,7 +2,10 @@
 import Hero from '../components/Hero.jsx';
 import portrait from '../assets/yulong-liu-portrait.jpeg';
 
-const withBase = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+const normalizedBase = import.meta.env.BASE_URL.endsWith('/')
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${normalizedBase}${path.replace(/^\/+/, '')}`;
 
 function emphasizeAuthor(authors) {
 	return authors.replaceAll('Yulong Liu', '<strong>Yulong Liu</strong>');
