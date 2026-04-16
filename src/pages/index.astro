@@ -2,6 +2,8 @@
 import Hero from '../components/Hero.jsx';
 import portrait from '../assets/yulong-liu-portrait.jpeg';
 
+const withBase = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
 function emphasizeAuthor(authors) {
 	return authors.replaceAll('Yulong Liu', '<strong>Yulong Liu</strong>');
 }
@@ -163,8 +165,8 @@ const externalLinks = [
 				content="Yulong Liu is a Ph.D. student in Earth Sciences at Cornell University, working across computational mechanics, implicit neural representation, poromechanics, and subsurface energy systems."
 			/>
 			<title>Yulong Liu | Earth Sciences</title>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+			<link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+			<link rel="icon" href={withBase('/favicon.ico')} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -293,25 +295,49 @@ const externalLinks = [
 
 					<div class="results-gallery" data-reveal="up" data-reveal-delay="120">
 						<figure class="results-card results-card--left">
-							<img
-								src="/research-results/fig11-1layer-30.png"
-								alt="Comparative field plots for displacement, stress, and error around a circular cavity."
-								loading="lazy"
-							/>
+							<button
+								type="button"
+								class="results-card__trigger"
+								data-lightbox-src={withBase('/research-results/fig11-1layer-30.png')}
+								data-lightbox-alt="Comparative field plots for displacement, stress, and error around a circular cavity."
+								aria-label="Open enlarged research figure"
+							>
+								<img
+									src={withBase('/research-results/fig11-1layer-30.png')}
+									alt="Comparative field plots for displacement, stress, and error around a circular cavity."
+									loading="lazy"
+								/>
+							</button>
 						</figure>
 						<figure class="results-card results-card--top">
-							<img
-								src="/research-results/gr11-lrg.jpg"
-								alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
-								loading="lazy"
-							/>
+							<button
+								type="button"
+								class="results-card__trigger"
+								data-lightbox-src={withBase('/research-results/gr11-lrg.jpg')}
+								data-lightbox-alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
+								aria-label="Open enlarged research figure"
+							>
+								<img
+									src={withBase('/research-results/gr11-lrg.jpg')}
+									alt="Stage-wise stress evolution figure from ant-like microtunnelling study."
+									loading="lazy"
+								/>
+							</button>
 						</figure>
 						<figure class="results-card results-card--bottom">
-							<img
-								src="/research-results/generalization-1.png"
-								alt="Generalization comparison across fracture configurations."
-								loading="lazy"
-							/>
+							<button
+								type="button"
+								class="results-card__trigger"
+								data-lightbox-src={withBase('/research-results/generalization-1.png')}
+								data-lightbox-alt="Generalization comparison across fracture configurations."
+								aria-label="Open enlarged research figure"
+							>
+								<img
+									src={withBase('/research-results/generalization-1.png')}
+									alt="Generalization comparison across fracture configurations."
+									loading="lazy"
+								/>
+							</button>
 						</figure>
 					</div>
 				</section>
@@ -410,17 +436,51 @@ const externalLinks = [
 					))}
 				</div>
 			</footer>
-		</main>
+			</main>
 
-		<script is:inline>
-			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			<div class="lightbox" data-lightbox hidden>
+				<div class="lightbox__backdrop" data-lightbox-close></div>
+				<div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Expanded research figure">
+					<button type="button" class="lightbox__close" data-lightbox-close aria-label="Close expanded figure">
+						Close
+					</button>
+					<img class="lightbox__image" alt="" />
+				</div>
+			</div>
+
+			<script is:inline>
+				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const revealElements = [...document.querySelectorAll('[data-reveal]')];
 			const navLinks = [...document.querySelectorAll('.site-nav__link')];
-			const sections = navLinks
-				.map((link) => document.querySelector(link.getAttribute('href')))
-				.filter(Boolean);
-			const focusSections = [...document.querySelectorAll('.focus-section')];
-			const portraitMedia = document.querySelector('.portrait-media');
+				const sections = navLinks
+					.map((link) => document.querySelector(link.getAttribute('href')))
+					.filter(Boolean);
+				const focusSections = [...document.querySelectorAll('.focus-section')];
+				const portraitMedia = document.querySelector('.portrait-media');
+				const lightbox = document.querySelector('[data-lightbox]');
+				const lightboxImage = lightbox?.querySelector('.lightbox__image');
+				const lightboxClose = [...(lightbox?.querySelectorAll('[data-lightbox-close]') || [])];
+				const lightboxTriggers = [...document.querySelectorAll('.results-card__trigger')];
+				let lastLightboxTrigger = null;
+
+				const closeLightbox = () => {
+					if (!lightbox || lightbox.hidden) return;
+					lightbox.hidden = true;
+					document.body.style.removeProperty('overflow');
+					if (lastLightboxTrigger instanceof HTMLElement) {
+						lastLightboxTrigger.focus();
+					}
+				};
+
+				const openLightbox = (trigger) => {
+					if (!lightbox || !lightboxImage) return;
+					lastLightboxTrigger = trigger;
+					lightboxImage.src = trigger.dataset.lightboxSrc || '';
+					lightboxImage.alt = trigger.dataset.lightboxAlt || '';
+					lightbox.hidden = false;
+					document.body.style.overflow = 'hidden';
+					lightbox.querySelector('.lightbox__close')?.focus();
+				};
 
 			const setActiveSection = () => {
 				const threshold = window.scrollY + window.innerHeight * 0.3;
@@ -502,16 +562,30 @@ const externalLinks = [
 			};
 
 			let ticking = false;
-			const handleScroll = () => {
-				if (ticking) return;
-				ticking = true;
+				const handleScroll = () => {
+					if (ticking) return;
+					ticking = true;
 				requestAnimationFrame(() => {
 					setActiveSection();
 					updatePortraitShift();
 					updateSectionFocus();
-					ticking = false;
+						ticking = false;
+					});
+				};
+
+				for (const trigger of lightboxTriggers) {
+					trigger.addEventListener('click', () => openLightbox(trigger));
+				}
+
+				for (const control of lightboxClose) {
+					control.addEventListener('click', closeLightbox);
+				}
+
+				window.addEventListener('keydown', (event) => {
+					if (event.key === 'Escape') {
+						closeLightbox();
+					}
 				});
-			};
 
 			if (!reduceMotion && 'IntersectionObserver' in window) {
 				const observer = new IntersectionObserver(
@@ -1035,6 +1109,83 @@ const externalLinks = [
 		background: rgba(255, 255, 255, 0.96);
 	}
 
+	.results-card__trigger {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: zoom-in;
+	}
+
+	.results-card__trigger img {
+		transition: transform 240ms ease, box-shadow 240ms ease;
+	}
+
+	.results-card__trigger:hover img {
+		transform: scale(1.01);
+		box-shadow: 0 16px 36px rgba(39, 52, 64, 0.08);
+	}
+
+	.lightbox[hidden] {
+		display: none;
+	}
+
+	.lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 1200;
+		display: grid;
+		place-items: center;
+		padding: 28px;
+	}
+
+	.lightbox__backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(19, 25, 31, 0.72);
+		backdrop-filter: blur(12px);
+	}
+
+	.lightbox__dialog {
+		position: relative;
+		z-index: 1;
+		width: min(92vw, 1360px);
+		max-height: min(88vh, 980px);
+		padding: 18px;
+		border-radius: 24px;
+		background: rgba(245, 240, 228, 0.96);
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+	}
+
+	.lightbox__image {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: calc(88vh - 72px);
+		object-fit: contain;
+		border-radius: 16px;
+		background: white;
+	}
+
+	.lightbox__close {
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		z-index: 2;
+		padding: 8px 12px;
+		border: 1px solid rgba(39, 52, 64, 0.14);
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.84);
+		color: var(--ink);
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.76rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
 	.stream {
 		display: grid;
 		gap: 18px;
@@ -1313,13 +1464,35 @@ const externalLinks = [
 			border-radius: 14px;
 		}
 
-		.results-card--left {
-			grid-row: auto;
-		}
+			.results-card--left {
+				grid-row: auto;
+			}
 
-	.plain-list {
-		gap: 10px;
-	}
+			.lightbox {
+				padding: 14px;
+			}
+
+			.lightbox__dialog {
+				width: 100%;
+				padding: 12px;
+				border-radius: 18px;
+			}
+
+			.lightbox__image {
+				max-height: calc(84vh - 56px);
+				border-radius: 12px;
+			}
+
+			.lightbox__close {
+				top: 10px;
+				right: 10px;
+				padding: 7px 10px;
+				font-size: 0.68rem;
+			}
+
+		.plain-list {
+			gap: 10px;
+		}
 
 	.plain-list li {
 		padding-top: 10px;
