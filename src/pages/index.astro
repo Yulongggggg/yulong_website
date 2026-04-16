@@ -38,10 +38,14 @@ const analyticsCountries = (analyticsSnapshot.countries || []).map((country) => 
 }));
 const pageBackdropUrl = withBase('/backgrounds/adobe-stock-653911900.jpeg');
 
-function emphasizeAuthor(authors) {
+function emphasizeAuthor(authors, inlineNote = '') {
+	const noteMarkup = inlineNote
+		? `<span class="author-inline-note">(${inlineNote})</span>`
+		: '';
+
 	return authors.replaceAll(
 		'Yulong Liu',
-		'<strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>'
+		`<strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>${noteMarkup}`
 	);
 }
 
@@ -78,8 +82,9 @@ const publications = [
 		type: 'Preprint',
 		title: 'CodeMOOSE: Multi-Agent Collaborative Framework for Multiphysics MOOSE Language',
 		authors: 'Yulong Liu, Zhenghan Song',
+		authorNoteInline: 'co-first author, corresponding author',
 		venue: 'arXiv preprint, January 2026',
-		note: 'Co-first author and corresponding author. Open-source release in preparation.',
+		note: 'Open-source release in preparation.',
 		href: null,
 		linkLabel: null
 	},
@@ -329,7 +334,10 @@ const externalLinks = [
 							</div>
 								<div class="publication-copy">
 									<h3>{item.title}</h3>
-									<p class="publication-authors" set:html={emphasizeAuthor(item.authors)} />
+									<p
+										class="publication-authors"
+										set:html={emphasizeAuthor(item.authors, item.authorNoteInline)}
+									/>
 									<p class="publication-venue">{item.venue}</p>
 									{item.note ? <p class="publication-note">{item.note}</p> : null}
 									{item.href && item.linkLabel ? (
@@ -1272,6 +1280,16 @@ const externalLinks = [
 		line-height: 1;
 		vertical-align: text-top;
 		color: rgba(24, 33, 43, 0.88);
+	}
+
+	.author-inline-note {
+		display: inline-block;
+		margin-left: 0.42rem;
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		color: rgba(39, 52, 64, 0.7);
 	}
 
 	.publication-note {
