@@ -36,6 +36,7 @@ const analyticsCountries = (analyticsSnapshot.countries || []).map((country) => 
 	...country,
 	flag: getCountryFlag(country.code)
 }));
+const pageBackdropUrl = withBase('/backgrounds/adobe-stock-653911900.jpeg');
 
 function emphasizeAuthor(authors) {
 	return authors.replaceAll(
@@ -162,7 +163,11 @@ const talks = [
 
 const profileFacts = [
 	{ label: 'Program', value: 'Ph.D. in Earth Sciences' },
-	{ label: 'Advisor', value: 'Chloé Arson' },
+	{
+		label: 'Advisor',
+		value: 'Chloé Arson',
+		href: 'https://arsonlab.engineering.cornell.edu/'
+	},
 	{ label: 'Focus', value: 'Computational mechanics · INR · Poromechanics' },
 	{ label: 'Base', value: 'Ithaca, New York' },
 	{ label: 'Email', value: 'yl3825@cornell.edu' }
@@ -208,7 +213,7 @@ const externalLinks = [
 				<script async src="https://gc.zgo.at/count.js" data-goatcounter={analyticsCountEndpoint}></script>
 			) : null}
 		</head>
-			<body>
+			<body style={`--page-photo-url: url("${pageBackdropUrl}")`}>
 			<Hero
 				prefix="Hi, I'm"
 				text="YULONG LIU"
@@ -274,7 +279,15 @@ const externalLinks = [
 								{profileFacts.map((fact) => (
 									<div class="meta-row">
 										<dt>{fact.label}</dt>
-										<dd>{fact.value}</dd>
+										<dd>
+											{fact.href ? (
+												<a href={fact.href} target="_blank" rel="noreferrer" class="meta-link">
+													{fact.value}
+												</a>
+											) : (
+												fact.value
+											)}
+										</dd>
 									</div>
 								))}
 							</dl>
@@ -812,6 +825,20 @@ const externalLinks = [
 		z-index: 1;
 	}
 
+	body::after {
+		content: '';
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		background:
+			linear-gradient(180deg, rgba(248, 244, 234, 0.82), rgba(243, 236, 223, 0.72)),
+			var(--page-photo-url) center 18% / cover no-repeat;
+		opacity: 0.26;
+		transform: scale(1.04);
+		filter: saturate(0.82) contrast(0.94);
+	}
+
 	* {
 		box-sizing: border-box;
 	}
@@ -1059,6 +1086,29 @@ const externalLinks = [
 		font-size: 1.04rem;
 		line-height: 1.55;
 		color: var(--ink);
+	}
+
+	.meta-link {
+		position: relative;
+		display: inline-flex;
+		color: inherit;
+	}
+
+	.meta-link::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -2px;
+		width: 100%;
+		height: 1px;
+		background: rgba(39, 52, 64, 0.34);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 220ms ease;
+	}
+
+	.meta-link:hover::after {
+		transform: scaleX(1);
 	}
 
 	.meta-list--intro .meta-row {
@@ -1712,10 +1762,15 @@ const externalLinks = [
 		}
 	}
 
-		@media (max-width: 760px) {
-			.site-nav {
-				top: 8px;
-				right: 0;
+	@media (max-width: 760px) {
+		body::after {
+			background-position: center 10%;
+			opacity: 0.18;
+		}
+
+		.site-nav {
+			top: 8px;
+			right: 0;
 		left: 0;
 		display: block;
 		padding: 0 10px;
