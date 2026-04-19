@@ -139,7 +139,12 @@ const education = [
 		institution: 'Northeastern University',
 		degree: 'B.S. in Mining Engineering',
 		meta: '2020 - 2024 · Shenyang, China',
-		detail: 'College of Engineering · GPA 3.94 / 4.5'
+		detail: 'College of Engineering · GPA 3.94 / 4.5',
+		thesis: {
+			title:
+				'A Unified Model for Microseismic Signal Classification and Arrival-Time Picking Based on Deep Learning',
+			originalTitle: '深度学习的微震信号分类与到时拾取统一模型研究'
+		}
 	}
 ];
 
@@ -415,6 +420,15 @@ const externalLinks = [
 								<h3>{item.institution}</h3>
 								<p class="row-title">{item.degree}</p>
 								<p>{item.detail}</p>
+								{item.thesis ? (
+									<>
+										<p class="row-thesis">
+											<span class="row-thesis__label">Undergraduate thesis</span>
+											{item.thesis.title}
+										</p>
+										<p class="row-thesis__original">{item.thesis.originalTitle}</p>
+									</>
+								) : null}
 							</div>
 						</article>
 					))}
@@ -1264,6 +1278,27 @@ const externalLinks = [
 	.row-title,
 	.publication-venue {
 		color: var(--ink);
+	}
+
+	.row-thesis {
+		display: grid;
+		gap: 4px;
+		margin-top: 6px;
+		color: var(--ink);
+	}
+
+	.row-thesis__label {
+		font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+		font-size: 0.68rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(39, 52, 64, 0.54);
+	}
+
+	.row-thesis__original {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: rgba(39, 52, 64, 0.72);
 	}
 
 	.author-highlight {
