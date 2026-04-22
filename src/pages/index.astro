@@ -196,6 +196,11 @@ const externalLinks = [
 		href: 'https://github.com/Yulongggggg'
 	},
 	{
+		label: 'CV',
+		href: withBase('/docs/Yulong_CV2026_V2.pdf'),
+		openInNewTab: true
+	},
+	{
 		label: 'Cornell email',
 		href: 'mailto:yl3825@cornell.edu'
 	}
@@ -275,8 +280,8 @@ const externalLinks = [
 									{externalLinks.map((link) => (
 										<a
 											href={link.href}
-											target={link.href.startsWith('http') ? '_blank' : undefined}
-											rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+											target={link.openInNewTab || link.href.startsWith('http') ? '_blank' : undefined}
+											rel={link.openInNewTab || link.href.startsWith('http') ? 'noreferrer' : undefined}
 										>
 											{link.label}
 										</a>
@@ -495,8 +500,8 @@ const externalLinks = [
 					{externalLinks.map((link) => (
 						<a
 							href={link.href}
-							target={link.href.startsWith('http') ? '_blank' : undefined}
-							rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+							target={link.openInNewTab || link.href.startsWith('http') ? '_blank' : undefined}
+							rel={link.openInNewTab || link.href.startsWith('http') ? 'noreferrer' : undefined}
 						>
 							{link.label}
 						</a>
