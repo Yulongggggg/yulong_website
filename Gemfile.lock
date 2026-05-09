@@ -69,6 +69,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   ffi (< 1.17)
