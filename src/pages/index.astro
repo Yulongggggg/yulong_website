@@ -406,6 +406,21 @@ const externalLinks = [
 								loading="lazy"
 							/>
 						</figure>
+						<figure
+							class="results-card results-card--wide"
+							role="button"
+							tabindex="0"
+							data-results-open
+							data-results-src={withBase('/research-results/temp-fig1-1.png')}
+							data-results-alt="Research figure from the latest study."
+							aria-label="Open enlarged research figure"
+						>
+							<img
+								src={withBase('/research-results/temp-fig1-1.png')}
+								alt="Research figure from the latest study."
+								loading="lazy"
+							/>
+						</figure>
 					</div>
 				</section>
 
@@ -1381,6 +1396,14 @@ const externalLinks = [
 
 	.results-card--bottom img {
 		aspect-ratio: 10629 / 2996;
+	}
+
+	.results-card--wide {
+		grid-column: 1 / -1;
+	}
+
+	.results-card--wide img {
+		aspect-ratio: 1672 / 941;
 	}
 
 		.results-card img {
