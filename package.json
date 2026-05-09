@@ -1,20 +1,8 @@
 {
-  "name": "my-website",
+  "name": "yulong-website",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
   "scripts": {
-    "dev": "astro dev",
-    "prebuild": "node scripts/fetch-goatcounter-stats.mjs",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/solid-js": "^6.0.1",
-    "astro": "^4.16.19",
-    "solid-js": "^1.9.12"
+    "fetch:analytics": "node scripts/fetch-goatcounter-stats.mjs"
   }
 }

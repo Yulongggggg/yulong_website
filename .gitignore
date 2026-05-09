@@ -1,11 +1,17 @@
 # build output
+_site/
 dist/
 
-# generated types
+# caches
 .astro/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
 
 # dependencies
 node_modules/
+vendor/
 
 # logs
 npm-debug.log*
@@ -20,5 +26,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# editor settings
 .idea/

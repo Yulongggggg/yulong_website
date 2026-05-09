@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'jekyll', '~> 4.3'
+gem 'webrick', '~> 1.8'
+gem 'jekyll-feed', '~> 0.17'
+gem 'jekyll-sitemap', '~> 1.4'
+gem 'jekyll-seo-tag', '~> 2.8'
+gem 'ffi', '< 1.17'
+gem 'jekyll-sass-converter', '~> 2.2'
+gem 'sassc', '~> 2.4'
