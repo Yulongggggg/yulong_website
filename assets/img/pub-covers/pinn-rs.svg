@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
+  <title id="title">Research Square preprint title snapshot</title>
+  <desc id="desc">A paper-like thumbnail showing the title area for the Research Square preprint.</desc>
+  <rect width="900" height="1160" fill="#fcfcfc"/>
+  <rect x="0" y="0" width="900" height="92" fill="#ece7f7"/>
+  <text x="60" y="56" fill="#6b5b8a" font-family="Arial, Helvetica, sans-serif" font-size="30" letter-spacing="4">RESEARCH SQUARE PREPRINT</text>
+  <line x1="60" y1="142" x2="840" y2="142" stroke="#d9d1e7" stroke-width="3"/>
+  <text x="60" y="212" fill="#777777" font-family="Georgia, serif" font-size="34">Yulong Liu, Chloe Arson</text>
+  <text x="60" y="304" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">A Physics-Informed Neural</text>
+  <text x="60" y="374" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Network for Modeling</text>
+  <text x="60" y="444" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Pressurized Cavities of</text>
+  <text x="60" y="514" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Arbitrary Smooth Shape</text>
+  <text x="60" y="584" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Embedded in Heterogeneous Rock</text>
+  <rect x="60" y="674" width="780" height="250" fill="#ffffff" stroke="#ddd8e7" stroke-width="2"/>
+  <text x="88" y="742" fill="#6b5b8a" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="2">CURRENTLY UNDER REVIEW</text>
+  <text x="88" y="820" fill="#5a5a5a" font-family="Arial, Helvetica, sans-serif" font-size="26">Physics-informed surrogate modeling for cavities of</text>
+  <text x="88" y="860" fill="#5a5a5a" font-family="Arial, Helvetica, sans-serif" font-size="26">arbitrary smooth shape embedded in heterogeneous rock.</text>
+</svg>

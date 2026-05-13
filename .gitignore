@@ -1,6 +1,8 @@
 # build output
 _site/
 dist/
+yulong_website/
+tmp/
 
 # caches
 .astro/

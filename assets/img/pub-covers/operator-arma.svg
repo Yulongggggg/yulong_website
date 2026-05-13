@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
+  <title id="title">ARMA operator learning paper title snapshot</title>
+  <desc id="desc">A paper-like thumbnail showing the title area for the ARMA 2026 operator learning paper.</desc>
+  <rect width="900" height="1160" fill="#fcfcfb"/>
+  <rect x="0" y="0" width="900" height="88" fill="#dce9ef"/>
+  <text x="60" y="54" fill="#446476" font-family="Arial, Helvetica, sans-serif" font-size="30" letter-spacing="4">ARMA 2026  TUCSON</text>
+  <line x1="60" y1="138" x2="840" y2="138" stroke="#cad7dd" stroke-width="3"/>
+  <text x="60" y="206" fill="#7a7a7a" font-family="Georgia, serif" font-size="34">Yulong Liu, Jonah Botvinick-Greenhouse, Yunan Yang, Chloe Arson</text>
+  <text x="60" y="302" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Operator Learning Surrogate</text>
+  <text x="60" y="376" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Modeling of Hydraulically</text>
+  <text x="60" y="450" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Fractured Geothermal</text>
+  <text x="60" y="524" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Injection-Production Systems</text>
+  <text x="60" y="602" fill="#4c4c4c" font-family="Arial, Helvetica, sans-serif" font-size="36">A Cornell Case Study</text>
+  <rect x="60" y="688" width="780" height="230" fill="#ffffff" stroke="#d8d8d8" stroke-width="2"/>
+  <rect x="60" y="688" width="780" height="54" fill="#eef4f7"/>
+  <text x="88" y="724" fill="#567180" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="2">CONFERENCE PAPER</text>
+  <text x="88" y="792" fill="#585858" font-family="Arial, Helvetica, sans-serif" font-size="26">Operator-learning surrogates for hydraulically fractured</text>
+  <text x="88" y="832" fill="#585858" font-family="Arial, Helvetica, sans-serif" font-size="26">geothermal injection-production systems.</text>
+  <text x="88" y="872" fill="#585858" font-family="Arial, Helvetica, sans-serif" font-size="26">A Cornell case study on multiphysics response.</text>
+</svg>

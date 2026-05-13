@@ -16,13 +16,14 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
   </div>
   <div class="hero-copy">
     <p class="page-kicker">Yulong Liu</p>
-    <h1>Ph.D. student in Earth and Atmospheric Sciences at Cornell University.</h1>
+    <h1 class="hero-headline">Ph.D. student in Earth and Atmospheric Sciences at Cornell University.</h1>
     <p class="hero-lead">
-      I work across computational mechanics, implicit neural representation, poromechanics, and subsurface energy systems, with a focus on surrogate modeling for coupled multiphysics problems in Earth science. I am also increasingly interested in homogenization theory and physics-aware implicit neural representations.
+      I work across computational mechanics, artificial intelligence, implicit neural representations, and poromechanics for coupled multiphysics problems in Earth science, with a focus on MOOSE-based modeling, surrogate learning, and multiscale subsurface systems.
     </p>
 
     <div class="tag-row">
       <span>Computational mechanics</span>
+      <span>Artificial intelligence</span>
       <span>Implicit neural representation</span>
       <span>Poromechanics</span>
     </div>
@@ -38,7 +39,7 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
     <dl class="fact-grid">
       <div class="fact-item">
         <dt>Program</dt>
-        <dd>Ph.D. in Earth Sciences</dd>
+        <dd>Ph.D. in Geophysics</dd>
       </div>
       <div class="fact-item">
         <dt>Advisor</dt>
@@ -46,7 +47,7 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
       </div>
       <div class="fact-item">
         <dt>Focus</dt>
-        <dd>Computational mechanics · INR · Poromechanics</dd>
+        <dd>Computational mechanics · AI · INR · Poromechanics</dd>
       </div>
       <div class="fact-item">
         <dt>Base</dt>
@@ -66,6 +67,6 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
     <h2 class="section-title">Current directions in my work.</h2>
   </div>
   <p class="section-copy">
-    My current work sits at the intersection of continuum mechanics, scientific machine learning, and subsurface modeling. I am especially interested in building trustworthy computational tools that connect rigorous physical modeling with expressive data-driven representations.
+    My current work sits at the intersection of computational mechanics, scientific machine learning, and porous subsurface modeling. I am especially interested in building trustworthy tools that connect rigorous physical modeling with expressive data-driven representations for Earth science problems.
   </p>
 </section>

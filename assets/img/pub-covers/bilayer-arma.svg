@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
+  <title id="title">ARMA PINN paper title snapshot</title>
+  <desc id="desc">A paper-like thumbnail showing the title area for the 2025 ARMA PINN paper.</desc>
+  <rect width="900" height="1160" fill="#fcfcfb"/>
+  <rect x="0" y="0" width="900" height="88" fill="#e1efe9"/>
+  <text x="60" y="54" fill="#4c7c69" font-family="Arial, Helvetica, sans-serif" font-size="30" letter-spacing="4">ARMA 2025</text>
+  <line x1="60" y1="140" x2="840" y2="140" stroke="#d6e4dd" stroke-width="3"/>
+  <text x="60" y="208" fill="#777777" font-family="Georgia, serif" font-size="34">Yulong Liu, Chloe Arson</text>
+  <text x="60" y="304" fill="#111111" font-family="Georgia, serif" font-size="58" font-weight="700">Physics-Informed Neural</text>
+  <text x="60" y="376" fill="#111111" font-family="Georgia, serif" font-size="58" font-weight="700">Network Surrogate Modeling</text>
+  <text x="60" y="448" fill="#111111" font-family="Georgia, serif" font-size="58" font-weight="700">of Pressurized Cavity in</text>
+  <text x="60" y="520" fill="#111111" font-family="Georgia, serif" font-size="58" font-weight="700">Homogeneous and Bilayered Media</text>
+  <rect x="60" y="620" width="780" height="250" fill="#ffffff" stroke="#d8dfdb" stroke-width="2"/>
+  <rect x="60" y="620" width="780" height="56" fill="#eef5f1"/>
+  <text x="88" y="656" fill="#4c7c69" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="2">CONFERENCE PAPER  D022S018R006</text>
+  <text x="88" y="730" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="26">PINN-based surrogate modeling of cavity response in</text>
+  <text x="88" y="770" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="26">homogeneous and bilayered media for geomechanics.</text>
+</svg>

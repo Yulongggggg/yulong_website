@@ -12,11 +12,13 @@ description: Awards, honors, and service.
   <div class="content-card">
     <p class="page-kicker">Awards</p>
     <ul class="plain-list">
-      <li>2025 · Estwing Hammer Award, outstanding EAS graduate student of 2024</li>
-      <li>2024 · Outstanding Thesis, outstanding undergraduate thesis</li>
-      <li>2024 · National Scholarship, most outstanding student in the university</li>
+      <li>2025 · Estwing Hammer Award, Outstanding EAS Graduate Student of 2024, Cornell University</li>
+      <li>2025 · Cornell University Travel Grant, Cornell University</li>
+      <li>2024 · Outstanding Thesis, Northeastern University</li>
+      <li>2024 · National Scholarship, Ministry of Education, China</li>
       <li>2023 · First Class Scholarship</li>
-      <li>2022 · Autumn Scholarship and Golden Seed Scholarship</li>
+      <li>2022 · Autumn Scholarship</li>
+      <li>2022 · Golden Seed Scholarship</li>
     </ul>
   </div>
 
@@ -24,7 +26,20 @@ description: Awards, honors, and service.
     <p class="page-kicker">Academic service</p>
     <ul class="plain-list">
       <li>Reviewer, Rock Mechanics and Rock Engineering</li>
+      <li>Reviewer, Computers and Geotechnics</li>
       <li>Reviewer, International Conference on Artificial Neural Networks 2026</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section-stack">
+  <div class="content-card">
+    <p class="page-kicker">Professional memberships</p>
+    <ul class="plain-list">
+      <li>Member, American Rock Mechanics Association (ARMA), 2025-Present</li>
+      <li>Member, International Society for Rock Mechanics and Rock Engineering (ISRM), 2025-Present</li>
+      <li>Member, Chinese Society for Rock Mechanics and Engineering (CSRME), 2024-Present</li>
+      <li>Member, Geothermal Rising, 2025-Present</li>
     </ul>
   </div>
 </section>

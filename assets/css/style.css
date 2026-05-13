@@ -170,6 +170,13 @@ img {
   margin-bottom: 1rem;
 }
 
+.hero-headline {
+  max-width: 11.5ch;
+  font-size: clamp(2rem, 4.4vw, 3.25rem) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -0.015em;
+}
+
 .hero-lead,
 .section-copy,
 .timeline-copy p,
@@ -311,10 +318,10 @@ img {
 
 .pub-item {
   display: grid;
-  grid-template-columns: 104px 210px minmax(0, 1fr);
-  gap: 22px;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 18px;
   align-items: start;
-  padding: 1.4rem 0;
+  padding: 1.7rem 0;
   border-top: 1px solid var(--border);
 }
 
@@ -322,131 +329,40 @@ img {
   border-top: 0;
 }
 
-.pub-cover {
-  --cover-accent: #3f51b5;
-  position: relative;
-  min-height: 260px;
-  padding: 10px;
-  border-radius: 10px;
-  background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.84), transparent 44%),
-    linear-gradient(160deg, color-mix(in srgb, var(--cover-accent) 18%, white), #ffffff 62%);
-  border: 1px solid color-mix(in srgb, var(--cover-accent) 16%, var(--border));
+.pub-main {
+  display: grid;
+  gap: 1rem;
+}
+
+.pub-preview {
+  margin: 0;
   overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #e7e7e2;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.035);
 }
 
-.pub-cover::before,
-.pub-cover::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  opacity: 0.48;
-}
-
-.pub-cover::before {
-  right: -28px;
-  top: -24px;
-  width: 96px;
-  height: 96px;
-  background: color-mix(in srgb, var(--cover-accent) 20%, white);
-}
-
-.pub-cover::after {
-  left: -18px;
-  bottom: -24px;
-  width: 84px;
-  height: 84px;
-  background: color-mix(in srgb, var(--cover-accent) 12%, white);
-}
-
-.pub-cover__sheet {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  min-height: 238px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.85rem;
-  padding: 0.9rem 0.95rem 1rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(10px);
-}
-
-.pub-cover__eyebrow {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: color-mix(in srgb, var(--cover-accent) 58%, #1a1a1a);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.pub-cover__title {
-  margin: 0;
-  font-family: "Crimson Text", Georgia, serif;
-  font-size: 1.28rem;
-  line-height: 1.03;
-  color: var(--text);
-}
-
-.pub-cover__subtitle {
-  margin: 0;
-  color: #484848;
-  font-size: 0.86rem;
-  line-height: 1.35;
-}
-
-.pub-cover__footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid rgba(17, 17, 17, 0.08);
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
-.pub-cover--intent {
-  --cover-accent: #6f82cc;
-}
-
-.pub-cover--operator {
-  --cover-accent: #5b8ea5;
-}
-
-.pub-cover--pinn {
-  --cover-accent: #8d79c8;
-}
-
-.pub-cover--micro {
-  --cover-accent: #9a8260;
-}
-
-.pub-cover--bilayer {
-  --cover-accent: #4e8e7d;
+.pub-preview img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 6.4;
+  object-fit: cover;
+  object-position: top center;
+  background: #fff;
 }
 
 .pub-title {
-  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
-  line-height: 1.12;
-  margin-bottom: 0.45rem;
+  font-size: clamp(1.28rem, 2vw, 1.62rem);
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
 }
 
 .pub-authors,
 .pub-venue {
   margin: 0 0 0.45rem;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 0.98rem;
 }
 
 .author-highlight {
@@ -469,7 +385,7 @@ img {
 }
 
 .pub-note {
-  font-size: 0.96rem;
+  font-size: 0.94rem;
   margin-bottom: 0.45rem;
 }
 
@@ -654,8 +570,7 @@ img {
 }
 
 .site-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 2rem;
+  display: none;
 }
 
 .site-footer__inner {
@@ -725,11 +640,11 @@ img {
   }
 
   .pub-item {
-    grid-template-columns: 96px 180px minmax(0, 1fr);
+    grid-template-columns: 80px minmax(0, 1fr);
   }
 
-  .pub-cover {
-    min-height: 236px;
+  .pub-preview img {
+    aspect-ratio: 16 / 7.4;
   }
 }
 
@@ -751,6 +666,11 @@ img {
     margin: 0 0 1.25rem;
   }
 
+  .hero-headline {
+    max-width: none;
+    font-size: clamp(1.85rem, 8vw, 2.65rem) !important;
+  }
+
   .fact-grid,
   .timeline-item,
   .pub-item {
@@ -761,12 +681,8 @@ img {
     gap: 14px;
   }
 
-  .pub-cover {
-    min-height: 220px;
-  }
-
-  .pub-cover__title {
-    font-size: 1.2rem;
+  .pub-preview img {
+    aspect-ratio: 16 / 8.6;
   }
 
   .page-shell {

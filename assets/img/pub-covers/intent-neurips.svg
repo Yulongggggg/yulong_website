@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
+  <title id="title">NeurIPS paper title snapshot</title>
+  <desc id="desc">A paper-like thumbnail showing the title area for the NeurIPS submission.</desc>
+  <rect width="900" height="1160" fill="#fbfbf8"/>
+  <rect x="0" y="0" width="900" height="92" fill="#f0e8d8"/>
+  <text x="60" y="56" fill="#6d6354" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4">UNDER REVIEW AT NEURIPS 2026</text>
+  <line x1="58" y1="142" x2="842" y2="142" stroke="#d7d0c4" stroke-width="3"/>
+  <text x="60" y="208" fill="#7a746b" font-family="Georgia, serif" font-size="34">Yulong Liu*, Zhenghan Song</text>
+  <text x="60" y="305" fill="#111111" font-family="Georgia, serif" font-size="66" font-weight="700">Your Simulation Runs but</text>
+  <text x="60" y="385" fill="#111111" font-family="Georgia, serif" font-size="66" font-weight="700">Solves the Wrong Physics</text>
+  <text x="60" y="474" fill="#454545" font-family="Arial, Helvetica, sans-serif" font-size="34">PDE-Grounded Intent Alignment for</text>
+  <text x="60" y="524" fill="#454545" font-family="Arial, Helvetica, sans-serif" font-size="34">Agentic Multiphysics Simulation</text>
+  <rect x="60" y="610" width="780" height="270" rx="4" fill="#ffffff" stroke="#dedad2" stroke-width="2"/>
+  <rect x="60" y="610" width="780" height="58" fill="#f7f4ef"/>
+  <text x="88" y="649" fill="#8a8377" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="2">ABSTRACT</text>
+  <text x="88" y="722" fill="#565656" font-family="Arial, Helvetica, sans-serif" font-size="26">We study whether large language models can generate</text>
+  <text x="88" y="762" fill="#565656" font-family="Arial, Helvetica, sans-serif" font-size="26">multiphysics simulation code that aligns with the</text>
+  <text x="88" y="802" fill="#565656" font-family="Arial, Helvetica, sans-serif" font-size="26">intended PDEs and physical assumptions.</text>
+  <text x="60" y="1008" fill="#887f72" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="3">* CO-FIRST AUTHOR   † CORRESPONDING AUTHOR</text>
+</svg>
