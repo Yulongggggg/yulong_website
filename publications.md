@@ -4,8 +4,8 @@ nav: true
 nav_order: 3
 permalink: /publications/
 layout: page
-heading: Current publication list.
-description: Journal, conference, preprint, and thesis publications.
+heading: Selected papers and thesis.
+description: Journal, conference, preprint, and thesis publications aligned with the current CV.
 ---
 
 <div class="pub-list">
@@ -19,8 +19,8 @@ description: Journal, conference, preprint, and thesis publications.
         <img src="{{ '/assets/img/pub-covers/intent-neurips.svg' | relative_url }}" alt="Title-page style preview for the NeurIPS paper.">
       </figure>
       <div class="pub-copy">
-        <h3 class="pub-title">Your Simulation Runs but Solves the Wrong Physics: PDE-Grounded Intent Alignment for Agentic Multiphysics Simulation</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(co-first author, corresponding author)</span>, Zhenghan Song</p>
+        <h3 class="pub-title">Your Simulation Runs but Solves the Wrong Physics: PDE-Grounded Intent Verification for LLM-Generated Multiphysics Simulation Code</h3>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(co-first author, corresponding author)</span>, Zhenghan Song, et al.</p>
         <p class="pub-venue">arXiv preprint; under review at NeurIPS 2026</p>
         <a class="text-link" href="https://arxiv.org/abs/2605.09360" target="_blank" rel="noreferrer">Open arXiv</a>
       </div>
@@ -38,7 +38,7 @@ description: Journal, conference, preprint, and thesis publications.
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">Operator Learning Surrogate Modeling of Hydraulically Fractured Geothermal Injection-Production Systems: A Cornell Case Study</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>, Jonah Botvinick-Greenhouse, Yunan Yang, Chloé Arson</p>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span>, Jonah Botvinick-Greenhouse, Yunan Yang, Chloé Arson</p>
         <p class="pub-venue">ARMA 2026, Tucson</p>
         <a class="text-link" href="https://scholar.google.com/scholar?q=Operator+Learning+Surrogate+Modeling+of+Hydraulically+Fractured+Geothermal+Injection-Production+Systems:+A+Cornell+Case+Study" target="_blank" rel="noreferrer">Find in Scholar</a>
       </div>
@@ -56,7 +56,7 @@ description: Journal, conference, preprint, and thesis publications.
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">A Physics-Informed Neural Network for Modeling Pressurized Cavities of Arbitrary Smooth Shape Embedded in Heterogeneous Rock</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>, Chloé Arson</p>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span>, Chloé Arson</p>
         <p class="pub-venue">Research Square preprint</p>
         <p class="pub-note">Currently under review.</p>
         <a class="text-link" href="https://doi.org/10.21203/rs.3.rs-8492281/v1" target="_blank" rel="noreferrer">Read preprint</a>

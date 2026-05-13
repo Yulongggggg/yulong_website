@@ -27,7 +27,8 @@ description: Awards, honors, and service.
     <ul class="plain-list">
       <li>Reviewer, Rock Mechanics and Rock Engineering</li>
       <li>Reviewer, Computers and Geotechnics</li>
-      <li>Reviewer, International Conference on Artificial Neural Networks 2026</li>
+      <li>Reviewer, International Conference on Artificial Neural Networks</li>
+      <li>Reviewer, Geothermal Rising Conference</li>
     </ul>
   </div>
 </section>
