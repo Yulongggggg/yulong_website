@@ -331,7 +331,9 @@ img {
 
 .pub-main {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 1rem 1.2rem;
+  align-items: start;
 }
 
 .pub-preview {
@@ -346,14 +348,14 @@ img {
 .pub-preview img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 6.4;
+  aspect-ratio: 16 / 9.4;
   object-fit: cover;
   object-position: top center;
   background: #fff;
 }
 
 .pub-title {
-  font-size: clamp(1.28rem, 2vw, 1.62rem);
+  font-size: clamp(1.22rem, 1.8vw, 1.5rem);
   line-height: 1.15;
   margin-bottom: 0.4rem;
 }
@@ -643,8 +645,12 @@ img {
     grid-template-columns: 80px minmax(0, 1fr);
   }
 
+  .pub-main {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
   .pub-preview img {
-    aspect-ratio: 16 / 7.4;
+    aspect-ratio: 16 / 9.8;
   }
 }
 
@@ -681,8 +687,13 @@ img {
     gap: 14px;
   }
 
+  .pub-main {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
   .pub-preview img {
-    aspect-ratio: 16 / 8.6;
+    aspect-ratio: 16 / 8.2;
   }
 
   .page-shell {
