@@ -10,6 +10,14 @@ description: Selected oral presentations, posters, and invited talks.
 
 <div class="timeline">
   <article class="timeline-item">
+    <div class="item-meta">Invited talk<br>May 2026</div>
+    <div class="timeline-copy">
+      <h3>20th Phase Field Methods workshop</h3>
+      <p>Center for Hierarchical Materials Design, Northwestern University</p>
+    </div>
+  </article>
+
+  <article class="timeline-item">
     <div class="item-meta">Oral presentation<br>June 2026</div>
     <div class="timeline-copy">
       <h3>60th US Rock Mechanics/Geomechanics Symposium (ARMA)</h3>
@@ -28,7 +36,7 @@ description: Selected oral presentations, posters, and invited talks.
   <article class="timeline-item">
     <div class="item-meta">Invited seminar<br>December 2025</div>
     <div class="timeline-copy">
-      <h3>Physics-Informed Optimization of Heterogeneous Rock Systems</h3>
+      <h3>Physics-Informed AI Optimization of Heterogeneous Rock Systems</h3>
       <p>Southwest Petroleum University seminar series, Chengdu, China</p>
     </div>
   </article>
