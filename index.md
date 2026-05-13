@@ -7,7 +7,7 @@ permalink: /
 layout: page
 hide_title: true
 body_class: page-about
-description: Ph.D. student in Geophysics at Cornell University.
+description: Ph.D. student in Earth and Atmospheric Sciences at Cornell University.
 ---
 
 <section class="hero-card">
@@ -16,7 +16,7 @@ description: Ph.D. student in Geophysics at Cornell University.
   </div>
   <div class="hero-copy">
     <p class="page-kicker">Yulong Liu</p>
-    <h1 class="hero-headline">Ph.D. student in Geophysics at Cornell University.</h1>
+    <h1 class="hero-headline">Ph.D. student in Earth and Atmospheric Sciences at Cornell University.</h1>
     <p class="hero-lead">
       I work across computational mechanics, artificial intelligence, implicit neural representations, and poromechanics for coupled multiphysics problems in Earth science, with a focus on MOOSE-based modeling, surrogate learning, and multiscale transport in porous subsurface media.
     </p>

@@ -152,7 +152,7 @@ img {
 
 .hero-photo {
   order: 2;
-  width: min(330px, 100%);
+  width: min(300px, 100%);
   margin: 0;
   justify-self: end;
 }
@@ -160,10 +160,11 @@ img {
 .hero-photo img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: 20px;
-  object-fit: cover;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06);
+  height: auto;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.05);
+  background: transparent;
 }
 
 .hero-copy {
@@ -661,7 +662,7 @@ img {
   .hero-photo {
     order: 0;
     justify-self: start;
-    width: min(320px, 100%);
+    width: min(280px, 100%);
   }
 
   .pub-item {
@@ -690,7 +691,7 @@ img {
   }
 
   .hero-photo {
-    width: min(280px, 100%);
+    width: min(240px, 100%);
     margin: 0 0 1.25rem;
   }
 
