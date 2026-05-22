@@ -13,7 +13,7 @@ description: Training in geophysics, mining engineering, and scientific computin
     <div class="item-meta">2024 - Present<br>Ithaca, New York</div>
     <div class="timeline-copy">
       <h3>Cornell University</h3>
-      <p class="timeline-degree">Ph.D. in Geophysics</p>
+      <p class="timeline-degree">Ph.D. in Earth Science</p>
       <p>Department of Earth and Atmospheric Sciences</p>
     </div>
   </article>

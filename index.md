@@ -18,14 +18,15 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
     <p class="page-kicker">Yulong Liu</p>
     <h1 class="hero-headline">Ph.D. student in Earth and Atmospheric Sciences at Cornell University.</h1>
     <p class="hero-lead">
-      I work across computational mechanics, artificial intelligence, implicit neural representations, and poromechanics for coupled multiphysics problems in Earth science, with a focus on MOOSE-based modeling, surrogate learning, and multiscale transport in porous subsurface media.
+      My work is about getting AI to learn physics instead of only fitting data. I think about this through implicit neural representations, operator learning, world models, LLM-based reasoning, and physics-informed neural networks, with applications to computational mechanics and coupled Earth science problems.
     </p>
 
     <div class="tag-row">
-      <span>Computational mechanics</span>
-      <span>Artificial intelligence</span>
       <span>Implicit neural representation</span>
-      <span>Poromechanics</span>
+      <span>Operator learning</span>
+      <span>World models</span>
+      <span>LLMs for physics</span>
+      <span>Physics-informed neural networks</span>
     </div>
 
     <div class="link-row">
@@ -39,7 +40,7 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
     <dl class="fact-grid">
       <div class="fact-item">
         <dt>Program</dt>
-        <dd>Ph.D. in Geophysics</dd>
+        <dd>Ph.D. in Earth Science</dd>
       </div>
       <div class="fact-item">
         <dt>Advisor</dt>
@@ -47,7 +48,7 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
       </div>
       <div class="fact-item">
         <dt>Focus</dt>
-        <dd>Computational mechanics · artificial intelligence · INR · poromechanics</dd>
+        <dd>AI for physics · INR · operator learning · world models · LLMs · PINNs</dd>
       </div>
       <div class="fact-item">
         <dt>Base</dt>
@@ -67,6 +68,6 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
     <h2 class="section-title">Current directions in my work.</h2>
   </div>
   <p class="section-copy">
-    My current work sits at the intersection of computational mechanics, scientific machine learning, and porous subsurface modeling. I am especially interested in building trustworthy tools for coupled multiphysics problems in Earth science, from MOOSE-based simulation to implicit neural representations and surrogate modeling.
+    The question behind most of my work is straightforward: how can we make learning-based models respect physics instead of only matching data? I am especially interested in settings where geometry, constitutive behavior, and coupled processes matter, and where physical structure can make AI more useful for real mechanics and Earth science problems.
   </p>
 </section>
