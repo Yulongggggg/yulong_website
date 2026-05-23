@@ -5,12 +5,12 @@ nav_order: 6
 permalink: /talks/
 layout: page
 heading: Conferences and presentations.
-description: Selected oral presentations, posters, and invited talks.
+description: Selected presentations, invited seminars, and panel appearances.
 ---
 
 <div class="timeline">
   <article class="timeline-item">
-    <div class="item-meta">Invited talk<br>May 2026</div>
+    <div class="item-meta">Invited speaker &amp; panelist<br>May 2026</div>
     <div class="timeline-copy">
       <h3>20th Phase Field Methods workshop</h3>
       <p>Center for Hierarchical Materials Design, Northwestern University</p>
