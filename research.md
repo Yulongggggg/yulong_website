@@ -17,14 +17,14 @@ description: A concise view of the themes currently shaping my research.
 
   <article class="content-card">
     <p class="page-kicker">02</p>
-    <h3>INRs, operator learning, world models, LLMs, and PINNs</h3>
-    <p class="section-copy">I use implicit neural representations, operator learning, world-model style architectures, LLM-based systems, and physics-informed neural networks as different ways to build physical structure directly into AI models.</p>
+    <h3>INRs, operator learning, LLMs, and PINNs</h3>
+    <p class="section-copy">I use implicit neural representations, operator learning, LLM-based systems, and physics-informed neural networks as different ways to build physical structure directly into AI models.</p>
   </article>
 
   <article class="content-card">
     <p class="page-kicker">03</p>
-    <h3>Mechanics and Earth science applications</h3>
-    <p class="section-copy">Most of these ideas are grounded in computational mechanics, poromechanics, and multiscale transport in porous subsurface media, often alongside MOOSE-based simulation workflows.</p>
+    <h3>Mechanics, poromechanics, and bio-inspired systems</h3>
+    <p class="section-copy">Most of these ideas are grounded in computational mechanics, poromechanics, multiscale transport in porous subsurface media, and bio-inspired mechanics, often alongside MOOSE-based simulation workflows.</p>
   </article>
 </section>
 

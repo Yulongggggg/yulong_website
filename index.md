@@ -18,15 +18,16 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
     <p class="page-kicker">Yulong Liu</p>
     <h1 class="hero-headline">Ph.D. student in Earth and Atmospheric Sciences at Cornell University.</h1>
     <p class="hero-lead">
-      My work is about getting AI to learn physics instead of only fitting data. I think about this through implicit neural representations, operator learning, world models, LLM-based reasoning, and physics-informed neural networks, with applications to computational mechanics and coupled Earth science problems.
+      My work is about getting AI to learn physics instead of only fitting data. I think about this through implicit neural representations, operator learning, LLM-based reasoning, and physics-informed neural networks, with applications to computational mechanics, bio-inspired mechanics, and coupled Earth science problems.
     </p>
 
     <div class="tag-row">
+      <span>Computational mechanics</span>
       <span>Implicit neural representation</span>
       <span>Operator learning</span>
-      <span>World models</span>
       <span>LLMs for physics</span>
       <span>Physics-informed neural networks</span>
+      <span>Bio-inspired mechanics</span>
     </div>
 
     <div class="link-row">
@@ -48,7 +49,7 @@ description: Ph.D. student in Earth and Atmospheric Sciences at Cornell Universi
       </div>
       <div class="fact-item">
         <dt>Focus</dt>
-        <dd>AI for physics · INR · operator learning · world models · LLMs · PINNs</dd>
+        <dd>AI for physics · INR · operator learning · LLMs · PINNs · bio-inspired mechanics</dd>
       </div>
       <div class="fact-item">
         <dt>Base</dt>
