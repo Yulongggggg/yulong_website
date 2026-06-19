@@ -5,14 +5,13 @@ nav_order: 8
 permalink: /cv/
 layout: page
 heading: Curriculum vitae.
-description: Open the latest version of my CV on Overleaf.
+description: Open or preview the latest version of my CV.
 ---
 
 <section class="cv-card content-card">
-  <p class="section-copy">
-    The latest version of my CV is maintained on Overleaf so edits there stay current here as well.
-  </p>
   <div class="link-row">
-    <a class="cta-button" href="{{ site.cv_url }}" target="_blank" rel="noreferrer">Open CV on Overleaf</a>
+    <a class="cta-button" href="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}" target="_blank" rel="noreferrer">Open CV PDF</a>
   </div>
 </section>
+
+<iframe class="cv-frame" src="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}" title="Yulong Liu CV"></iframe>
