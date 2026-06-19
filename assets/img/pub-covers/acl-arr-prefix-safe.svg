@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
+  <title id="title">ACL ARR paper title snapshot</title>
+  <desc id="desc">A paper-like thumbnail showing the title area for the ACL ARR submission.</desc>
+  <rect width="900" height="1160" fill="#fbfbf8"/>
+  <rect x="0" y="0" width="900" height="92" fill="#eef1f7"/>
+  <text x="60" y="56" fill="#5d6674" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4">UNDER REVIEW AT ACL ARR 2026</text>
+  <line x1="58" y1="142" x2="842" y2="142" stroke="#d7dce5" stroke-width="3"/>
+  <text x="60" y="208" fill="#6a7180" font-family="Georgia, serif" font-size="32">Zhenghan Song, Yunyi Li, Yulong Liu†</text>
+  <text x="60" y="302" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Prefix-Safe Bayesian Belief</text>
+  <text x="60" y="372" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Tracking for LLM</text>
+  <text x="60" y="442" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Reasoning Reliability</text>
+  <text x="60" y="528" fill="#4a4f59" font-family="Arial, Helvetica, sans-serif" font-size="34">Separating Calibration from Ranking</text>
+  <rect x="60" y="620" width="780" height="250" rx="4" fill="#ffffff" stroke="#dedfe4" stroke-width="2"/>
+  <rect x="60" y="620" width="780" height="58" fill="#f6f8fb"/>
+  <text x="88" y="659" fill="#7d8796" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="2">ABSTRACT</text>
+  <text x="88" y="730" fill="#565b63" font-family="Arial, Helvetica, sans-serif" font-size="26">We study reliable belief tracking for LLM reasoning</text>
+  <text x="88" y="770" fill="#565b63" font-family="Arial, Helvetica, sans-serif" font-size="26">and separate calibration quality from ranking behavior</text>
+  <text x="88" y="810" fill="#565b63" font-family="Arial, Helvetica, sans-serif" font-size="26">under prefix-safe evaluation settings.</text>
+  <text x="60" y="1008" fill="#7f8795" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="3">† CORRESPONDING AUTHOR</text>
+</svg>

@@ -12,6 +12,23 @@ description: Journal, conference, preprint, and thesis publications aligned with
   <article class="pub-item">
     <div class="item-meta">
       <span>2026</span><br>
+      <span>Under review</span>
+    </div>
+    <div class="pub-main">
+      <figure class="pub-preview">
+        <img src="{{ '/assets/img/pub-covers/acl-arr-prefix-safe.svg' | relative_url }}" alt="Title-page style preview for the ACL ARR paper.">
+      </figure>
+      <div class="pub-copy">
+        <h3 class="pub-title">Prefix-Safe Bayesian Belief Tracking for LLM Reasoning Reliability: Separating Calibration from Ranking</h3>
+        <p class="pub-authors">Zhenghan Song, Yunyi Li, <strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span></p>
+        <p class="pub-venue">Under review at ACL ARR 2026</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="pub-item">
+    <div class="item-meta">
+      <span>2026</span><br>
       <span>Preprint</span>
     </div>
     <div class="pub-main">
