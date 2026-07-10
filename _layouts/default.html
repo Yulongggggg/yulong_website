@@ -8,40 +8,108 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    {% seo %}
-    {% feed_meta %}
-    <script async src="https://gc.zgo.at/count.js" data-goatcounter="https://yulong.goatcounter.com/count"></script>
+    {% if site.maintenance_mode %}
+      <title>Website temporarily offline</title>
+      <meta name="description" content="This personal website is temporarily offline.">
+      <meta name="robots" content="noindex, nofollow, noarchive">
+      <style>
+        body.maintenance-body {
+          min-height: 100vh;
+          margin: 0;
+          display: grid;
+          place-items: center;
+          background:
+            radial-gradient(circle at 20% 15%, rgba(168, 190, 190, 0.22), transparent 34rem),
+            radial-gradient(circle at 85% 80%, rgba(222, 202, 158, 0.22), transparent 30rem),
+            #f7f3ea;
+          color: #1f2930;
+          font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .maintenance-card {
+          width: min(620px, calc(100vw - 40px));
+          padding: clamp(2rem, 6vw, 4rem);
+          border: 1px solid rgba(80, 86, 83, 0.16);
+          border-radius: 28px;
+          background: rgba(255, 255, 250, 0.74);
+          box-shadow: 0 24px 70px rgba(32, 40, 45, 0.12);
+          text-align: center;
+          backdrop-filter: blur(18px);
+        }
+
+        .maintenance-card__eyebrow {
+          margin: 0 0 0.9rem;
+          color: #69747a;
+          font-size: 0.78rem;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+        }
+
+        .maintenance-card h1 {
+          margin: 0;
+          font-family: "Crimson Text", Georgia, serif;
+          font-size: clamp(2.3rem, 7vw, 4.4rem);
+          line-height: 0.95;
+          letter-spacing: -0.035em;
+        }
+
+        .maintenance-card p:last-child {
+          margin: 1.25rem auto 0;
+          max-width: 30rem;
+          color: #69747a;
+          font-size: 1.06rem;
+          line-height: 1.65;
+        }
+      </style>
+    {% else %}
+      {% seo %}
+      {% feed_meta %}
+    {% endif %}
+    {% unless site.maintenance_mode %}
+      <script async src="https://gc.zgo.at/count.js" data-goatcounter="https://yulong.goatcounter.com/count"></script>
+    {% endunless %}
   </head>
-  <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
-    <div class="page-backdrop" aria-hidden="true"></div>
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a class="site-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        <nav class="site-nav" aria-label="Primary">
-          {% assign nav_pages = site.pages | where: "nav", true | sort: "nav_order" %}
-          {% for item in nav_pages %}
-            {% assign current = false %}
-            {% if page.url == item.url %}
-              {% assign current = true %}
-            {% endif %}
-            <a class="site-nav__link{% if current %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.nav_title | default: item.title }}</a>
-          {% endfor %}
-        </nav>
+  {% if site.maintenance_mode %}
+    <body class="maintenance-body">
+      <main class="maintenance-card" aria-label="Website temporarily unavailable">
+        <p class="maintenance-card__eyebrow">Yulong Liu</p>
+        <h1>Website temporarily offline.</h1>
+        <p>This personal website is being updated and is not publicly available right now. Please check back later.</p>
+      </main>
+    </body>
+  {% else %}
+    <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
+      <div class="page-backdrop" aria-hidden="true"></div>
+      <header class="site-header">
+        <div class="site-header__inner">
+          <a class="site-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+          <nav class="site-nav" aria-label="Primary">
+            {% assign nav_pages = site.pages | where: "nav", true | sort: "nav_order" %}
+            {% for item in nav_pages %}
+              {% assign current = false %}
+              {% if page.url == item.url %}
+                {% assign current = true %}
+              {% endif %}
+              <a class="site-nav__link{% if current %} is-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.nav_title | default: item.title }}</a>
+            {% endfor %}
+          </nav>
+        </div>
+      </header>
+
+      <main class="page-shell">
+        {{ content }}
+      </main>
+
+      <div class="results-lightbox" data-results-lightbox hidden>
+        <button type="button" class="results-lightbox__backdrop" data-results-close aria-label="Close enlarged image"></button>
+        <div class="results-lightbox__panel" role="dialog" aria-modal="true" aria-label="Research figure preview">
+          <button type="button" class="results-lightbox__close" data-results-close>Close</button>
+          <img class="results-lightbox__image" data-results-image src="" alt="">
+        </div>
       </div>
-    </header>
 
-    <main class="page-shell">
-      {{ content }}
-    </main>
-
-    <div class="results-lightbox" data-results-lightbox hidden>
-      <button type="button" class="results-lightbox__backdrop" data-results-close aria-label="Close enlarged image"></button>
-      <div class="results-lightbox__panel" role="dialog" aria-modal="true" aria-label="Research figure preview">
-        <button type="button" class="results-lightbox__close" data-results-close>Close</button>
-        <img class="results-lightbox__image" data-results-image src="" alt="">
-      </div>
-    </div>
-
-    <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
-  </body>
+      <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+    </body>
+  {% endif %}
 </html>
