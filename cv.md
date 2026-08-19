@@ -1,16 +1,20 @@
 ---
 title: CV
 nav: true
-nav_order: 8
+nav_order: 4
 permalink: /cv/
 layout: page
 heading: Curriculum vitae.
-description: Open or preview the latest version of my CV.
+description: Research, publications, support, presentations, and academic service.
 ---
 
 <section class="cv-card content-card">
+  <div>
+    <p class="page-kicker">Updated August 2026</p>
+    <p class="section-copy">Includes the RMRE acceptance, NSF ACCESS and Empire AI allocations, and NASA FINESST proposal status.</p>
+  </div>
   <div class="link-row">
-    <a class="cta-button" href="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}?v={{ site.time | date: '%s' }}" target="_blank" rel="noreferrer">Open CV PDF</a>
+    <a class="cta-button cta-button--primary" href="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}?v={{ site.time | date: '%s' }}" target="_blank" rel="noreferrer">Open CV PDF ↗</a>
   </div>
 </section>
 

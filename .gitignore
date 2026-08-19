@@ -3,6 +3,7 @@ _site/
 dist/
 yulong_website/
 tmp/
+output/
 
 # caches
 .astro/

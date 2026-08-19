@@ -1,7 +1,7 @@
 ---
 title: Education
-nav: true
-nav_order: 4
+nav: false
+nav_order: 6
 permalink: /education/
 layout: page
 heading: Academic path.

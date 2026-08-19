@@ -63,9 +63,9 @@ description: Journal, conference, preprint, and thesis publications aligned with
   </article>
 
   <article class="pub-item">
-    <div class="item-meta">
+    <div class="item-meta item-meta--accepted">
       <span>2026</span><br>
-      <span>Preprint</span>
+      <span>Accepted</span>
     </div>
     <div class="pub-main">
       <figure class="pub-preview">
@@ -74,8 +74,8 @@ description: Journal, conference, preprint, and thesis publications aligned with
       <div class="pub-copy">
         <h3 class="pub-title">A Physics-Informed Neural Network for Modeling Pressurized Cavities of Arbitrary Smooth Shape Embedded in Heterogeneous Rock</h3>
         <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span>, Chloé Arson</p>
-        <p class="pub-venue">Research Square preprint</p>
-        <p class="pub-note">Currently under review.</p>
+        <p class="pub-venue">Accepted in <em>Rock Mechanics and Rock Engineering</em>, 2026</p>
+        <p class="pub-note">Research Square preprint available online.</p>
         <a class="text-link" href="https://doi.org/10.21203/rs.3.rs-8492281/v1" target="_blank" rel="noreferrer">Read preprint</a>
       </div>
     </div>

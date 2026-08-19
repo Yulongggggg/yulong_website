@@ -1,12 +1,13 @@
 title: Yulong Liu
-tagline: Personal Website
+tagline: Computational Geomechanics + Scientific Machine Learning
 email: yl3825@cornell.edu
 description: >-
-  Personal website of Yulong Liu, Ph.D. student in Earth and Atmospheric Sciences at Cornell University.
+  Yulong Liu is a Cornell Ph.D. student working across computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning.
 url: https://yulongggggg.github.io
 baseurl: /yulong_website
 lang: en
-maintenance_mode: true
+maintenance_mode: false
+image: /assets/img/og-yulong-liu.png
 
 author:
   name: Yulong Liu
@@ -24,6 +25,9 @@ exclude:
   - .astro/
   - dist/
   - node_modules/
+  - vendor/
+  - output/
+  - scripts/
   - public/
   - src/
   - tmp/
@@ -41,3 +45,4 @@ defaults:
       type: "pages"
     values:
       layout: page
+      image: /assets/img/og-yulong-liu.png
