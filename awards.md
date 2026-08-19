@@ -4,14 +4,14 @@ nav: false
 nav_order: 7
 permalink: /awards/
 layout: page
-heading: Recognition, research support, and service.
-description: Awards, computational allocations, pending support, and academic contribution.
+heading: Recognition, grants, and service.
+description: Grants, computational awards, proposals, and academic contribution.
 ---
 
 <section class="section-stack section-stack--first">
   <div class="page-header">
-    <p class="page-kicker">Research support</p>
-    <h2 class="section-title">Computing allocations and proposals.</h2>
+    <p class="page-kicker">Grants &amp; proposals</p>
+    <h2 class="section-title">Computational awards and pending proposals.</h2>
   </div>
   <div class="support-list">
     <article class="support-item">
@@ -34,7 +34,7 @@ description: Awards, computational allocations, pending support, and academic co
       <div class="support-metric support-metric--text">NASA<span>Under review</span></div>
       <div>
         <p class="project-kind">2026 · ROSES-25 F.5 FINESST</p>
-        <h3>A Physics-Guided Subsurface Earth-System Model for Uncertainty-Aware Prediction of Geothermal Reservoir Evolution</h3>
+        <h3>Prototype Groundwater Digital Twin for Aquifer Resilience: Latent World Modeling for Observation-Informed Hydromechanical Prediction</h3>
         <p>Future Investigator: Y. Liu · PI / faculty mentor: C. Arson</p>
       </div>
     </article>

@@ -83,7 +83,7 @@ description: My research connects high-fidelity mechanics with scientific machin
 <section class="section-stack support-section">
   <div class="section-heading section-heading--split">
     <div>
-      <p class="page-kicker">Research support / 2026</p>
+      <p class="page-kicker">Grants, proposals &amp; awards / 2026</p>
       <h2 class="section-title">Compute that makes the work possible.</h2>
     </div>
     <p class="section-intro">Competitive allocations supporting uncertainty-aware reservoir modeling and AI-aided geomechanics.</p>
@@ -110,7 +110,7 @@ description: My research connects high-fidelity mechanics with scientific machin
       <div class="support-metric support-metric--text">NASA<span>Under review</span></div>
       <div>
         <p class="project-kind">ROSES-25 F.5 FINESST</p>
-        <h3>A Physics-Guided Subsurface Earth-System Model for Uncertainty-Aware Prediction of Geothermal Reservoir Evolution</h3>
+        <h3>Prototype Groundwater Digital Twin for Aquifer Resilience: Latent World Modeling for Observation-Informed Hydromechanical Prediction</h3>
         <p>Future Investigator: Y. Liu · PI / faculty mentor: C. Arson</p>
       </div>
     </article>

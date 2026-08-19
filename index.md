@@ -68,7 +68,7 @@ description: Cornell Ph.D. student working across computational geomechanics, po
 
     <article class="signal-card">
       <div class="signal-topline"><span>NASA FINESST</span><span>Under review</span></div>
-      <h3>A physics-guided subsurface Earth-system model for uncertainty-aware geothermal prediction.</h3>
+      <h3>Prototype Groundwater Digital Twin for Aquifer Resilience: Latent World Modeling for Observation-Informed Hydromechanical Prediction.</h3>
       <p>Future Investigator: Y. Liu · PI: C. Arson</p>
     </article>
 
