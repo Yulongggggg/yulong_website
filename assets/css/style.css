@@ -271,16 +271,16 @@ img {
 
 .hero-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.62fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(220px, 300px);
   align-items: center;
-  gap: clamp(3rem, 7vw, 7rem);
+  gap: clamp(2.5rem, 6vw, 5rem);
 }
 
 .hero-headline {
-  max-width: 12.8ch;
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  letter-spacing: -0.06em;
-  line-height: 0.94;
+  max-width: 14ch;
+  font-size: clamp(2.65rem, 4.4vw, 4.25rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
   text-wrap: balance;
 }
 
@@ -337,45 +337,17 @@ img {
 }
 
 .hero-visual {
-  position: relative;
-  width: min(350px, calc(100% - 1rem));
+  width: min(290px, 100%);
   justify-self: end;
 }
 
 .hero-photo {
-  position: relative;
-  background: var(--surface);
-}
-
-.hero-photo::before {
-  position: absolute;
-  z-index: -1;
-  inset: 1.2rem -1.2rem -1.2rem 1.2rem;
-  background: var(--accent);
-  content: "";
+  width: 100%;
 }
 
 .hero-photo img {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
-.portrait-caption {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.75rem;
-  margin: 2.5rem 0 0;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.04em;
-  line-height: 1.6;
-  text-transform: uppercase;
-}
-
-.portrait-caption span {
-  color: var(--accent);
+  height: auto;
 }
 
 .profile-strip {
@@ -1180,12 +1152,12 @@ img {
 
 @media (max-width: 980px) {
   .hero-card {
-    grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.65fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(210px, 250px);
     gap: 3rem;
   }
 
   .hero-headline {
-    font-size: clamp(2.8rem, 6.5vw, 4.5rem);
+    font-size: clamp(2.65rem, 5.6vw, 3.8rem);
   }
 
   .profile-strip {
@@ -1275,11 +1247,11 @@ img {
   }
 
   .hero-card {
-    gap: 4rem;
+    gap: 2.75rem;
   }
 
   .hero-visual {
-    width: min(330px, calc(100% - 1rem));
+    width: min(250px, 72vw);
     justify-self: start;
   }
 
@@ -1373,10 +1345,6 @@ img {
 @media (max-width: 480px) {
   .hero-actions .cta-button {
     width: 100%;
-  }
-
-  .hero-photo::before {
-    inset: 0.8rem -0.8rem -0.8rem 0.8rem;
   }
 
   .signal-topline {

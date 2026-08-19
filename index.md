@@ -26,7 +26,6 @@ description: Cornell Ph.D. student working across computational geomechanics, po
     <div class="hero-photo">
       <img src="{{ '/assets/img/yulong-liu-portrait.jpeg' | relative_url }}" alt="Portrait of Yulong Liu">
     </div>
-    <p class="portrait-caption"><span>01</span> Yulong Liu<br>Ph.D. student · Cornell EAS</p>
   </div>
 </section>
 
