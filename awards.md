@@ -34,7 +34,7 @@ description: Grants, computational awards, proposals, and academic contribution.
       <div class="support-metric support-metric--text">NASA<span>Under review</span></div>
       <div>
         <p class="project-kind">2026 · ROSES-25 F.5 FINESST</p>
-        <h3>Prototype Groundwater Digital Twin for Aquifer Resilience: Latent World Modeling for Observation-Informed Hydromechanical Prediction</h3>
+        <h3>NASA FINESST Proposal — Title Withheld During Anonymous Review</h3>
         <p>Future Investigator: Y. Liu · PI / faculty mentor: C. Arson</p>
       </div>
     </article>
