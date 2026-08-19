@@ -230,9 +230,9 @@ img {
 
 .page-title {
   max-width: 16ch;
-  font-size: clamp(3.3rem, 8vw, 7.5rem);
+  font-size: clamp(2.6rem, 5.5vw, 5rem);
   letter-spacing: -0.055em;
-  line-height: 0.92;
+  line-height: 0.96;
   text-wrap: balance;
 }
 
@@ -245,9 +245,9 @@ img {
 
 .section-title {
   max-width: 16ch;
-  font-size: clamp(2.8rem, 5.2vw, 5.2rem);
+  font-size: clamp(2.15rem, 3.8vw, 3.8rem);
   letter-spacing: -0.045em;
-  line-height: 0.95;
+  line-height: 1;
   text-wrap: balance;
 }
 
@@ -278,9 +278,9 @@ img {
 
 .hero-headline {
   max-width: 12.8ch;
-  font-size: clamp(4rem, 7.4vw, 7.6rem);
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
   letter-spacing: -0.06em;
-  line-height: 0.89;
+  line-height: 0.94;
   text-wrap: balance;
 }
 
@@ -460,9 +460,9 @@ img {
 .signal-card h3 {
   max-width: 19ch;
   margin-top: clamp(3rem, 7vw, 6rem);
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: clamp(1.55rem, 2.25vw, 2.15rem);
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.08;
 }
 
 .signal-card--accent h3 {
@@ -534,9 +534,9 @@ img {
 
 .featured-copy h3 {
   max-width: 18ch;
-  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  font-size: clamp(1.7rem, 2.7vw, 2.6rem);
   letter-spacing: -0.04em;
-  line-height: 0.98;
+  line-height: 1.04;
 }
 
 .featured-copy > p:last-child {
@@ -620,9 +620,9 @@ img {
 .contact-band h2 {
   max-width: 19ch;
   color: #fff;
-  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
   letter-spacing: -0.05em;
-  line-height: 0.94;
+  line-height: 0.99;
 }
 
 .contact-band > a {
@@ -651,9 +651,9 @@ img {
   margin: 0;
   color: #fff;
   font-family: var(--serif);
-  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  font-size: clamp(1.75rem, 3.5vw, 3.5rem);
   letter-spacing: -0.04em;
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .research-grid {
@@ -671,9 +671,9 @@ img {
 
 .content-card h3 {
   max-width: 20ch;
-  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  font-size: clamp(1.5rem, 2.25vw, 2.15rem);
   letter-spacing: -0.035em;
-  line-height: 1;
+  line-height: 1.08;
 }
 
 .section-copy,
@@ -715,9 +715,9 @@ img {
 
 .project-row h3 {
   max-width: 25ch;
-  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-size: clamp(1.55rem, 2.45vw, 2.3rem);
   letter-spacing: -0.035em;
-  line-height: 1;
+  line-height: 1.08;
 }
 
 .project-row p:last-child,
@@ -759,7 +759,7 @@ img {
 .support-metric {
   color: var(--accent);
   font-family: var(--serif);
-  font-size: clamp(3rem, 6vw, 5.7rem);
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
   letter-spacing: -0.055em;
   line-height: 0.78;
 }
@@ -776,14 +776,14 @@ img {
 }
 
 .support-metric--text {
-  font-size: clamp(2.7rem, 5vw, 4.6rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.5rem);
 }
 
 .support-item h3 {
   max-width: 32ch;
-  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
   letter-spacing: -0.035em;
-  line-height: 1;
+  line-height: 1.08;
 }
 
 .support-item--review .support-metric,
@@ -838,9 +838,9 @@ img {
 
 .pub-title {
   max-width: 34ch;
-  font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+  font-size: clamp(1.4rem, 2.1vw, 2rem);
   letter-spacing: -0.035em;
-  line-height: 1.03;
+  line-height: 1.1;
 }
 
 .pub-authors,
@@ -894,9 +894,9 @@ img {
 }
 
 .timeline-item h3 {
-  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-size: clamp(1.45rem, 2.15vw, 2rem);
   letter-spacing: -0.035em;
-  line-height: 1;
+  line-height: 1.08;
 }
 
 .timeline-copy p {
@@ -1076,7 +1076,7 @@ img {
   margin: 4rem 0 1.5rem;
   border-bottom: 1px solid var(--text);
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 4vw, 3.3rem);
+  font-size: clamp(1.5rem, 3vw, 2.6rem);
   letter-spacing: -0.04em;
   line-height: 1;
 }
@@ -1117,7 +1117,7 @@ img {
 .analytics-value {
   margin: 0.5rem 0;
   font-family: var(--serif);
-  font-size: 3rem;
+  font-size: 2.4rem;
   line-height: 1;
 }
 
@@ -1161,7 +1161,7 @@ img {
 .site-footer__name {
   color: var(--text) !important;
   font-family: var(--serif);
-  font-size: 1.65rem !important;
+  font-size: 1.4rem !important;
 }
 
 .footer-links {
@@ -1185,7 +1185,7 @@ img {
   }
 
   .hero-headline {
-    font-size: clamp(3.5rem, 8.5vw, 6rem);
+    font-size: clamp(2.8rem, 6.5vw, 4.5rem);
   }
 
   .profile-strip {
@@ -1261,7 +1261,7 @@ img {
 
   .page-title,
   .hero-headline {
-    font-size: clamp(3.2rem, 15vw, 5rem);
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
   }
 
   .hero-card,
@@ -1393,7 +1393,7 @@ img {
   }
 
   .contact-band h2 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
   }
 }
 
