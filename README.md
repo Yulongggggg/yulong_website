@@ -19,10 +19,12 @@ bundle exec jekyll build
 
 ## Update the CV PDF
 
-The website CV is generated from a versioned Python script so the downloadable and embedded files stay synchronized.
+The CV source is maintained in the dedicated
+[`Yulong_CV2026_V2`](https://github.com/Yulongggggg/Yulong_CV2026_V2)
+repository. After compiling that repository, copy the final PDF to both website
+locations so the downloadable and embedded versions stay synchronized:
 
 ```sh
-python3 scripts/build_cv.py
+cp ../Yulong_CV2026_V2/Yulong_CV2026_V2.pdf assets/pdf/Yulong_CV2026_V2.pdf
+cp ../Yulong_CV2026_V2/Yulong_CV2026_V2.pdf Yulong_CV2026_V2.pdf
 ```
-
-The generated web copy is written to `assets/pdf/Yulong_CV2026_V2.pdf`.
