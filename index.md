@@ -60,10 +60,10 @@ description: Cornell Ph.D. student working across computational geomechanics, po
 
   <div class="signal-grid">
     <article class="signal-card signal-card--accent">
-      <div class="signal-topline"><span>Publication</span><span>Accepted</span></div>
+      <div class="signal-topline"><span>Publication</span><span>2026</span></div>
       <h3>Physics-informed neural modeling of pressurized cavities in heterogeneous rock.</h3>
-      <p>Accepted in <em>Rock Mechanics and Rock Engineering</em>.</p>
-      <a class="card-link" href="{{ '/publications/' | relative_url }}">View publications <span aria-hidden="true">↗</span></a>
+      <p><em>Rock Mech Rock Eng</em> · DOI 10.1007/s00603-026-05882-5</p>
+      <a class="card-link" href="https://doi.org/10.1007/s00603-026-05882-5" target="_blank" rel="noreferrer">View article <span aria-hidden="true">↗</span></a>
     </article>
 
     <article class="signal-card">
@@ -130,8 +130,8 @@ description: Cornell Ph.D. student working across computational geomechanics, po
   <div class="paper-teasers">
     <a class="paper-teaser" href="{{ '/publications/' | relative_url }}">
       <span class="paper-year">2026</span>
-      <span class="paper-title">A Physics-Informed Neural Network for Modeling Pressurized Cavities of Arbitrary Smooth Shape Embedded in Heterogeneous Rock</span>
-      <span class="paper-status status-accepted">Accepted</span>
+      <span class="paper-title">A Physics-Informed Neural Network for Pressurized Cavities of Arbitrary Shape in Heterogeneous Rock</span>
+      <span class="paper-status status-accepted">Journal</span>
     </a>
     <a class="paper-teaser" href="https://arxiv.org/abs/2605.09360" target="_blank" rel="noreferrer">
       <span class="paper-year">2026</span>

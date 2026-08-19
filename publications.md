@@ -65,18 +65,18 @@ description: Journal, conference, preprint, and thesis publications aligned with
   <article class="pub-item">
     <div class="item-meta item-meta--accepted">
       <span>2026</span><br>
-      <span>Accepted</span>
+      <span>Journal article</span>
     </div>
     <div class="pub-main">
       <figure class="pub-preview">
-        <img src="{{ '/assets/img/pub-covers/pinn-rs.svg' | relative_url }}" alt="Title-page style preview for the Research Square preprint.">
+        <img src="{{ '/assets/img/pub-covers/pinn-rs.svg' | relative_url }}" alt="Title-page style preview for the Rock Mechanics and Rock Engineering article.">
       </figure>
       <div class="pub-copy">
-        <h3 class="pub-title">A Physics-Informed Neural Network for Modeling Pressurized Cavities of Arbitrary Smooth Shape Embedded in Heterogeneous Rock</h3>
+        <h3 class="pub-title">A Physics-Informed Neural Network for Pressurized Cavities of Arbitrary Shape in Heterogeneous Rock</h3>
         <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span>, Chloé Arson</p>
-        <p class="pub-venue">Accepted in <em>Rock Mechanics and Rock Engineering</em>, 2026</p>
-        <p class="pub-note">Research Square preprint available online.</p>
-        <a class="text-link" href="https://doi.org/10.21203/rs.3.rs-8492281/v1" target="_blank" rel="noreferrer">Read preprint</a>
+        <p class="pub-venue"><em>Rock Mech Rock Eng</em> (2026)</p>
+        <p class="pub-note">DOI: 10.1007/s00603-026-05882-5</p>
+        <a class="text-link" href="https://doi.org/10.1007/s00603-026-05882-5" target="_blank" rel="noreferrer">View article</a>
       </div>
     </div>
   </article>

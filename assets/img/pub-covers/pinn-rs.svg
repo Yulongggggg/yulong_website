@@ -1,18 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
-  <title id="title">Accepted Rock Mechanics and Rock Engineering paper</title>
-  <desc id="desc">A paper-like thumbnail for the accepted journal article.</desc>
+  <title id="title">Rock Mechanics and Rock Engineering journal article</title>
+  <desc id="desc">A paper-like thumbnail for the 2026 journal article.</desc>
   <rect width="900" height="1160" fill="#fcfcfc"/>
   <rect x="0" y="0" width="900" height="92" fill="#e8eee9"/>
   <text x="60" y="56" fill="#426154" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="1.5">ROCK MECHANICS AND ROCK ENGINEERING</text>
   <line x1="60" y1="142" x2="840" y2="142" stroke="#ced9d0" stroke-width="3"/>
   <text x="60" y="212" fill="#777777" font-family="Georgia, serif" font-size="34">Yulong Liu, Chloe Arson</text>
   <text x="60" y="304" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">A Physics-Informed Neural</text>
-  <text x="60" y="374" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Network for Modeling</text>
-  <text x="60" y="444" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Pressurized Cavities of</text>
-  <text x="60" y="514" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Arbitrary Smooth Shape</text>
-  <text x="60" y="584" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Embedded in Heterogeneous Rock</text>
+  <text x="60" y="374" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Network for Pressurized</text>
+  <text x="60" y="444" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">Cavities of Arbitrary Shape</text>
+  <text x="60" y="514" fill="#111111" font-family="Georgia, serif" font-size="56" font-weight="700">in Heterogeneous Rock</text>
   <rect x="60" y="674" width="780" height="250" fill="#ffffff" stroke="#ced9d0" stroke-width="2"/>
-  <text x="88" y="742" fill="#426154" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="2">ACCEPTED · 2026</text>
-  <text x="88" y="820" fill="#5a5a5a" font-family="Arial, Helvetica, sans-serif" font-size="26">Physics-informed surrogate modeling for cavities of</text>
-  <text x="88" y="860" fill="#5a5a5a" font-family="Arial, Helvetica, sans-serif" font-size="26">arbitrary smooth shape embedded in heterogeneous rock.</text>
+  <text x="88" y="742" fill="#426154" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="2">JOURNAL ARTICLE · 2026</text>
+  <text x="88" y="820" fill="#5a5a5a" font-family="Arial, Helvetica, sans-serif" font-size="24">doi:10.1007/s00603-026-05882-5</text>
 </svg>

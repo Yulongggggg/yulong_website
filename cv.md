@@ -11,7 +11,7 @@ description: Research, publications, support, presentations, and academic servic
 <section class="cv-card content-card">
   <div>
     <p class="page-kicker">Updated August 2026</p>
-    <p class="section-copy">Includes the RMRE acceptance, NSF ACCESS and Empire AI allocations, and NASA FINESST proposal status.</p>
+    <p class="section-copy">Includes the 2026 RMRE journal article, NSF ACCESS and Empire AI allocations, and NASA FINESST proposal status.</p>
   </div>
   <div class="link-row">
     <a class="cta-button cta-button--primary" href="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}?v={{ site.time | date: '%s' }}" target="_blank" rel="noreferrer">Open CV PDF ↗</a>
