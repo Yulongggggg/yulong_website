@@ -4,7 +4,7 @@ nav: true
 nav_order: 5
 permalink: /contact/
 layout: page
-heading: Open to thoughtful research conversations or collaboration.
+heading: Open to thoughtful research conversations or collaboration
 description: The best ways to reach me.
 ---
 

@@ -4,7 +4,7 @@ nav: false
 nav_order: 10
 permalink: /analytics/
 layout: page
-heading: Visit overview and countries.
+heading: Visit overview and countries
 description: Private visitor analytics snapshot pulled during deployment.
 ---
 

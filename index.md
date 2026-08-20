@@ -7,133 +7,87 @@ permalink: /
 layout: page
 hide_title: true
 body_class: page-about
-description: Cornell Ph.D. student working across computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning.
+description: Cornell Ph.D. candidate working across computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning.
 ---
 
-<section class="hero-card">
-  <div class="hero-copy">
-    <p class="hero-badge">Ph.D. student · Cornell University</p>
-    <h1 class="hero-headline">Building AI that understands the <em>physics beneath our feet</em>.</h1>
-    <p class="hero-lead">
-      I am Yulong Liu, a Ph.D. student at Cornell working at the intersection of computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning.
+<section class="intro">
+  <div class="intro-main">
+    <h1 class="intro-name">Yulong Liu</h1>
+    <p class="intro-role">Ph.D. candidate · Earth and Atmospheric Sciences, Cornell University</p>
+    <p class="intro-advisor">Minors in Computer Science and Scientific Computing · Advised by <a href="https://arsonlab.engineering.cornell.edu/" target="_blank" rel="noreferrer">Chloé Arson</a></p>
+    <p class="intro-bio">
+      I work at the intersection of computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning. My research combines coupled multiphysics simulation of subsurface and reservoir systems with physics-informed neural networks, operator learning, and PDE-grounded verification of LLM-generated simulation code.
     </p>
-    <div class="hero-actions">
-      <a class="cta-button cta-button--primary" href="{{ '/research/' | relative_url }}">Explore my research</a>
-      <a class="cta-button" href="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}?v={{ site.time | date: '%s' }}" target="_blank" rel="noreferrer">Download CV</a>
-    </div>
+    <p class="intro-links">
+      <a href="mailto:yl3825@cornell.edu">Email</a>
+      <a href="{{ '/assets/pdf/Yulong_CV2026_V2.pdf' | relative_url }}?v={{ site.time | date: '%s' }}" target="_blank" rel="noreferrer">CV</a>
+      <a href="https://scholar.google.com/citations?user=0CV0lsQAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
+      <a href="https://github.com/Yulongggggg" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/yulong-liu-19451a322/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </p>
   </div>
-  <div class="hero-visual">
-    <div class="hero-photo">
-      <img src="{{ '/assets/img/yulong-liu-portrait.jpeg' | relative_url }}" alt="Portrait of Yulong Liu">
-    </div>
-  </div>
+  <img class="intro-photo" src="{{ '/assets/img/yulong-liu-portrait.jpeg' | relative_url }}" alt="Portrait of Yulong Liu">
 </section>
 
-<section class="profile-strip" aria-label="Profile at a glance">
-  <div>
-    <span class="strip-label">Based at</span>
-    <strong>Cornell University</strong>
+<section class="home-section" aria-label="Research interests">
+  <div class="section-heading">
+    <h2 class="section-title">Research interests</h2>
   </div>
-  <div>
-    <span class="strip-label">Advisor</span>
-    <strong><a href="https://arsonlab.engineering.cornell.edu/" target="_blank" rel="noreferrer">Chloé Arson</a></strong>
-  </div>
-  <div>
-    <span class="strip-label">Core methods</span>
-    <strong>PINNs · INRs · Operators · LLMs</strong>
-  </div>
-  <div>
-    <span class="strip-label">Focus</span>
-    <strong>Subsurface &amp; reservoir systems</strong>
-  </div>
-</section>
-
-<section class="home-section" aria-label="Featured research">
-  <div class="section-heading section-heading--split">
-    <div>
-      <p class="page-kicker">Research</p>
-      <h2 class="section-title">Three connected threads.</h2>
+  <div class="interest-grid">
+    <div class="interest">
+      <h3>Computational geomechanics</h3>
+      <p>Coupled thermo-hydro-mechanical models of fractured rock, pressurized cavities, excavation, and reservoir systems using finite elements and MOOSE.</p>
     </div>
-    <p class="section-intro">Local mechanics, reservoir response, and trustworthy AI workflows for simulation.</p>
+    <div class="interest">
+      <h3>Scientific machine learning</h3>
+      <p>Physics-informed neural networks, implicit neural representations, and operator learning for geometry-aware, physics-aware prediction.</p>
+    </div>
+    <div class="interest">
+      <h3>Reservoirs &amp; porous media</h3>
+      <p>Poromechanics, geothermal injection-production, fracture-controlled transport, and multiscale upscaling in porous subsurface media.</p>
+    </div>
+    <div class="interest">
+      <h3>Reliable AI for simulation</h3>
+      <p>PDE-grounded verification and LLM-based systems that reason about physical intent, not just syntactically valid simulation code.</p>
+    </div>
   </div>
-
-  <div class="home-feature-grid">
-    <a class="home-feature" href="{{ '/research/' | relative_url }}">
-      <figure><img src="{{ '/assets/img/research-results/generalization-1.png' | relative_url }}" alt="Model generalization across fracture configurations." loading="lazy"></figure>
-      <div class="home-feature-copy">
-        <p class="project-kind">Geothermal reservoirs</p>
-        <h3>Operator learning for fractured injection-production systems</h3>
-        <p>Fast surrogate models for coupled geothermal scenarios, trained on high-fidelity simulation ensembles.</p>
-      </div>
-    </a>
-
-    <a class="home-feature" href="{{ '/research/' | relative_url }}">
-      <figure><img src="{{ '/assets/img/research-results/fig11-1layer-30.png' | relative_url }}" alt="Stress and displacement fields around a cavity." loading="lazy"></figure>
-      <div class="home-feature-copy">
-        <p class="project-kind">Rock mechanics</p>
-        <h3>Physics-informed cavity mechanics across complex geometry</h3>
-        <p>Stress and displacement prediction for arbitrary smooth cavities in heterogeneous rock.</p>
-      </div>
-    </a>
-
-    <a class="home-feature" href="{{ '/research/' | relative_url }}">
-      <figure><img src="{{ '/assets/img/research-results/temp-fig1-1.png' | relative_url }}" alt="Workflow figure for physics verification research." loading="lazy"></figure>
-      <div class="home-feature-copy">
-        <p class="project-kind">LLMs for science</p>
-        <h3>PDE-grounded intent verification</h3>
-        <p>Checking whether LLM-generated multiphysics code solves the intended physical problem — not just whether it runs.</p>
-      </div>
-    </a>
-  </div>
-  <a class="text-route" href="{{ '/research/' | relative_url }}">See the full research map</a>
+  <a class="text-route" href="{{ '/research/' | relative_url }}">Full research overview</a>
 </section>
 
 <section class="home-section" aria-label="Selected publications">
-  <div class="section-heading section-heading--split">
-    <div>
-      <p class="page-kicker">Writing</p>
-      <h2 class="section-title">Selected publications.</h2>
-    </div>
-    <p class="section-intro">Journal, conference, and preprint work aligned with the current CV.</p>
+  <div class="section-heading">
+    <h2 class="section-title">Selected publications</h2>
   </div>
-
-  <div class="home-pub-list">
-    <a class="home-pub" href="{{ '/publications/' | relative_url }}">
-      <span class="home-pub-year">2026</span>
-      <span>
-        <h3>A Physics-Informed Neural Network for Pressurized Cavities of Arbitrary Shape in Heterogeneous Rock</h3>
-        <p class="home-pub-venue">Rock Mechanics and Rock Engineering</p>
-      </span>
-      <span class="home-pub-tag home-pub-tag--journal">Journal</span>
-    </a>
-
-    <a class="home-pub" href="{{ '/publications/' | relative_url }}">
-      <span class="home-pub-year">2026</span>
-      <span>
-        <h3>Your Simulation Runs but Solves the Wrong Physics: PDE-Grounded Intent Verification for LLM-Generated Multiphysics Simulation Code</h3>
-        <p class="home-pub-venue">arXiv preprint · under review at NeurIPS 2026</p>
-      </span>
-      <span class="home-pub-tag">Preprint</span>
-    </a>
-
-    <a class="home-pub" href="{{ '/publications/' | relative_url }}">
-      <span class="home-pub-year">2026</span>
-      <span>
-        <h3>Operator Learning Surrogate Modeling of Hydraulically Fractured Geothermal Injection-Production Systems</h3>
-        <p class="home-pub-venue">ARMA 2026, Tucson</p>
-      </span>
-      <span class="home-pub-tag">Conference</span>
-    </a>
-  </div>
+  <ul class="home-pub-list">
+    <li class="home-pub">
+      <h3><a href="https://doi.org/10.1007/s00603-026-05882-5" target="_blank" rel="noreferrer">A Physics-Informed Neural Network for Pressurized Cavities of Arbitrary Shape in Heterogeneous Rock</a></h3>
+      <p class="home-pub-authors"><strong>Yulong Liu</strong>, Chloé Arson</p>
+      <p class="home-pub-venue">Rock Mechanics and Rock Engineering, 2026<span class="venue-tag venue-tag--journal">Journal</span></p>
+    </li>
+    <li class="home-pub">
+      <h3><a href="https://arxiv.org/abs/2605.09360" target="_blank" rel="noreferrer">Your Simulation Runs but Solves the Wrong Physics: PDE-Grounded Intent Verification for LLM-Generated Multiphysics Simulation Code</a></h3>
+      <p class="home-pub-authors"><strong>Yulong Liu</strong>, Zhenghan Song, et al.</p>
+      <p class="home-pub-venue">arXiv preprint · under review at NeurIPS 2026<span class="venue-tag">Preprint</span></p>
+    </li>
+    <li class="home-pub">
+      <h3><a href="{{ '/publications/' | relative_url }}">Operator Learning Surrogate Modeling of Hydraulically Fractured Geothermal Injection-Production Systems: A Cornell Case Study</a></h3>
+      <p class="home-pub-authors"><strong>Yulong Liu</strong>, Jonah Botvinick-Greenhouse, Yunan Yang, Chloé Arson</p>
+      <p class="home-pub-venue">ARMA 2026, Tucson<span class="venue-tag">Conference</span></p>
+    </li>
+  </ul>
   <a class="text-route" href="{{ '/publications/' | relative_url }}">All publications</a>
 </section>
 
-<section class="contact-band" aria-label="Contact">
-  <p class="page-kicker">Get in touch</p>
-  <h2>Open to thoughtful research conversations and collaboration.</h2>
-  <p>Geomechanics, poromechanics, scientific machine learning, or reliable AI for simulation — I would love to hear from you.</p>
-  <div class="hero-actions">
-    <a class="cta-button cta-button--primary" href="mailto:yl3825@cornell.edu">yl3825@cornell.edu</a>
-    <a class="cta-button" href="{{ '/contact/' | relative_url }}">More ways to reach me</a>
+<section class="home-section" aria-label="Highlights">
+  <div class="section-heading">
+    <h2 class="section-title">Highlights</h2>
   </div>
+  <ul class="highlight-list">
+    <li><time>2026</time><span>NSF ACCESS allocation, 1.5M CPU hours — student lead for learned uncertainty-propagation and world models for enhanced geothermal reservoirs.</span></li>
+    <li><time>2026</time><span>Empire AI Alpha+Beta allocation, 5.5K GPU hours — co-PI, AI-aided computational geomechanics.</span></li>
+    <li><time>2026</time><span>Invited speaker and panelist, 20th Phase Field Methods workshop, Northwestern University.</span></li>
+    <li><time>2025</time><span>Estwing Hammer Award — Outstanding EAS Graduate Student, Cornell University.</span></li>
+    <li><time>2025</time><span>Invited seminar, Southwest Petroleum University, Chengdu.</span></li>
+  </ul>
+  <a class="text-route" href="{{ '/awards/' | relative_url }}">Recognition, grants &amp; service</a>
 </section>

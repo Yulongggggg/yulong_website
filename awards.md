@@ -4,14 +4,14 @@ nav: false
 nav_order: 7
 permalink: /awards/
 layout: page
-heading: Recognition, grants, and service.
+heading: Recognition, grants, and service
 description: Grants, computational awards, proposals, and academic contribution.
 ---
 
 <section class="section-stack section-stack--first">
   <div class="page-header">
     <p class="page-kicker">Grants &amp; proposals</p>
-    <h2 class="section-title">Computational awards and pending proposals.</h2>
+    <h2 class="section-title">Computational awards and pending proposals</h2>
   </div>
   <div class="support-list">
     <article class="support-item">

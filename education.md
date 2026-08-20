@@ -4,7 +4,7 @@ nav: false
 nav_order: 6
 permalink: /education/
 layout: page
-heading: Academic path.
+heading: Academic path
 description: Training in geophysics, mining engineering, and scientific computing.
 ---
 
@@ -14,6 +14,7 @@ description: Training in geophysics, mining engineering, and scientific computin
     <div class="timeline-copy">
       <h3>Cornell University</h3>
       <p class="timeline-degree">Ph.D. in Earth Science</p>
+      <p>Minors: Computer Science &amp; Scientific Computing</p>
       <p>Department of Earth and Atmospheric Sciences</p>
     </div>
   </article>

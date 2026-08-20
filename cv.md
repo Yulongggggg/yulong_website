@@ -4,7 +4,7 @@ nav: true
 nav_order: 4
 permalink: /cv/
 layout: page
-heading: Curriculum vitae.
+heading: Curriculum vitae
 description: Research, publications, support, presentations, and academic service.
 ---
 

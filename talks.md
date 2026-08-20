@@ -4,7 +4,7 @@ nav: false
 nav_order: 8
 permalink: /talks/
 layout: page
-heading: Conferences and presentations.
+heading: Conferences and presentations
 description: Selected presentations, invited seminars, and panel appearances.
 ---
 

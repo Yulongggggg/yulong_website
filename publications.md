@@ -4,7 +4,7 @@ nav: true
 nav_order: 3
 permalink: /publications/
 layout: page
-heading: Selected papers and thesis.
+heading: Selected papers and thesis
 description: Journal, conference, preprint, and thesis publications aligned with the current CV.
 ---
 
@@ -20,7 +20,7 @@ description: Journal, conference, preprint, and thesis publications aligned with
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">Prefix-Safe Bayesian Belief Tracking for LLM Reasoning Reliability: Separating Calibration from Ranking</h3>
-        <p class="pub-authors">Zhenghan Song, Yunyi Li, <strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span></p>
+        <p class="pub-authors">Zhenghan Song, Yunyi Li, <strong class="author-highlight">Yulong Liu</strong><span class="inline-note">(corresponding author)</span></p>
         <p class="pub-venue">Under review at ACL ARR 2026</p>
       </div>
     </div>
@@ -37,9 +37,9 @@ description: Journal, conference, preprint, and thesis publications aligned with
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">Your Simulation Runs but Solves the Wrong Physics: PDE-Grounded Intent Verification for LLM-Generated Multiphysics Simulation Code</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(co-first author, corresponding author)</span>, Zhenghan Song, et al.</p>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="inline-note">(co-first author, corresponding author)</span>, Zhenghan Song, et al.</p>
         <p class="pub-venue">arXiv preprint; under review at NeurIPS 2026</p>
-        <a class="text-link" href="https://arxiv.org/abs/2605.09360" target="_blank" rel="noreferrer">Open arXiv</a>
+        <a class="text-link" href="https://arxiv.org/abs/2605.09360" target="_blank" rel="noreferrer">arXiv</a>
       </div>
     </div>
   </article>
@@ -47,7 +47,7 @@ description: Journal, conference, preprint, and thesis publications aligned with
   <article class="pub-item">
     <div class="item-meta">
       <span>2026</span><br>
-      <span>Conference paper</span>
+      <span>Conference</span>
     </div>
     <div class="pub-main">
       <figure class="pub-preview">
@@ -55,8 +55,8 @@ description: Journal, conference, preprint, and thesis publications aligned with
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">Operator Learning Surrogate Modeling of Hydraulically Fractured Geothermal Injection-Production Systems: A Cornell Case Study</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span>, Jonah Botvinick-Greenhouse, Yunan Yang, Chloé Arson</p>
-        <p class="pub-venue">ARMA 2026, Tucson</p>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong>, Jonah Botvinick-Greenhouse, Yunan Yang, Chloé Arson</p>
+        <p class="pub-venue">ARMA US Rock Mechanics/Geomechanics Symposium, Tucson, 2026</p>
         <a class="text-link" href="https://scholar.google.com/scholar?q=Operator+Learning+Surrogate+Modeling+of+Hydraulically+Fractured+Geothermal+Injection-Production+Systems:+A+Cornell+Case+Study" target="_blank" rel="noreferrer">Find in Scholar</a>
       </div>
     </div>
@@ -65,7 +65,7 @@ description: Journal, conference, preprint, and thesis publications aligned with
   <article class="pub-item">
     <div class="item-meta item-meta--accepted">
       <span>2026</span><br>
-      <span>Journal article</span>
+      <span>Journal</span>
     </div>
     <div class="pub-main">
       <figure class="pub-preview">
@@ -73,7 +73,7 @@ description: Journal, conference, preprint, and thesis publications aligned with
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">A Physics-Informed Neural Network for Pressurized Cavities of Arbitrary Shape in Heterogeneous Rock</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span><span class="inline-note">(corresponding author)</span>, Chloé Arson</p>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong>, Chloé Arson</p>
         <p class="pub-venue"><em>Rock Mech Rock Eng</em> (2026)</p>
         <p class="pub-note">DOI: 10.1007/s00603-026-05882-5</p>
         <a class="text-link" href="https://doi.org/10.1007/s00603-026-05882-5" target="_blank" rel="noreferrer">View article</a>
@@ -84,7 +84,7 @@ description: Journal, conference, preprint, and thesis publications aligned with
   <article class="pub-item">
     <div class="item-meta">
       <span>2026</span><br>
-      <span>Journal article</span>
+      <span>Journal</span>
     </div>
     <div class="pub-main">
       <figure class="pub-preview">
@@ -92,9 +92,9 @@ description: Journal, conference, preprint, and thesis publications aligned with
       </figure>
       <div class="pub-copy">
         <h3 class="pub-title">Numerical Assessment of Plasticity Development and Energy Expenditure of Ant-Like Microtunnelling</h3>
-        <p class="pub-authors">M. Belachew, <strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>, J. D. Frost, Chloé Arson</p>
+        <p class="pub-authors">M. Belachew, <strong class="author-highlight">Yulong Liu</strong>, J. D. Frost, Chloé Arson</p>
         <p class="pub-venue">Tunnelling and Underground Space Technology, 172, 107501</p>
-        <a class="text-link" href="https://doi.org/10.1016/j.tust.2026.107501" target="_blank" rel="noreferrer">Open journal page</a>
+        <a class="text-link" href="https://doi.org/10.1016/j.tust.2026.107501" target="_blank" rel="noreferrer">Journal page</a>
       </div>
     </div>
   </article>
@@ -102,15 +102,15 @@ description: Journal, conference, preprint, and thesis publications aligned with
   <article class="pub-item">
     <div class="item-meta">
       <span>2025</span><br>
-      <span>Conference paper</span>
+      <span>Conference</span>
     </div>
     <div class="pub-main">
       <figure class="pub-preview">
         <img src="{{ '/assets/img/pub-covers/bilayer-arma.svg' | relative_url }}" alt="Title-page style preview for the ARMA PINN paper.">
       </figure>
       <div class="pub-copy">
-        <h3 class="pub-title">Physics-informed neural network surrogate modeling of pressurized cavity in homogeneous and bilayered media</h3>
-        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span>, Chloé Arson</p>
+        <h3 class="pub-title">Physics-Informed Neural Network Surrogate Modeling of Pressurized Cavity in Homogeneous and Bilayered Media</h3>
+        <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="inline-note">(corresponding author)</span>, Chloé Arson</p>
         <p class="pub-venue">ARMA US Rock Mechanics/Geomechanics Symposium, D022S018R006</p>
         <a class="text-link" href="https://scholar.google.com/scholar?q=Physics-informed+neural+network+surrogate+modeling+of+pressurized+cavity+in+homogeneous+and+bilayered+media" target="_blank" rel="noreferrer">Find in Scholar</a>
       </div>
@@ -119,33 +119,37 @@ description: Journal, conference, preprint, and thesis publications aligned with
 </div>
 
 <section class="section-stack">
-  <div class="page-header">
-    <p class="page-kicker">Thesis</p>
-    <h2 class="section-title">Undergraduate thesis.</h2>
+  <div class="section-heading">
+    <h2 class="section-title">Undergraduate thesis</h2>
   </div>
   <article class="content-card">
     <h3>A Unified Model for Microseismic Signal Classification and Arrival-Time Picking Based on Deep Learning</h3>
-    <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong><span class="author-star" aria-hidden="true">*</span></p>
+    <p class="pub-authors"><strong class="author-highlight">Yulong Liu</strong></p>
     <p class="pub-venue">Undergraduate thesis, Northeastern University, 2024</p>
   </article>
 </section>
 
-<div class="results-gallery">
-  <figure class="results-card results-card--left" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/fig11-1layer-30.png' | relative_url }}" data-results-alt="Comparative field plots for displacement, stress, and error around a circular cavity." aria-label="Open enlarged research figure">
-    <img src="{{ '/assets/img/research-results/fig11-1layer-30.png' | relative_url }}" alt="Comparative field plots for displacement, stress, and error around a circular cavity.">
-  </figure>
-
-  <div class="results-column">
-    <figure class="results-card results-card--top" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/gr11-lrg.jpg' | relative_url }}" data-results-alt="Stage-wise stress evolution figure from ant-like microtunnelling study." aria-label="Open enlarged research figure">
-      <img src="{{ '/assets/img/research-results/gr11-lrg.jpg' | relative_url }}" alt="Stage-wise stress evolution figure from ant-like microtunnelling study.">
+<section class="section-stack">
+  <div class="section-heading">
+    <h2 class="section-title">Selected figures</h2>
+  </div>
+  <div class="results-gallery">
+    <figure class="results-card results-card--left" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/fig11-1layer-30.png' | relative_url }}" data-results-alt="Comparative field plots for displacement, stress, and error around a circular cavity." aria-label="Open enlarged research figure">
+      <img src="{{ '/assets/img/research-results/fig11-1layer-30.png' | relative_url }}" alt="Comparative field plots for displacement, stress, and error around a circular cavity." loading="lazy">
     </figure>
 
-    <figure class="results-card results-card--bottom" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/generalization-1.png' | relative_url }}" data-results-alt="Generalization comparison across fracture configurations." aria-label="Open enlarged research figure">
-      <img src="{{ '/assets/img/research-results/generalization-1.png' | relative_url }}" alt="Generalization comparison across fracture configurations.">
+    <div class="results-column">
+      <figure class="results-card results-card--top" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/gr11-lrg.jpg' | relative_url }}" data-results-alt="Stage-wise stress evolution figure from ant-like microtunnelling study." aria-label="Open enlarged research figure">
+        <img src="{{ '/assets/img/research-results/gr11-lrg.jpg' | relative_url }}" alt="Stage-wise stress evolution figure from ant-like microtunnelling study." loading="lazy">
+      </figure>
+
+      <figure class="results-card results-card--bottom" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/generalization-1.png' | relative_url }}" data-results-alt="Generalization comparison across fracture configurations." aria-label="Open enlarged research figure">
+        <img src="{{ '/assets/img/research-results/generalization-1.png' | relative_url }}" alt="Generalization comparison across fracture configurations." loading="lazy">
+      </figure>
+    </div>
+
+    <figure class="results-card results-card--wide" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/temp-fig1-1.png' | relative_url }}" data-results-alt="Research figure from the latest study." aria-label="Open enlarged research figure">
+      <img src="{{ '/assets/img/research-results/temp-fig1-1.png' | relative_url }}" alt="Research figure from the latest study." loading="lazy">
     </figure>
   </div>
-
-  <figure class="results-card results-card--wide" role="button" tabindex="0" data-results-open data-results-src="{{ '/assets/img/research-results/temp-fig1-1.png' | relative_url }}" data-results-alt="Research figure from the latest study." aria-label="Open enlarged research figure">
-    <img src="{{ '/assets/img/research-results/temp-fig1-1.png' | relative_url }}" alt="Research figure from the latest study.">
-  </figure>
-</div>
+</section>
