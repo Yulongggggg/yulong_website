@@ -5,23 +5,23 @@ nav_order: 8
 permalink: /talks/
 layout: page
 heading: Conferences and presentations
-description: Selected presentations, invited seminars, and panel appearances.
+description: Selected presentations and invited seminars.
 ---
 
 <div class="timeline">
-  <article class="timeline-item">
-    <div class="item-meta">Invited speaker &amp; panelist<br>May 2026</div>
-    <div class="timeline-copy">
-      <h3>20th Phase Field Methods workshop</h3>
-      <p>Center for Hierarchical Materials Design, Northwestern University</p>
-    </div>
-  </article>
-
   <article class="timeline-item">
     <div class="item-meta">Oral presentation<br>June 2026</div>
     <div class="timeline-copy">
       <h3>60th US Rock Mechanics/Geomechanics Symposium (ARMA)</h3>
       <p>American Rock Mechanics Association (ARMA), Tucson, AZ, USA</p>
+    </div>
+  </article>
+
+  <article class="timeline-item">
+    <div class="item-meta">Invited talk<br>May 2026</div>
+    <div class="timeline-copy">
+      <h3>20th Phase Field Methods Workshop</h3>
+      <p>Center for Hierarchical Materials Design, Northwestern University</p>
     </div>
   </article>
 

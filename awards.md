@@ -45,7 +45,7 @@ description: Grants, computational awards, proposals, and academic contribution.
   <div class="content-card">
     <p class="page-kicker">Awards</p>
     <ul class="plain-list">
-      <li>2025 · Estwing Hammer Award, Outstanding EAS Graduate Student of 2024, Cornell University</li>
+      <li>2025 · Estwing Hammer Award, Most Outstanding EAS Graduate Student of 2024, Cornell University</li>
       <li>2025, 2026 · Cornell University Travel Grant</li>
       <li>2024 · Outstanding Thesis, Northeastern University</li>
       <li>2024 · National Scholarship, Ministry of Education, China</li>

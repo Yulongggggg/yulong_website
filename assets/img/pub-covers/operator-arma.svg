@@ -5,7 +5,7 @@
   <rect x="0" y="0" width="900" height="88" fill="#dce9ef"/>
   <text x="60" y="54" fill="#446476" font-family="Arial, Helvetica, sans-serif" font-size="30" letter-spacing="4">ARMA 2026  TUCSON</text>
   <line x1="60" y1="138" x2="840" y2="138" stroke="#cad7dd" stroke-width="3"/>
-  <text x="60" y="206" fill="#7a7a7a" font-family="Georgia, serif" font-size="34">Yulong Liu, Jonah Botvinick-Greenhouse, Yunan Yang, Chloe Arson</text>
+  <text x="60" y="206" fill="#7a7a7a" font-family="Georgia, serif" font-size="28">Y. Liu, J. Botvinick-Greenhouse, Y. Yang, C. Arson</text>
   <text x="60" y="302" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Operator Learning Surrogate</text>
   <text x="60" y="376" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Modeling of Hydraulically</text>
   <text x="60" y="450" fill="#111111" font-family="Georgia, serif" font-size="60" font-weight="700">Fractured Geothermal</text>

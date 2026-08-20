@@ -38,6 +38,12 @@ exclude:
   - tsconfig.json
   - README.md
   - Yulong_CV2026_V2.pdf
+  - AdobeStock_653911900.jpeg
+  - color4bg_video_1776306592317.webm
+  - generalization_1.png
+  - Fig11.1layer_30.pdf
+  - 1-s2.0-S0886779826000593-gr11_lrg.jpg
+  - d07473fc-a8f6-4f18-acb8-eb7e750cba81 copy.png
 
 defaults:
   - scope:

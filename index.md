@@ -10,13 +10,19 @@ body_class: page-about
 description: Cornell Ph.D. candidate working across computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning.
 ---
 
-<img class="home-cover" src="{{ '/assets/img/cover-strata.png' | relative_url }}" alt="Illustration of geological strata cut by a branching fracture, with flow lines and a deformed simulation mesh.">
-
-<section class="intro">
-  <div class="intro-main">
-    <h1 class="intro-name">Yulong Liu</h1>
+<section class="home-hero">
+  <div class="home-hero__copy">
+    <h1 class="hero-name">Yulong<br>Liu</h1>
     <div class="intro-rule" aria-hidden="true"></div>
-    <p class="intro-role">Ph.D. candidate · Earth and Atmospheric Sciences, Cornell University</p>
+    <p class="hero-sub">Computational Geomechanics +<br>Scientific Machine Learning</p>
+    <p class="hero-meta">Ph.D. candidate · Cornell University</p>
+  </div>
+  <img class="home-hero__mobile" src="{{ '/assets/img/cover-strata.png' | relative_url }}" alt="">
+</section>
+
+<section class="intro" aria-label="About">
+  <div class="intro-main">
+    <p class="intro-role">Earth and Atmospheric Sciences · Cornell University</p>
     <p class="intro-advisor">Minors in Computer Science and Scientific Computing · Advised by <a href="https://arsonlab.engineering.cornell.edu/" target="_blank" rel="noreferrer">Chloé Arson</a></p>
     <p class="intro-bio">
       I work at the intersection of computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning. My research combines coupled multiphysics simulation of subsurface and reservoir systems with physics-informed neural networks, operator learning, and PDE-grounded verification of LLM-generated simulation code.

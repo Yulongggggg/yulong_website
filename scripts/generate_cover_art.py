@@ -155,6 +155,14 @@ def draw_art(img, band_starts=None, fade_w_frac=0.05):
     return img
 
 
+def make_hero():
+    W, H = 2400, 1260
+    img = Image.new("RGBA", (W, H), PAPER + (255,))
+    draw_art(img, band_starts=[0.56, 0.53, 0.58, 0.50, 0.46], fade_w_frac=0.035)
+    img.convert("RGB").save("yulong_website/assets/img/cover-hero.png", optimize=True)
+    print("hero ok")
+
+
 def make_banner():
     W, H = 2580, 660
     img = Image.new("RGBA", (W, H), PAPER + (255,))
@@ -193,5 +201,6 @@ def make_og():
     print("og ok")
 
 
+make_hero()
 make_banner()
 make_og()

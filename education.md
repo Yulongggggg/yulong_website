@@ -5,7 +5,7 @@ nav_order: 6
 permalink: /education/
 layout: page
 heading: Academic path
-description: Training in geophysics, mining engineering, and scientific computing.
+description: Training in earth science, mining engineering, and scientific computing.
 ---
 
 <div class="timeline">

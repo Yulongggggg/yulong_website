@@ -51,6 +51,6 @@ description: Private visitor analytics snapshot pulled during deployment.
   </section>
 {% else %}
   <section class="content-card">
-    <p class="section-copy">Analytics is connected, but the first private snapshot has not been generated yet. Push once after adding <code>GOATCOUNTER_API_TOKEN</code>, or rerun the deploy workflow from GitHub Actions.</p>
+    <p class="section-copy">Analytics is configured, but no snapshot has been generated yet. Push once after adding <code>GOATCOUNTER_API_TOKEN</code>, or rerun the deploy workflow from GitHub Actions.</p>
   </section>
 {% endif %}
