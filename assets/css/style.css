@@ -8,24 +8,24 @@
   color-scheme: light;
 
   /* palette */
-  --bg: #f5f5f2;
-  --surface: #fdfdfb;
-  --ink: #1e2521;
-  --ink-soft: #3f4a44;
-  --muted: #5f6963;
-  --line: rgba(35, 48, 42, 0.14);
-  --line-strong: rgba(35, 48, 42, 0.26);
+  --bg: #f3eee2;
+  --surface: #fbf8ef;
+  --ink: #23261f;
+  --ink-soft: #45483d;
+  --muted: #6b6d60;
+  --line: rgba(53, 55, 43, 0.15);
+  --line-strong: rgba(53, 55, 43, 0.28);
 
-  --accent: #b4661a;          /* thermal amber */
-  --accent-deep: #8f4f0f;
-  --accent-soft: #f3e6d0;
+  --accent: #b34f28;          /* rust */
+  --accent-deep: #8e3b1a;
+  --accent-soft: #f0ddcd;
 
-  --moss: #34664d;            /* accepted / success */
-  --moss-soft: #e4ede5;
+  --moss: #2f4b3f;            /* pine — accepted / journal */
+  --moss-soft: #e2e8de;
 
   /* type */
-  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-  --accent-serif: "Instrument Serif", Georgia, serif;
+  --display: "Bodoni Moda", Didot, "Bodoni MT", Georgia, serif;
+  --accent-serif: "Bodoni Moda", Didot, Georgia, serif;
   --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --mono: "Spline Sans Mono", "SFMono-Regular", Consolas, monospace;
 
@@ -104,7 +104,7 @@ img {
   z-index: 50;
   top: 0;
   border-bottom: 1px solid var(--line);
-  background: rgba(245, 245, 242, 0.88);
+  background: rgba(243, 238, 226, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -130,9 +130,10 @@ img {
   gap: 0.6rem;
   color: var(--ink);
   font-family: var(--display);
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .site-brand small {
@@ -217,9 +218,9 @@ img {
 }
 
 .page-title {
-  font-size: clamp(1.55rem, 2.8vw, 1.95rem);
-  letter-spacing: -0.015em;
-  line-height: 1.15;
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+  letter-spacing: 0.01em;
+  line-height: 1.16;
   text-wrap: balance;
 }
 
@@ -232,8 +233,8 @@ img {
 }
 
 .section-title {
-  font-size: clamp(1.15rem, 1.9vw, 1.35rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(1.3rem, 2.1vw, 1.5rem);
+  letter-spacing: 0.015em;
   line-height: 1.2;
 }
 
@@ -280,6 +281,13 @@ img {
 /* Intro (home)                                                */
 /* ---------------------------------------------------------- */
 
+.home-cover {
+  width: 100%;
+  margin: 0 0 clamp(1.9rem, 4vw, 2.75rem);
+  aspect-ratio: 2580 / 660;
+  object-fit: cover;
+}
+
 .intro {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(150px, 185px);
@@ -288,16 +296,41 @@ img {
 }
 
 .intro-name {
-  font-size: clamp(1.8rem, 3.4vw, 2.3rem);
-  letter-spacing: -0.02em;
-  line-height: 1.08;
+  font-size: clamp(2rem, 3.8vw, 2.7rem);
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.intro-rule {
+  position: relative;
+  width: 8.5rem;
+  height: 2px;
+  margin-top: 1.15rem;
+  background: var(--accent);
+}
+
+.intro-rule::after {
+  position: absolute;
+  top: 50%;
+  right: -0.9rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+  transform: translateY(-50%);
 }
 
 .intro-role {
-  margin: 0.6rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
+  margin: 1.1rem 0 0;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.8rem;
   font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .intro-advisor {
@@ -480,13 +513,14 @@ img {
 /* ---------------------------------------------------------- */
 
 .research-thesis {
-  max-width: 38rem;
+  max-width: 40rem;
   margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
   color: var(--ink-soft);
   font-family: var(--accent-serif);
-  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
   font-style: italic;
-  line-height: 1.45;
+  font-weight: 480;
+  line-height: 1.4;
 }
 
 .research-areas {
@@ -1225,6 +1259,11 @@ img {
 
   .site-nav__link {
     white-space: nowrap;
+  }
+
+  .home-cover {
+    aspect-ratio: 5 / 2;
+    object-position: 72% center;
   }
 
   .intro {

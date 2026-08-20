@@ -10,9 +10,12 @@ body_class: page-about
 description: Cornell Ph.D. candidate working across computational geomechanics, poromechanics, reservoir simulation, and scientific machine learning.
 ---
 
+<img class="home-cover" src="{{ '/assets/img/cover-strata.png' | relative_url }}" alt="Illustration of geological strata cut by a branching fracture, with flow lines and a deformed simulation mesh.">
+
 <section class="intro">
   <div class="intro-main">
     <h1 class="intro-name">Yulong Liu</h1>
+    <div class="intro-rule" aria-hidden="true"></div>
     <p class="intro-role">Ph.D. candidate · Earth and Atmospheric Sciences, Cornell University</p>
     <p class="intro-advisor">Minors in Computer Science and Scientific Computing · Advised by <a href="https://arsonlab.engineering.cornell.edu/" target="_blank" rel="noreferrer">Chloé Arson</a></p>
     <p class="intro-bio">
@@ -76,18 +79,4 @@ description: Cornell Ph.D. candidate working across computational geomechanics, 
     </li>
   </ul>
   <a class="text-route" href="{{ '/publications/' | relative_url }}">All publications</a>
-</section>
-
-<section class="home-section" aria-label="Highlights">
-  <div class="section-heading">
-    <h2 class="section-title">Highlights</h2>
-  </div>
-  <ul class="highlight-list">
-    <li><time>2026</time><span>NSF ACCESS allocation, 1.5M CPU hours — student lead for learned uncertainty-propagation and world models for enhanced geothermal reservoirs.</span></li>
-    <li><time>2026</time><span>Empire AI Alpha+Beta allocation, 5.5K GPU hours — co-PI, AI-aided computational geomechanics.</span></li>
-    <li><time>2026</time><span>Invited speaker and panelist, 20th Phase Field Methods workshop, Northwestern University.</span></li>
-    <li><time>2025</time><span>Estwing Hammer Award — Outstanding EAS Graduate Student, Cornell University.</span></li>
-    <li><time>2025</time><span>Invited seminar, Southwest Petroleum University, Chengdu.</span></li>
-  </ul>
-  <a class="text-route" href="{{ '/awards/' | relative_url }}">Recognition, grants &amp; service</a>
 </section>
