@@ -224,6 +224,17 @@ img {
   text-wrap: balance;
 }
 
+.page-title::after {
+  content: "";
+  display: block;
+  width: 6rem;
+  height: 0.6rem;
+  margin-top: 0.95rem;
+  background:
+    radial-gradient(circle at calc(100% - 0.27rem) 50%, var(--accent) 0.26rem, transparent 0.3rem),
+    linear-gradient(var(--accent), var(--accent)) 0 50% / calc(100% - 1.05rem) 2px no-repeat;
+}
+
 .page-description {
   max-width: 42rem;
   margin: 0.7rem 0 0;
