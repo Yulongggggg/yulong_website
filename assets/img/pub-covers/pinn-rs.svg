@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" role="img" aria-labelledby="title desc">
   <title id="title">Rock Mechanics and Rock Engineering journal article</title>
   <desc id="desc">A paper-like thumbnail for the 2026 journal article.</desc>
-  <rect width="900" height="1160" fill="#fbfdff"/>
-  <rect x="0" y="0" width="900" height="92" fill="#e8eefc"/>
-  <text x="60" y="56" fill="#2457d6" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="1.5">ROCK MECHANICS AND ROCK ENGINEERING</text>
-  <line x1="60" y1="142" x2="840" y2="142" stroke="#c9d6f2" stroke-width="3"/>
-  <text x="60" y="212" fill="#5f6f82" font-family="Georgia, serif" font-size="34">Yulong Liu, Chloe Arson</text>
-  <text x="60" y="304" fill="#102a43" font-family="Georgia, serif" font-size="56" font-weight="700">A Physics-Informed Neural</text>
-  <text x="60" y="374" fill="#102a43" font-family="Georgia, serif" font-size="56" font-weight="700">Network for Pressurized</text>
-  <text x="60" y="444" fill="#102a43" font-family="Georgia, serif" font-size="56" font-weight="700">Cavities of Arbitrary Shape</text>
-  <text x="60" y="514" fill="#102a43" font-family="Georgia, serif" font-size="56" font-weight="700">in Heterogeneous Rock</text>
-  <rect x="60" y="674" width="780" height="250" fill="#ffffff" stroke="#c9d6f2" stroke-width="2"/>
-  <text x="88" y="742" fill="#2457d6" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="2">JOURNAL ARTICLE · 2026</text>
-  <text x="88" y="820" fill="#5f6f82" font-family="Arial, Helvetica, sans-serif" font-size="24">doi:10.1007/s00603-026-05882-5</text>
+  <rect width="900" height="1160" fill="#fdfdfb"/>
+  <rect x="0" y="0" width="900" height="92" fill="#e9ebe4"/>
+  <text x="60" y="56" fill="#8f4f0f" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="1.5">ROCK MECHANICS AND ROCK ENGINEERING</text>
+  <line x1="60" y1="142" x2="840" y2="142" stroke="#d5d9cf" stroke-width="3"/>
+  <text x="60" y="212" fill="#5f6963" font-family="Georgia, serif" font-size="34">Yulong Liu, Chloe Arson</text>
+  <text x="60" y="304" fill="#1e2521" font-family="Georgia, serif" font-size="56" font-weight="700">A Physics-Informed Neural</text>
+  <text x="60" y="374" fill="#1e2521" font-family="Georgia, serif" font-size="56" font-weight="700">Network for Pressurized</text>
+  <text x="60" y="444" fill="#1e2521" font-family="Georgia, serif" font-size="56" font-weight="700">Cavities of Arbitrary Shape</text>
+  <text x="60" y="514" fill="#1e2521" font-family="Georgia, serif" font-size="56" font-weight="700">in Heterogeneous Rock</text>
+  <rect x="60" y="674" width="780" height="250" fill="#ffffff" stroke="#d5d9cf" stroke-width="2"/>
+  <text x="88" y="742" fill="#8f4f0f" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="2">JOURNAL ARTICLE · 2026</text>
+  <text x="88" y="820" fill="#5f6963" font-family="Arial, Helvetica, sans-serif" font-size="24">doi:10.1007/s00603-026-05882-5</text>
 </svg>

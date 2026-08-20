@@ -14,25 +14,25 @@ description: My research connects high-fidelity mechanics with scientific machin
 
 <section class="research-grid">
   <article class="content-card">
-    <p class="page-kicker">01</p>
+    <p class="page-kicker">Simulate</p>
     <h3>Computational geomechanics</h3>
     <p class="section-copy">Coupled thermo-hydro-mechanical models of fractured rock, pressurized cavities, excavation, and reservoir systems using finite elements and MOOSE.</p>
   </article>
 
   <article class="content-card">
-    <p class="page-kicker">02</p>
+    <p class="page-kicker">Learn</p>
     <h3>Scientific machine learning</h3>
     <p class="section-copy">Physics-informed neural networks, implicit neural representations, and operator learning for geometry-aware, physics-aware prediction.</p>
   </article>
 
   <article class="content-card">
-    <p class="page-kicker">03</p>
+    <p class="page-kicker">Upscale</p>
     <h3>Reservoirs &amp; porous media</h3>
     <p class="section-copy">Poromechanics, geothermal injection-production, fracture-controlled transport, and multiscale upscaling in porous subsurface media.</p>
   </article>
 
   <article class="content-card">
-    <p class="page-kicker">04</p>
+    <p class="page-kicker">Verify</p>
     <h3>Reliable AI for simulation</h3>
     <p class="section-copy">PDE-grounded verification and LLM-based systems that reason about physical intent, not just syntactically valid simulation code.</p>
   </article>
